@@ -196,6 +196,7 @@ install:
   - git submodule init libs/function_types
   - git submodule init libs/functional
   - git submodule init libs/integer
+  - git submodule init libs/intrusive
   - git submodule init libs/iterator
   - git submodule init libs/lambda
   - git submodule init libs/move
