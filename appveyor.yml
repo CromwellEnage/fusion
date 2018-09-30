@@ -46,6 +46,7 @@ install:
 
   - git submodule init libs/array
   - git submodule init libs/assert
+  - git submodule init libs/bimap
   - git submodule init libs/bind
   - git submodule init libs/concept_check
   - git submodule init libs/config
