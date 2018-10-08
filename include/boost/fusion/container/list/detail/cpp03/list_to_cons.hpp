@@ -56,7 +56,9 @@ namespace boost { namespace fusion { namespace detail
     };
 
     template <>
-    struct list_to_cons<BOOST_PP_ENUM(FUSION_MAX_LIST_SIZE, FUSION_VOID, _)>
+    struct list_to_cons<
+        BOOST_PP_ENUM(FUSION_MAX_LIST_SIZE, FUSION_VOID, _)
+    >
     {
         typedef ::boost::fusion::nil_ type;
     };
