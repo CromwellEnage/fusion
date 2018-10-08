@@ -22,8 +22,9 @@
 
 #if defined(BOOST_FUSION_DONT_USE_PREPROCESSED_FILES)
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
-#pragma wave option(preserve: 2, line: 0, output: \
-"preprocessed/deque_initial_size" FUSION_MAX_DEQUE_SIZE_STR ".hpp")
+#pragma wave \
+option(preserve: 2, line: 0, output: "preprocessed/deque_initial_size" \
+FUSION_MAX_DEQUE_SIZE_STR ".hpp")
 #endif
 
 /*============================================================================

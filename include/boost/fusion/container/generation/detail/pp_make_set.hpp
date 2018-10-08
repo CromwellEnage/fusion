@@ -56,6 +56,7 @@
 #include <boost/fusion/support/void.hpp>
 #include <boost/fusion/support/config.hpp>
 #include <boost/preprocessor/iterate.hpp>
+#include <boost/preprocessor/repetition/enum.hpp>
 #include <boost/preprocessor/repetition/enum_params.hpp>
 #include <boost/preprocessor/repetition/enum_binary_params.hpp>
 #include <boost/preprocessor/repetition/enum_params_with_a_default.hpp>

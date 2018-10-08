@@ -9,6 +9,7 @@
 #if !defined(FUSION_VECTOR_FORWARD_07072005_0125)
 #define FUSION_VECTOR_FORWARD_07072005_0125
 
+#include <boost/fusion/support/void_fwd.hpp>
 #include <boost/fusion/support/config.hpp>
 #include <boost/fusion/container/vector/detail/cpp03/limits.hpp>
 #include <boost/preprocessor/repetition/enum_params_with_a_default.hpp>
@@ -47,8 +48,6 @@ FUSION_MAX_VECTOR_SIZE_STR "_fwd.hpp")
 #pragma wave option(preserve: 1)
 #endif
 
-#include <boost/fusion/support/void_fwd.hpp>
-
 namespace boost { namespace fusion
 {
     template <
@@ -67,6 +66,5 @@ namespace boost { namespace fusion
 #include \
 <boost/fusion/container/vector/detail/cpp03/preprocessed/vector_fwd.hpp>
 #endif  // BOOST_FUSION_DONT_USE_PREPROCESSED_FILES
-
 #endif  // include guard
 

@@ -54,6 +54,7 @@
 
 #include <boost/fusion/support/detail/as_fusion_element.hpp>
 #include <boost/preprocessor/iterate.hpp>
+#include <boost/preprocessor/repetition/enum.hpp>
 #include <boost/preprocessor/repetition/enum_params.hpp>
 #include <boost/preprocessor/repetition/enum_binary_params.hpp>
 #include <boost/preprocessor/repetition/enum_params_with_a_default.hpp>
@@ -81,8 +82,6 @@ FUSION_MAX_LIST_SIZE_STR".hpp")
 
 namespace boost { namespace fusion
 {
-    struct void_;
-
     namespace result_of
     {
         template <

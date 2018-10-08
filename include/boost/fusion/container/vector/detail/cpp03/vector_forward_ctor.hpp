@@ -60,47 +60,37 @@ FUSION_HASH endif
         BOOST_PP_ENUM_BINARY_PARAMS(M, U, && arg)
 #if M == 1
       , typename ::boost::disable_if<
+            typename ::boost::mpl::if_<
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-            ::boost::is_same<
-                vector
-              , typename ::boost::remove_cv_ref<U0>::type
-            >
+                ::boost::is_same<
+                    typename ::boost::remove_cv_ref<U0>::type
 FUSION_HASH else
-            typename ::boost::mpl::if_<
                 ::std::is_same<
-                    vector
                     // TODO: replace the statements below
                     // with ::std::remove_cvref
                     // if C++20 type_traits is detectable.
-                  , typename ::std::remove_cv<
+                    typename ::std::remove_cv<
                         typename ::std::remove_reference<U0>::type
                     >::type
-                >
-              , ::boost::mpl::true_
-              , ::boost::mpl::false_
-            >::type
 FUSION_HASH endif  // BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
 #elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-            ::boost::is_same<
-                vector
-              , typename ::boost::remove_cv_ref<U0>::type
-            >
+                ::boost::is_same<
+                    typename ::boost::remove_cv_ref<U0>::type
 #else
-            typename ::boost::mpl::if_<
                 ::std::is_same<
-                    vector
                     // TODO: replace the statements below
                     // with ::std::remove_cvref
                     // if C++20 type_traits is detectable.
-                  , typename ::std::remove_cv<
+                    typename ::std::remove_cv<
                         typename ::std::remove_reference<U0>::type
                     >::type
+#endif  // preprocess file, or BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
+                  , vector
                 >
               , ::boost::mpl::true_
               , ::boost::mpl::false_
             >::type
-#endif  // preprocess file, or BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
           , ::boost::fusion::detail::enabler_
         >::type = ::boost::fusion::detail::enabler
 #endif  // M == 1

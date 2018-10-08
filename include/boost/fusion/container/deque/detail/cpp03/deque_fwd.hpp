@@ -14,6 +14,7 @@
 #endif
 
 #include <boost/fusion/container/deque/detail/cpp03/limits.hpp>
+#include <boost/fusion/support/void_fwd.hpp>
 #include <boost/preprocessor/repetition/enum_params_with_a_default.hpp>
 
 #if defined(BOOST_FUSION_DONT_USE_PREPROCESSED_FILES)
@@ -35,8 +36,6 @@ FUSION_MAX_DEQUE_SIZE_STR "_fwd.hpp")
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 #pragma wave option(preserve: 1)
 #endif
-
-#include <boost/fusion/support/void_fwd.hpp>
 
 namespace boost { namespace fusion
 {

@@ -81,8 +81,8 @@ FUSION_HASH endif
 #if !defined(FUSION_MAP_FORWARD_CTOR_07222005_0106)
 #define FUSION_MAP_FORWARD_CTOR_07222005_0106
 
-#define FUSION_FORWARD_CTOR_FORWARD(z, n, unused) \
-    BOOST_FUSION_FWD_ELEM(BOOST_PP_CAT(U, n), BOOST_PP_CAT(_, n))
+#define FUSION_FORWARD_CTOR_FORWARD(z, n, arg) \
+    BOOST_FUSION_FWD_ELEM(BOOST_PP_CAT(U, n), BOOST_PP_CAT(arg, n))
 #define BOOST_PP_FILENAME_1 \
     <boost/fusion/container/map/detail/cpp03/map_forward_ctor.hpp>
 #define BOOST_PP_ITERATION_LIMITS (1, FUSION_MAX_MAP_SIZE)

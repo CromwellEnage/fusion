@@ -38,7 +38,45 @@
 
 #if BOOST_WORKAROUND(BOOST_MSVC, <= 1600)
 
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+#define BOOST_FUSION_VECTOR_COPY_INIT()                                      \
+/*
+*/\
+    ctor_helper(                                                             \
+/*
+*/\
+        rhs                                                                  \
+/*
+*/\
+      , typename ::boost::mpl::if_<                                          \
+/*
+*/\
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)       \
+/*
+*/\
+            ::boost::is_base_of<vector, Sequence>                            \
+/*
+*/\
+FUSION_HASH else                                                             \
+/*
+*/\
+            ::std::is_base_of<vector, Sequence>                              \
+/*
+*/\
+FUSION_HASH endif                                                            \
+/*
+*/\
+          , ::boost::mpl::true_                                              \
+/*
+*/\
+          , ::boost::mpl::false_                                             \
+/*
+*/\
+        >::type()                                                            \
+/*
+*/\
+    )
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
 #define BOOST_FUSION_VECTOR_COPY_INIT()                                      \
     ctor_helper(                                                             \
         rhs                                                                  \
@@ -47,7 +85,7 @@
           , ::boost::mpl::true_                                              \
           , ::boost::mpl::false_                                             \
         >::type()                                                            \
-    )                                                                        \
+    )
 #else
 #define BOOST_FUSION_VECTOR_COPY_INIT()                                      \
     ctor_helper(                                                             \
@@ -57,8 +95,8 @@
           , ::boost::mpl::true_                                              \
           , ::boost::mpl::false_                                             \
         >::type()                                                            \
-    )                                                                        \
-#endif
+    )
+#endif  // preprocess file, or BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
 
 #define BOOST_FUSION_VECTOR_CTOR_HELPER()                                    \
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED                                 \
@@ -219,8 +257,8 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
         template <typename T>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         typename ::boost::disable_if<
-#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
             typename ::boost::mpl::if_<
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                 ::boost::is_same<
                     typename ::boost::remove_cv_ref<T>::type
@@ -233,14 +271,7 @@ FUSION_HASH else
                         typename ::std::remove_reference<T>::type
                     >::type
 FUSION_HASH endif  // BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
-                  , vector
-                >
-              , ::boost::mpl::true_
-              , ::boost::mpl::false_
-            >::type
-#else   // not preprocessed-file creation
-            typename ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                 ::boost::is_same<
                     typename ::boost::remove_cv_ref<T>::type
 #else
@@ -251,13 +282,12 @@ FUSION_HASH endif  // BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
                     typename ::std::remove_cv<
                         typename ::std::remove_reference<T>::type
                     >::type
-#endif  // BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
+#endif  // preprocess file, or BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
                   , vector
                 >
               , ::boost::mpl::true_
               , ::boost::mpl::false_
             >::type
-#endif  // preprocessed-file creation
           , vector&
         >::type
         operator=(T&& rhs)

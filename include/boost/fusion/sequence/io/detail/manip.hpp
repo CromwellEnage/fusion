@@ -11,6 +11,7 @@
 #define FUSION_MANIP_05052005_1200
 
 #include <boost/fusion/support/config.hpp>
+#include <boost/tti/detail/dnullptr.hpp>
 #include <string>
 #include <vector>
 #include <cctype>
@@ -34,7 +35,7 @@
 namespace boost { namespace fusion { namespace detail
 {
     template <typename Tag>
-    int get_xalloc_index(Tag* = 0)
+    int get_xalloc_index(Tag* = BOOST_TTI_DETAIL_NULLPTR)
     {
         // each Tag will have a unique index
         static int index = ::std::ios::xalloc();

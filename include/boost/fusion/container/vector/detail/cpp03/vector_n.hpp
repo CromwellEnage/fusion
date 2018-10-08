@@ -38,10 +38,81 @@
     this->BOOST_PP_CAT(m, n) = *BOOST_PP_CAT(i, n);
 
 #define FUSION_VECTOR_MEMBER_MOVE(z, n, _)                                   \
-    this->BOOST_PP_CAT(m, n) = ::std::forward<                               \
-        BOOST_PP_CAT(T, n)>(vec.BOOST_PP_CAT(m, n));
+    this->BOOST_PP_CAT(m, n) = ::std                                         \
+    ::forward<BOOST_PP_CAT(T, n)>(vec.BOOST_PP_CAT(m, n));
 
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+#define FUSION_VECTOR_MEMBER_AT_IMPL(z, n, _)                                \
+/*
+*/\
+        BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED                       \
+/*
+*/\
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)       \
+/*
+*/\
+        typename ::boost::add_lvalue_reference<BOOST_PP_CAT(T, n)>::type     \
+/*
+*/\
+FUSION_HASH else                                                             \
+/*
+*/\
+        typename ::std::add_lvalue_reference<BOOST_PP_CAT(T, n)>::type       \
+/*
+*/\
+FUSION_HASH endif                                                            \
+/*
+*/\
+        at_impl(::boost::mpl::int_<n>)                                       \
+/*
+*/\
+        {                                                                    \
+/*
+*/\
+            return this->BOOST_PP_CAT(T, n);                                 \
+/*
+*/\
+        }                                                                    \
+/*
+*/\
+        BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED                             \
+/*
+*/\
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)       \
+/*
+*/\
+        typename ::boost::add_lvalue_reference<                              \
+/*
+*/\
+            typename ::boost::add_const<BOOST_PP_CAT(T, n)>::type            \
+/*
+*/\
+FUSION_HASH else                                                             \
+/*
+*/\
+        typename ::std::add_lvalue_reference<                                \
+/*
+*/\
+            typename ::std::add_const<BOOST_PP_CAT(T, n)>::type              \
+/*
+*/\
+FUSION_HASH endif                                                            \
+/*
+*/\
+        >::type                                                              \
+/*
+*/\
+        at_impl(::boost::mpl::int_<n>) const                                 \
+/*
+*/\
+        {                                                                    \
+/*
+*/\
+            return this->BOOST_PP_CAT(T, n);                                 \
+/*
+*/\
+        }
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
 #define FUSION_VECTOR_MEMBER_AT_IMPL(z, n, _)                                \
     BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED                           \
     typename ::boost::add_lvalue_reference<BOOST_PP_CAT(T, n)>::type         \
@@ -73,14 +144,24 @@
     {                                                                        \
         return this->BOOST_PP_CAT(T, n);                                     \
     }
-#endif  // BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
+#endif  // preprocess file, or BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
 
 #define FUSION_VECTOR_MEMBER_ITER_DECL_VAR(z, n, _)                          \
-    typedef typename ::boost::fusion::result_of::next<                       \
-        BOOST_PP_CAT(I, BOOST_PP_DEC(n))                                     \
-    >::type BOOST_PP_CAT(I, n);                                              \
-    BOOST_PP_CAT(I, n) BOOST_PP_CAT(i, n)                                    \
-        = ::boost::fusion::next(BOOST_PP_CAT(i, BOOST_PP_DEC(n)));
+/*
+*/\
+        typedef typename ::boost::fusion::result_of::next<                   \
+/*
+*/\
+            BOOST_PP_CAT(I, BOOST_PP_DEC(n))                                 \
+/*
+*/\
+        >::type BOOST_PP_CAT(I, n);                                          \
+/*
+*/\
+        BOOST_PP_CAT(I, n) BOOST_PP_CAT(i, n) = ::boost::fusion              \
+/*
+*/\
+        ::next(BOOST_PP_CAT(i, BOOST_PP_DEC(n)));
 
 #endif  // FUSION_MACRO_05042005
 
@@ -115,7 +196,13 @@ FUSION_HASH endif
             BOOST_PP_ENUM_BINARY_PARAMS(N, U, && arg)
           , typename ::boost::enable_if<
                 typename ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                    ::boost::is_convertible<U0, T0>
+FUSION_HASH else
+                    ::std::is_convertible<U0, T0>
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                     ::boost::is_convertible<U0, T0>
 #else
                     ::std::is_convertible<U0, T0>
@@ -140,11 +227,11 @@ FUSION_HASH endif
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if !defined(BOOST_CLANG)
-    BOOST_CONSTEXPR
+        BOOST_CONSTEXPR
 FUSION_HASH endif
 #else
 #if !defined(BOOST_CLANG)
-    BOOST_CONSTEXPR
+        BOOST_CONSTEXPR
 #endif
 #endif  // preprocessed file creation
         BOOST_FUSION_GPU_ENABLED
@@ -176,11 +263,11 @@ FUSION_HASH endif
         template <typename Sequence>
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if !defined(BOOST_CLANG)
-    BOOST_CXX14_CONSTEXPR
+        BOOST_CXX14_CONSTEXPR
 FUSION_HASH endif
 #else
 #if !defined(BOOST_CLANG)
-    BOOST_CXX14_CONSTEXPR
+        BOOST_CXX14_CONSTEXPR
 #endif
 #endif  // preprocessed file creation
         BOOST_FUSION_GPU_ENABLED
@@ -199,11 +286,11 @@ FUSION_HASH endif
         template <typename Sequence>
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if !defined(BOOST_CLANG)
-    BOOST_CXX14_CONSTEXPR
+        BOOST_CXX14_CONSTEXPR
 FUSION_HASH endif
 #else
 #if !defined(BOOST_CLANG)
-    BOOST_CXX14_CONSTEXPR
+        BOOST_CXX14_CONSTEXPR
 #endif
 #endif  // preprocessed file creation
         BOOST_FUSION_GPU_ENABLED
@@ -258,11 +345,11 @@ FUSION_HASH endif
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if !defined(BOOST_CLANG)
-    BOOST_CONSTEXPR
+        BOOST_CONSTEXPR
 FUSION_HASH endif
 #else
 #if !defined(BOOST_CLANG)
-    BOOST_CONSTEXPR
+        BOOST_CONSTEXPR
 #endif
 #endif  // preprocessed file creation
         BOOST_FUSION_GPU_ENABLED
@@ -354,11 +441,11 @@ FUSION_HASH endif
         template <BOOST_PP_ENUM_PARAMS(N, typename U)>
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if !defined(BOOST_CLANG)
-    BOOST_CXX14_CONSTEXPR
+        BOOST_CXX14_CONSTEXPR
 FUSION_HASH endif
 #else
 #if !defined(BOOST_CLANG)
-    BOOST_CXX14_CONSTEXPR
+        BOOST_CXX14_CONSTEXPR
 #endif
 #endif  // preprocessed file creation
         BOOST_FUSION_GPU_ENABLED
@@ -389,7 +476,13 @@ FUSION_HASH endif
 #if (N == 1)
           , typename ::boost::disable_if<
                 typename ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                    ::boost::is_convertible<Sequence, T0>
+FUSION_HASH else
+                    ::std::is_convertible<Sequence, T0>
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                     ::boost::is_convertible<Sequence, T0>
 #else
                     ::std::is_convertible<Sequence, T0>
@@ -422,7 +515,13 @@ FUSION_HASH endif
 #if (N == 1)
           , typename ::boost::disable_if<
                 typename ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                    ::boost::is_convertible<Sequence, T0>
+FUSION_HASH else
+                    ::std::is_convertible<Sequence, T0>
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                     ::boost::is_convertible<Sequence, T0>
 #else
                     ::std::is_convertible<Sequence, T0>
@@ -453,7 +552,13 @@ FUSION_HASH endif
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         typename ::boost::disable_if<
             typename ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                ::boost::is_convertible<Sequence, T0>
+FUSION_HASH else
+                ::std::is_convertible<Sequence, T0>
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                 ::boost::is_convertible<Sequence, T0>
 #else
                 ::std::is_convertible<Sequence, T0>
@@ -479,7 +584,13 @@ FUSION_HASH endif
 
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+        typename ::boost::add_lvalue_reference<
+FUSION_HASH else
+        typename ::std::add_lvalue_reference<
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
         typename ::boost::add_lvalue_reference<
 #else
         typename ::std::add_lvalue_reference<
@@ -493,7 +604,15 @@ FUSION_HASH endif
 
         template <typename I>
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+        typename ::boost::add_lvalue_reference<
+            typename ::boost::add_const<
+FUSION_HASH else
+        typename ::std::add_lvalue_reference<
+            typename ::std::add_const<
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
         typename ::boost::add_lvalue_reference<
             typename ::boost::add_const<
 #else

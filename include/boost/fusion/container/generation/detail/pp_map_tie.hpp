@@ -69,6 +69,7 @@
 #include <boost/fusion/support/void.hpp>
 #include <boost/fusion/support/config.hpp>
 #include <boost/preprocessor/iterate.hpp>
+#include <boost/preprocessor/repetition/enum.hpp>
 #include <boost/preprocessor/repetition/enum_params.hpp>
 #include <boost/preprocessor/repetition/enum_binary_params.hpp>
 #include <boost/preprocessor/repetition/enum_params_with_a_default.hpp>
@@ -81,6 +82,8 @@
 #endif
 
 #if defined(BOOST_FUSION_DONT_USE_PREPROCESSED_FILES)
+#define FUSION_HASH #
+
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 #pragma wave option(preserve: 2, line: 0, output: "preprocessed/map_tie" \
 FUSION_MAX_MAP_SIZE_STR".hpp")
@@ -128,7 +131,35 @@ namespace boost { namespace fusion
         return ::boost::fusion::map<>();
     }
 
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+
+#define BOOST_FUSION_TIED_PAIR(z, n, data)                                   \
+/*
+*/\
+    ::boost::fusion::pair<                                                   \
+/*
+*/\
+        BOOST_PP_CAT(K, n)                                                   \
+/*
+*/\
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)       \
+/*
+*/\
+      , typename ::boost::add_lvalue_reference<BOOST_PP_CAT(D, n)>::type     \
+/*
+*/\
+FUSION_HASH else                                                             \
+/*
+*/\
+      , typename ::std::add_lvalue_reference<BOOST_PP_CAT(D, n)>::type       \
+/*
+*/\
+FUSION_HASH endif                                                            \
+/*
+*/\
+    >
+
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
 
 #define BOOST_FUSION_TIED_PAIR(z, n, data)                                   \
     ::boost::fusion::pair<                                                   \
@@ -163,6 +194,7 @@ namespace boost { namespace fusion
 #pragma wave option(output: null)
 #endif
 
+#undef FUSION_HASH
 #else
 #include <boost/fusion/container/generation/detail/preprocessed/map_tie.hpp>
 #endif  // BOOST_FUSION_DONT_USE_PREPROCESSED_FILES
