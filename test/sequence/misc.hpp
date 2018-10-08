@@ -1,20 +1,25 @@
-/*=============================================================================
+/*============================================================================
     Copyright (C) 1999-2003 Jaakko Jarvi
     Copyright (c) 2001-2011 Joel de Guzman
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
-#include <boost/detail/lightweight_test.hpp>
+    Distributed under the Boost Software License, Version 1.0
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
 #include <boost/fusion/sequence/intrinsic.hpp>
 #include <boost/fusion/support/is_sequence.hpp>
 #include <boost/fusion/mpl.hpp>
+#include <boost/mpl/next_prior.hpp>
+#include <boost/mpl/begin_end.hpp>
+#include <boost/mpl/front.hpp>
+#include <boost/mpl/back.hpp>
 #include <boost/mpl/find.hpp>
 #include <boost/mpl/equal.hpp>
 #include <boost/mpl/int.hpp>
 #include <boost/mpl/integral_c.hpp>
 #include <boost/mpl/is_sequence.hpp>
 #include <boost/type_traits/is_same.hpp>
+#include <boost/core/lightweight_test.hpp>
 #include <string>
 
 #if !defined(FUSION_AT)
@@ -199,6 +204,6 @@ test()
         typedef boost::mpl::find<t1, float>::type iter;
         typedef boost::mpl::deref<iter>::type type;
         BOOST_STATIC_ASSERT((boost::is_same<type, float>::value));
-
     }
 }
+

@@ -1,86 +1,86 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 2001-2011 Joel de Guzman
     Copyright (c) 2006 Dan Marsden
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying 
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
 #if !defined(FUSION_VALUE_AT_KEY_05052005_0229)
 #define FUSION_VALUE_AT_KEY_05052005_0229
 
-#include <boost/fusion/support/config.hpp>
-#include <boost/mpl/int.hpp>
-#include <boost/mpl/empty_base.hpp>
-#include <boost/mpl/if.hpp>
-#include <boost/mpl/or.hpp>
 #include <boost/fusion/sequence/intrinsic_fwd.hpp>
-#include <boost/fusion/sequence/intrinsic/has_key.hpp>
 #include <boost/fusion/iterator/value_of_data.hpp>
 #include <boost/fusion/algorithm/query/find.hpp>
-#include <boost/fusion/support/tag_of.hpp>
-#include <boost/fusion/support/category_of.hpp>
 
-namespace boost { namespace fusion
+namespace boost { namespace fusion { namespace extension
 {
-    // Special tags:
-    struct sequence_facade_tag;
-    struct boost_array_tag; // boost::array tag
-    struct mpl_sequence_tag; // mpl sequence tag
-    struct std_pair_tag; // std::pair tag
-
-    namespace extension
+    template <typename Tag>
+    struct value_at_key_impl
     {
-        template <typename Tag>
-        struct value_at_key_impl
+        template <typename Seq, typename Key>
+        struct apply :
+            ::boost::fusion::result_of::value_of_data<
+                typename ::boost::fusion::result_of::find<Seq, Key>::type
+            >
         {
-            template <typename Seq, typename Key>
-            struct apply
-              : result_of::value_of_data<
-                    typename result_of::find<Seq, Key>::type
-                >
-            {};
         };
+    };
+}}}
 
-        template <>
-        struct value_at_key_impl<sequence_facade_tag>
+#include <boost/fusion/support/special_tags_fwd.hpp>
+
+namespace boost { namespace fusion { namespace extension
+{
+    template <>
+    struct value_at_key_impl< ::boost::fusion::sequence_facade_tag>
+    {
+        template <typename Sequence, typename Key>
+        struct apply : Sequence::template value_at_key<Sequence, Key>
         {
-            template <typename Sequence, typename Key>
-            struct apply : Sequence::template value_at_key<Sequence, Key> {};
         };
+    };
+}}}
 
-        template <>
-        struct value_at_key_impl<boost_array_tag>;
+#include <boost/fusion/sequence/intrinsic/has_key.hpp>
+#include <boost/fusion/support/category_of.hpp>
+#include <boost/mpl/bool.hpp>
+#include <boost/mpl/if.hpp>
+#include <boost/mpl/empty_base.hpp>
 
-        template <>
-        struct value_at_key_impl<mpl_sequence_tag>;
-
-        template <>
-        struct value_at_key_impl<std_pair_tag>;
-    }
-
-    namespace detail
+namespace boost { namespace fusion { namespace detail
+{
+    template <typename Sequence, typename N, typename Tag>
+    struct value_at_key_impl :
+        ::boost::mpl::if_<
+            typename ::boost::mpl::if_<
+                typename ::boost::fusion::extension
+                ::has_key_impl<Tag>::template apply<Sequence, N>
+              , ::boost::mpl::true_
+              , ::boost::fusion::traits::is_unbounded<Sequence>
+            >::type
+          , typename ::boost::fusion::extension
+            ::value_at_key_impl<Tag>::template apply<Sequence, N>
+          , ::boost::mpl::empty_base
+        >::type
     {
-        template <typename Sequence, typename N, typename Tag>
-        struct value_at_key_impl
-            : mpl::if_<
-                  mpl::or_<
-                      typename extension::has_key_impl<Tag>::template apply<Sequence, N>
-                    , traits::is_unbounded<Sequence>
-                  >
-                , typename extension::value_at_key_impl<Tag>::template apply<Sequence, N>
-                , mpl::empty_base
-              >::type
-        {};
-    }
+    };
+}}}
 
-    namespace result_of
+#include <boost/fusion/support/tag_of.hpp>
+
+namespace boost { namespace fusion { namespace result_of
+{
+    template <typename Sequence, typename N>
+    struct value_at_key :
+        ::boost::fusion::detail::value_at_key_impl<
+            Sequence
+          , N
+          , typename ::boost::fusion::detail::tag_of<Sequence>::type
+        >
     {
-        template <typename Sequence, typename N>
-        struct value_at_key
-            : detail::value_at_key_impl<Sequence, N, typename detail::tag_of<Sequence>::type>
-        {};
-    }
-}}
+    };
+}}}
 
-#endif
+#endif  // include guard
 

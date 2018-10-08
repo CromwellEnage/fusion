@@ -1,78 +1,102 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 2005-2013 Joel de Guzman
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
 #if !defined(BOOST_FUSION_BUILD_DEQUE_02032013_1921)
 #define BOOST_FUSION_BUILD_DEQUE_02032013_1921
 
-#include <boost/fusion/support/config.hpp>
+namespace boost { namespace fusion { namespace detail
+{
+    template <typename T, typename Rest>
+    struct push_front_deque;
+}}}
+
 #include <boost/fusion/iterator/equal_to.hpp>
-#include <boost/fusion/iterator/next.hpp>
-#include <boost/fusion/iterator/value_of.hpp>
-#include <boost/fusion/iterator/deref.hpp>
-#include <boost/fusion/sequence/intrinsic/begin.hpp>
-#include <boost/fusion/sequence/intrinsic/end.hpp>
-#include <boost/fusion/container/deque/front_extended_deque.hpp>
 
 namespace boost { namespace fusion { namespace detail
 {
-    template <typename First, typename Last
-      , bool is_empty = result_of::equal_to<First, Last>::value>
+    template <
+        typename First
+      , typename Last
+      , bool is_empty = ::boost::fusion::result_of
+        ::equal_to<First, Last>::value
+    >
     struct build_deque;
+}}}
 
+#include <boost/fusion/container/deque/deque.hpp>
+#include <boost/fusion/support/config.hpp>
+
+namespace boost { namespace fusion { namespace detail
+{
     template <typename First, typename Last>
     struct build_deque<First, Last, true>
     {
-        typedef deque<> type;
+        typedef ::boost::fusion::deque<> type;
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static type
-        call(First const&, Last const&)
+        static type call(First const&, Last const&)
         {
             return type();
         }
     };
+}}}
 
-    template <typename T, typename Rest>
-    struct push_front_deque;
+#include <boost/fusion/container/deque/front_extended_deque.hpp>
 
+namespace boost { namespace fusion { namespace detail
+{
     template <typename T, typename ...Rest>
-    struct push_front_deque<T, deque<Rest...>>
+    struct push_front_deque<T, ::boost::fusion::deque<Rest...> >
     {
-        typedef deque<T, Rest...> type;
+        typedef ::boost::fusion::deque<T, Rest...> type;
 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         static type
-        call(T const& first, deque<Rest...> const& rest)
+        call(T const& first, ::boost::fusion::deque<Rest...> const& rest)
         {
-            return type(front_extended_deque<deque<Rest...>, T>(rest, first));
-        }
-    };
-
-    template <typename First, typename Last>
-    struct build_deque<First, Last, false>
-    {
-        typedef
-            build_deque<typename result_of::next<First>::type, Last>
-        next_build_deque;
-
-        typedef push_front_deque<
-            typename result_of::value_of<First>::type
-          , typename next_build_deque::type>
-        push_front;
-
-        typedef typename push_front::type type;
-
-        BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static type
-        call(First const& f, Last const& l)
-        {
-            typename result_of::value_of<First>::type v = *f;
-            return push_front::call(
-                v, next_build_deque::call(fusion::next(f), l));
+            return type(
+                ::boost::fusion
+                ::front_extended_deque<deque<Rest...>, T>(rest, first)
+            );
         }
     };
 }}}
 
-#endif
+#include <boost/fusion/iterator/next.hpp>
+#include <boost/fusion/iterator/value_of.hpp>
+
+namespace boost { namespace fusion { namespace detail
+{
+    template <typename First, typename Last>
+    struct build_deque<First, Last, false>
+    {
+        typedef ::boost::fusion::detail::build_deque<
+            typename ::boost::fusion::result_of::next<First>::type
+          , Last
+        > next_build_deque;
+
+        typedef ::boost::fusion::detail::push_front_deque<
+            typename ::boost::fusion::result_of::value_of<First>::type
+          , typename next_build_deque::type
+        > push_front;
+
+        typedef typename push_front::type type;
+
+        BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
+        static type call(First const& f, Last const& l)
+        {
+            typename ::boost::fusion::result_of
+            ::value_of<First>::type v = *f;
+            return push_front::call(
+                v
+              , next_build_deque::call(::boost::fusion::next(f), l)
+            );
+        }
+    };
+}}}
+
+#endif  // include guard
+

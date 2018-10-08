@@ -1,27 +1,15 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 2007 Tobias Schwinger
   
-    Use modification and distribution are subject to the Boost Software 
-    License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
-    http://www.boost.org/LICENSE_1_0.txt).
-==============================================================================*/
-
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
 #if !defined(BOOST_FUSION_SUPPORT_DEDUCE_HPP_INCLUDED)
 #define BOOST_FUSION_SUPPORT_DEDUCE_HPP_INCLUDED
 
-#include <boost/fusion/support/config.hpp>
-#include <boost/ref.hpp>
-
-#ifndef BOOST_NO_CXX11_HDR_FUNCTIONAL
-#include <functional>
-#endif
-
 namespace boost { namespace fusion { namespace traits
 {
-    template <typename T> struct deduce;
-
-    //----- ---- --- -- - -  -   -
-
     // Non-references pass unchanged
 
     template <typename T>
@@ -51,9 +39,9 @@ namespace boost { namespace fusion { namespace traits
     // Keep references on mutable LValues
 
     template <typename T>
-    struct deduce<T &>
+    struct deduce<T&>
     {
-        typedef T & type;
+        typedef T& type;
     };
 
     template <typename T>
@@ -75,35 +63,6 @@ namespace boost { namespace fusion { namespace traits
     {
         typedef T type;
     };
-
-    // Unwrap Boost.RefS (referencee cv is deduced)
-
-    template <typename T>
-    struct deduce<reference_wrapper<T> & >
-    {
-        typedef T& type;
-    };
-
-    template <typename T>
-    struct deduce<reference_wrapper<T> const & >
-    {
-        typedef T& type;
-    };
-
-    // Also unwrap C++11 std::ref if available (referencee cv is deduced)
-#ifndef BOOST_NO_CXX11_HDR_FUNCTIONAL
-    template <typename T>
-    struct deduce<std::reference_wrapper<T> &>
-    {
-        typedef T& type;
-    };
-
-    template <typename T>
-    struct deduce<std::reference_wrapper<T> const &>
-    {
-        typedef T& type;
-    };
-#endif
 
     // Keep references on arrays, even if const
 
@@ -130,8 +89,49 @@ namespace boost { namespace fusion { namespace traits
     {
         typedef const volatile T(&type)[N];
     };
-
 }}}
 
+#include <boost/ref.hpp>
+
+namespace boost { namespace fusion { namespace traits
+{
+    // Unwrap ::boost.ref() (referencee cv is deduced)
+
+    template <typename T>
+    struct deduce< ::boost::reference_wrapper<T>&>
+    {
+        typedef T& type;
+    };
+
+    template <typename T>
+    struct deduce< ::boost::reference_wrapper<T> const&>
+    {
+        typedef T& type;
+    };
+}}}
+
+#include <boost/fusion/support/config.hpp>
+
+#if !defined(BOOST_NO_CXX11_HDR_FUNCTIONAL)
+#include <functional>
+
+namespace boost { namespace fusion { namespace traits
+{
+    // Also unwrap C++11 ::std::ref() if available (referencee cv is deduced)
+
+    template <typename T>
+    struct deduce< ::std::reference_wrapper<T>&>
+    {
+        typedef T& type;
+    };
+
+    template <typename T>
+    struct deduce< ::std::reference_wrapper<T> const&>
+    {
+        typedef T& type;
+    };
+}}}
 #endif
+
+#endif  // include guard
 

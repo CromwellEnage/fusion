@@ -1,16 +1,17 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 2011 Eric Niebler
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
 #if !defined(BOOST_FUSION_SEGMENTED_END_HPP_INCLUDED)
 #define BOOST_FUSION_SEGMENTED_END_HPP_INCLUDED
 
-#include <boost/fusion/support/config.hpp>
 #include <boost/fusion/sequence/intrinsic/detail/segmented_end_impl.hpp>
-#include <boost/fusion/iterator/segmented_iterator.hpp>
-#include <boost/fusion/container/list/cons.hpp>
+#include <boost/fusion/container/list/nil.hpp>
+#include <boost/fusion/iterator/detail/segmented_iterator.hpp>
+#include <boost/fusion/support/config.hpp>
 
 namespace boost { namespace fusion { namespace detail
 {
@@ -19,23 +20,24 @@ namespace boost { namespace fusion { namespace detail
     //    return make_segmented_iterator( segmented_end_impl( seq ) );
     //}
 
-    template <typename Sequence, typename Nil_ = fusion::nil_>
+    template <typename Sequence, typename Nil_ = ::boost::fusion::nil_>
     struct segmented_end
     {
-        typedef
-            segmented_iterator<
-                typename segmented_end_impl<Sequence, Nil_>::type
-            >
-        type;
+        typedef ::boost::fusion::segmented_iterator<
+            typename ::boost::fusion::detail
+            ::segmented_end_impl<Sequence, Nil_>::type
+        > type;
 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static type call(Sequence & seq)
+        static type call(Sequence& seq)
         {
             return type(
-                segmented_end_impl<Sequence, Nil_>::call(seq, Nil_()));
+                ::boost::fusion::detail
+                ::segmented_end_impl<Sequence, Nil_>::call(seq, Nil_())
+            );
         }
     };
-
 }}}
 
-#endif
+#endif  // include guard
+

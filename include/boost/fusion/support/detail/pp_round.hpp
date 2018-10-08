@@ -1,20 +1,17 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 2011 Thomas Heller
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
-
-#ifndef BOOST_BOOST_FUSION_SUPPORT_PP_ROUND_HPP
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
+#if !defined(BOOST_BOOST_FUSION_SUPPORT_PP_ROUND_HPP)
 #define BOOST_BOOST_FUSION_SUPPORT_PP_ROUND_HPP
 
-#include <boost/fusion/support/config.hpp>
 #include <boost/preprocessor/cat.hpp>
-#include <boost/preprocessor/comparison/less.hpp>
-#include <boost/preprocessor/control/if.hpp>
 
-#define BOOST_FUSION_PP_ROUND_UP(N)                                            \
-      BOOST_PP_CAT(BOOST_FUSION_PP_DO_ROUND_UP_, N)()                          \
+#define BOOST_FUSION_PP_ROUND_UP(N)                                          \
+    BOOST_PP_CAT(BOOST_FUSION_PP_DO_ROUND_UP_, N)()                          \
 /**/
 
 #define BOOST_FUSION_PP_DO_ROUND_UP_0()  10
@@ -69,4 +66,5 @@
 #define BOOST_FUSION_PP_DO_ROUND_UP_49() 50
 #define BOOST_FUSION_PP_DO_ROUND_UP_50() 50
 
-#endif
+#endif  // include guard
+

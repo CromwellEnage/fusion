@@ -1,10 +1,11 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 2005-2012 Joel de Guzman
     Copyright (c) 2005-2006 Dan Marsden
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
 #if !defined(BOOST_FUSION_DEQUE_LIMITS_26112006_1737)
 #define BOOST_FUSION_DEQUE_LIMITS_26112006_1737
 
@@ -27,6 +28,8 @@
 # endif
 #endif
 
-#define FUSION_MAX_DEQUE_SIZE_STR BOOST_PP_STRINGIZE(BOOST_FUSION_PP_ROUND_UP(FUSION_MAX_DEQUE_SIZE))
+#define FUSION_MAX_DEQUE_SIZE_STR \
+    BOOST_PP_STRINGIZE(BOOST_FUSION_PP_ROUND_UP(FUSION_MAX_DEQUE_SIZE))
 
-#endif
+#endif  // include guard
+

@@ -1,40 +1,45 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 2001-2011 Joel de Guzman
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying 
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
 #if !defined(FUSION_EQUAL_TO_IMPL_09172005_1120)
 #define FUSION_EQUAL_TO_IMPL_09172005_1120
 
+#include <boost/fusion/iterator/intrinsic_fwd.hpp>
+#include <boost/fusion/container/list/cons_iterator_fwd.hpp>
 #include <boost/fusion/support/config.hpp>
+#include <boost/mpl/bool.hpp>
+#include <boost/mpl/if.hpp>
+
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
 #include <boost/type_traits/is_same.hpp>
-#include <boost/mpl/equal_to.hpp>
-#include <boost/mpl/and.hpp>
-
-namespace boost { namespace fusion
-{
-    struct cons_iterator_tag;
-
-    namespace extension
-    {
-        template <typename Tag>
-        struct equal_to_impl;
-
-        template <>
-        struct equal_to_impl<cons_iterator_tag>
-        {
-            template <typename I1, typename I2>
-            struct apply
-                : is_same<
-                    typename I1::identity
-                  , typename I2::identity
-                >
-            {
-            };
-        };
-    }
-}}
-
+#else
+#include <type_traits>
 #endif
+
+namespace boost { namespace fusion { namespace extension
+{
+    template <>
+    struct equal_to_impl< ::boost::fusion::cons_iterator_tag>
+    {
+        template <typename I1, typename I2>
+        struct apply :
+            ::boost::mpl::if_<
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                ::boost::is_same<typename I1::identity, typename I2::identity>
+#else
+                ::std::is_same<typename I1::identity, typename I2::identity>
+#endif
+              , ::boost::mpl::true_
+              , ::boost::mpl::false_
+            >::type
+        {
+        };
+    };
+}}}
+
+#endif  // include guard
 

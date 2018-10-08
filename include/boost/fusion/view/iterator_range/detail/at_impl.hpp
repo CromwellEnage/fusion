@@ -1,46 +1,44 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 2007 Tobias Schwinger
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
-
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
 #if !defined(BOOST_FUSION_ITERATOR_RANGE_AT_IMPL_HPP_INCLUDED)
 #define BOOST_FUSION_ITERATOR_RANGE_AT_IMPL_HPP_INCLUDED
 
+#include <boost/fusion/sequence/intrinsic_fwd.hpp>
+#include <boost/fusion/support/special_tags_fwd.hpp>
 #include <boost/fusion/support/config.hpp>
 #include <boost/fusion/iterator/advance.hpp>
 #include <boost/fusion/iterator/deref.hpp>
 
-namespace boost { namespace fusion
+namespace boost { namespace fusion { namespace extension
 {
-    struct iterator_range_tag;
-
-    namespace extension
+    template <>
+    struct at_impl< ::boost::fusion::iterator_range_tag>
     {
-        template <typename Tag>
-        struct at_impl;
-
-        template <>
-        struct at_impl<iterator_range_tag>
+        template <typename Seq, typename N>
+        struct apply
         {
-            template <typename Seq, typename N>
-            struct apply
+            typedef typename Seq::begin_type begin_type;
+            typedef typename ::boost::fusion::result_of::advance<
+                begin_type
+              , N
+            >::type pos;
+            typedef typename ::boost::fusion::result_of::deref<
+                pos
+            >::type type;
+
+            BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
+            static type call(Seq& s)
             {
-                typedef typename Seq::begin_type begin_type;
-                typedef typename result_of::advance<begin_type,N>::type pos;
-                typedef typename result_of::deref<pos>::type type;
-
-                BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-                static type
-                call(Seq& s)
-                {
-                    return * fusion::advance<N>(s.first);
-                }
-            };
+                return *::boost::fusion::advance<N>(s.first);
+            }
         };
-    }
-}}
+    };
+}}}
 
-#endif
+#endif  // include guard
 

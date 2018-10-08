@@ -1,17 +1,20 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 1999-2003 Jaakko Jarvi
     Copyright (c) 2001-2013 Joel de Guzman
     Copyright (c) 2006 Dan Marsden
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
 #include <boost/fusion/container/map/map.hpp>
 #include <boost/fusion/container/map/convert.hpp>
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/fusion/sequence/intrinsic.hpp>
 #include <boost/fusion/support/is_sequence.hpp>
 #include <boost/fusion/mpl.hpp>
+#include <boost/mpl/front.hpp>
+#include <boost/mpl/back.hpp>
 #include <boost/mpl/find.hpp>
 #include <boost/mpl/equal.hpp>
 #include <boost/mpl/int.hpp>

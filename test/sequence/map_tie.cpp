@@ -1,14 +1,15 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 2001-2011 Joel de Guzman
     Copyright (c) 2006 Dan Marsden
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying 
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
-#include <boost/detail/lightweight_test.hpp>
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
 
 #include <boost/fusion/container/generation/map_tie.hpp>
 #include <boost/fusion/sequence/intrinsic/at_key.hpp>
+#include <boost/core/lightweight_test.hpp>
 
 struct key_zero;
 struct key_one;
@@ -33,3 +34,4 @@ int main()
     }
     return boost::report_errors();
 }
+

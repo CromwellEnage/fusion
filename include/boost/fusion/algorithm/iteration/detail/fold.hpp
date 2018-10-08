@@ -1,12 +1,13 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 2001-2011 Joel de Guzman
     Copyright (c) 2006 Dan Marsden
     Copyright (c) 2009-2010 Christopher Schmidt
     Copyright (c) 2015 Kohei Takahashi
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
 #include <boost/preprocessor/cat.hpp>
 
 #define FUSION_HASH #
@@ -20,9 +21,10 @@
 
 #   define BOOST_FUSION_FOLD_IMPL_FIRST_IT_FUNCTION end
 #   define BOOST_FUSION_FOLD_IMPL_NEXT_IT_FUNCTION prior
-#   define BOOST_FUSION_FOLD_IMPL_FIRST_IT_META_TRANSFORM(IT)                   \
-        typename fusion::result_of::prior<IT>::type
-#   define BOOST_FUSION_FOLD_IMPL_FIRST_IT_TRANSFORM(IT) fusion::prior(IT)
+#   define BOOST_FUSION_FOLD_IMPL_FIRST_IT_META_TRANSFORM(IT)                \
+        typename ::boost::fusion::result_of::prior<IT>::type
+#   define BOOST_FUSION_FOLD_IMPL_FIRST_IT_TRANSFORM(IT)                     \
+        ::boost::fusion::prior(IT)
 #else
 #   ifdef BOOST_FUSION_ITER_FOLD
 #       define BOOST_FUSION_FOLD_NAME iter_fold
@@ -39,9 +41,10 @@
 #   define BOOST_FUSION_FOLD_IMPL_INVOKE_IT_META_TRANSFORM(IT) IT&
 #   define BOOST_FUSION_FOLD_IMPL_INVOKE_IT_TRANSFORM(IT) IT
 #else
-#   define BOOST_FUSION_FOLD_IMPL_INVOKE_IT_META_TRANSFORM(IT)                  \
-        typename fusion::result_of::deref<IT>::type
-#   define BOOST_FUSION_FOLD_IMPL_INVOKE_IT_TRANSFORM(IT) fusion::deref(IT)
+#   define BOOST_FUSION_FOLD_IMPL_INVOKE_IT_META_TRANSFORM(IT)               \
+        typename ::boost::fusion::result_of::deref<IT>::type
+#   define BOOST_FUSION_FOLD_IMPL_INVOKE_IT_TRANSFORM(IT)                    \
+        ::boost::fusion::deref(IT)
 #endif
 
 #if (defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES))
@@ -62,25 +65,38 @@ namespace boost { namespace fusion
 {
     namespace detail
     {
-        template<int SeqSize, typename It, typename State, typename F, typename = void
+        template <
+            int SeqSize
+          , typename It
+          , typename State
+          , typename F
+          , typename = void
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if BOOST_WORKAROUND BOOST_PREVENT_MACRO_SUBSTITUTION (BOOST_MSVC, < 1500)
 #endif
 #if BOOST_WORKAROUND(BOOST_MSVC, < 1500) || \
     (defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES))
-          // Dirty hack: those compilers cannot choose exactly one partial specialization.
-          , bool = SeqSize == 0
+            // Dirty hack: those compilers cannot choose
+            // exactly one partial specialization.
+          , bool = (SeqSize == 0)
 #endif
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH endif
 #endif
         >
-        struct BOOST_PP_CAT(result_of_it_,BOOST_FUSION_FOLD_NAME)
-        {};
+        struct BOOST_PP_CAT(result_of_it_, BOOST_FUSION_FOLD_NAME)
+        {
+        };
 
-        template<typename It, typename State, typename F>
-        struct BOOST_PP_CAT(result_of_it_,BOOST_FUSION_FOLD_NAME)<0,It,State,F
-          , typename boost::enable_if_has_type<BOOST_FUSION_FOLD_IMPL_ENABLER(State)>::type
+        template <typename It, typename State, typename F>
+        struct BOOST_PP_CAT(result_of_it_, BOOST_FUSION_FOLD_NAME)<
+            0
+          , It
+          , State
+          , F
+          , typename ::boost::enable_if_has_type<
+                BOOST_FUSION_FOLD_IMPL_ENABLER(State)
+            >::type
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if BOOST_WORKAROUND BOOST_PREVENT_MACRO_SUBSTITUTION (BOOST_MSVC, < 1500)
 #endif
@@ -91,23 +107,31 @@ FUSION_HASH if BOOST_WORKAROUND BOOST_PREVENT_MACRO_SUBSTITUTION (BOOST_MSVC, < 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH endif
 #endif
-          >
+        >
         {
             typedef typename State::type type;
         };
 
-        template<int SeqSize, typename It, typename State, typename F>
-        struct BOOST_PP_CAT(result_of_it_,BOOST_FUSION_FOLD_NAME)<SeqSize,It,State,F
-          , typename boost::enable_if_has_type<
+        template <int SeqSize, typename It, typename State, typename F>
+        struct BOOST_PP_CAT(result_of_it_,BOOST_FUSION_FOLD_NAME)<
+            SeqSize
+          , It
+          , State
+          , F
+          , typename ::boost::enable_if_has_type<
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if BOOST_WORKAROUND BOOST_PREVENT_MACRO_SUBSTITUTION (BOOST_MSVC, >= 1500)
 #endif
 #if BOOST_WORKAROUND(BOOST_MSVC, >= 1500) || \
     (defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES))
-                // Following SFINAE enables to avoid MSVC 9's partial specialization
-                // ambiguous bug but MSVC 8 don't compile, and moreover MSVC 8 style
-                // workaround won't work with MSVC 9.
-                typename boost::disable_if_c<SeqSize == 0, State>::type::type
+                // Following SFINAE enables to avoid MSVC 9's partial
+                // specialization ambiguous bug but MSVC 8 don't compile,
+                // and moreover MSVC 8 style workaround won't work with
+                // MSVC 9.
+                typename ::boost::disable_if_c<
+                    (SeqSize == 0)
+                  , State
+                >::type::type
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH else
                 BOOST_FUSION_FOLD_IMPL_ENABLER(State)
@@ -129,96 +153,177 @@ FUSION_HASH if BOOST_WORKAROUND BOOST_PREVENT_MACRO_SUBSTITUTION (BOOST_MSVC, < 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH endif
 #endif
-          >
-          : BOOST_PP_CAT(result_of_it_,BOOST_FUSION_FOLD_NAME)<
-                SeqSize-1
-              , typename result_of::BOOST_FUSION_FOLD_IMPL_NEXT_IT_FUNCTION<It>::type
-              , boost::result_of<
+        > : ::boost::fusion::detail
+            ::BOOST_PP_CAT(result_of_it_, BOOST_FUSION_FOLD_NAME)<
+                (SeqSize - 1)
+              , typename ::boost::fusion::result_of
+                ::BOOST_FUSION_FOLD_IMPL_NEXT_IT_FUNCTION<It>::type
+              , ::boost::result_of<
                     F(
-                        typename add_reference<typename State::type>::type,
-                        BOOST_FUSION_FOLD_IMPL_INVOKE_IT_META_TRANSFORM(It const)
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                        typename ::boost::add_lvalue_reference<
+FUSION_HASH else
+                        typename ::std::add_lvalue_reference<
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                        typename ::boost::add_lvalue_reference<
+#else
+                        typename ::std::add_lvalue_reference<
+#endif
+                            typename State::type
+                        >::type
+                      , BOOST_FUSION_FOLD_IMPL_INVOKE_IT_META_TRANSFORM(
+                            It const
+                        )
                     )
                 >
               , F
             >
-        {};
+        {
+        };
 
-        template<typename It, typename State, typename F>
+        template <typename It, typename State, typename F>
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        inline typename BOOST_PP_CAT(result_of_it_,BOOST_FUSION_FOLD_NAME)<
+        inline typename ::boost::fusion::detail
+        ::BOOST_PP_CAT(result_of_it_, BOOST_FUSION_FOLD_NAME)<
             0
           , It
           , State
           , F
         >::type
-        BOOST_PP_CAT(it_,BOOST_FUSION_FOLD_NAME)(mpl::int_<0>, It const&, typename State::type state, F&)
+        BOOST_PP_CAT(it_, BOOST_FUSION_FOLD_NAME)(
+            ::boost::mpl::int_<0>
+          , It const&
+          , typename State::type state
+          , F&
+        )
         {
             return state;
         }
 
-        template<typename It, typename State, typename F, int SeqSize>
+        template <typename It, typename State, typename F, int SeqSize>
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        inline typename lazy_enable_if_c<
-            SeqSize != 0
-          , BOOST_PP_CAT(result_of_it_,BOOST_FUSION_FOLD_NAME)<
+        inline typename ::boost::lazy_enable_if_c<
+            (SeqSize != 0)
+          , ::boost::fusion::detail
+            ::BOOST_PP_CAT(result_of_it_, BOOST_FUSION_FOLD_NAME)<
                 SeqSize
               , It
               , State
               , F
             >
         >::type
-        BOOST_PP_CAT(it_,BOOST_FUSION_FOLD_NAME)(mpl::int_<SeqSize>, It const& it, typename State::type state, F& f)
+        BOOST_PP_CAT(it_,BOOST_FUSION_FOLD_NAME)(
+            ::boost::mpl::int_<SeqSize>
+          , It const& it
+          , typename State::type state
+          , F& f
+        )
         {
-            return BOOST_PP_CAT(it_,BOOST_FUSION_FOLD_NAME)<
-                typename result_of::BOOST_FUSION_FOLD_IMPL_NEXT_IT_FUNCTION<It>::type
-              , boost::result_of<
+            return ::boost::fusion::detail
+            ::BOOST_PP_CAT(it_, BOOST_FUSION_FOLD_NAME)<
+                typename ::boost::fusion::result_of
+                ::BOOST_FUSION_FOLD_IMPL_NEXT_IT_FUNCTION<It>::type
+              , ::boost::result_of<
                     F(
-                        typename add_reference<typename State::type>::type,
-                        BOOST_FUSION_FOLD_IMPL_INVOKE_IT_META_TRANSFORM(It const)
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                        typename ::boost::add_lvalue_reference<
+FUSION_HASH else
+                        typename ::std::add_lvalue_reference<
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                        typename ::boost::add_lvalue_reference<
+#else
+                        typename ::std::add_lvalue_reference<
+#endif
+                            typename State::type
+                        >::type
+                      , BOOST_FUSION_FOLD_IMPL_INVOKE_IT_META_TRANSFORM(
+                            It const
+                        )
                     )
                 >
               , F
             >(
-                mpl::int_<SeqSize-1>()
-              , fusion::BOOST_FUSION_FOLD_IMPL_NEXT_IT_FUNCTION(it)
+                ::boost::mpl::int_<SeqSize-1>()
+              , ::boost::fusion::BOOST_FUSION_FOLD_IMPL_NEXT_IT_FUNCTION(it)
               , f(state, BOOST_FUSION_FOLD_IMPL_INVOKE_IT_TRANSFORM(it))
               , f
             );
         }
 
-        template<typename Seq, typename State, typename F
-          , bool = traits::is_sequence<Seq>::value
-          , bool = traits::is_segmented<Seq>::value>
-        struct BOOST_PP_CAT(result_of_,BOOST_FUSION_FOLD_NAME)
-        {};
+        template <
+            typename Seq
+          , typename State
+          , typename F
+          , bool = ::boost::fusion::traits::is_sequence<Seq>::value
+          , bool = ::boost::fusion::traits::is_segmented<Seq>::value
+        >
+        struct BOOST_PP_CAT(result_of_, BOOST_FUSION_FOLD_NAME)
+        {
+        };
 
-        template<typename Seq, typename State, typename F>
-        struct BOOST_PP_CAT(result_of_,BOOST_FUSION_FOLD_NAME)<Seq, State, F, true, false>
-          : BOOST_PP_CAT(result_of_it_,BOOST_FUSION_FOLD_NAME)<
-                result_of::size<Seq>::value
+        template <typename Seq, typename State, typename F>
+        struct BOOST_PP_CAT(result_of_, BOOST_FUSION_FOLD_NAME)<
+            Seq
+          , State
+          , F
+          , true
+          , false
+        > : ::boost::fusion::detail
+            ::BOOST_PP_CAT(result_of_it_, BOOST_FUSION_FOLD_NAME)<
+                ::boost::fusion::result_of::size<Seq>::value
               , BOOST_FUSION_FOLD_IMPL_FIRST_IT_META_TRANSFORM(
-                    typename result_of::BOOST_FUSION_FOLD_IMPL_FIRST_IT_FUNCTION<Seq>::type
+                    typename ::boost::fusion::result_of
+                    ::BOOST_FUSION_FOLD_IMPL_FIRST_IT_FUNCTION<Seq>::type
                 )
-              , add_reference<State>
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+              , ::boost::add_lvalue_reference<State>
+FUSION_HASH else
+              , ::std::add_lvalue_reference<State>
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+              , ::boost::add_lvalue_reference<State>
+#else
+              , ::std::add_lvalue_reference<State>
+#endif
               , F
             >
-        {};
+        {
+        };
 
-        template<typename Seq, typename State, typename F>
+        template <typename Seq, typename State, typename F>
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        inline typename BOOST_PP_CAT(result_of_,BOOST_FUSION_FOLD_NAME)<Seq, State, F>::type
+        inline typename ::boost::fusion::detail::
+        BOOST_PP_CAT(result_of_, BOOST_FUSION_FOLD_NAME)<Seq, State, F>::type
         BOOST_FUSION_FOLD_NAME(Seq& seq, State& state, F& f)
         {
-            return BOOST_PP_CAT(it_,BOOST_FUSION_FOLD_NAME)<
+            return ::boost::fusion::detail
+            ::BOOST_PP_CAT(it_, BOOST_FUSION_FOLD_NAME)<
                 BOOST_FUSION_FOLD_IMPL_FIRST_IT_META_TRANSFORM(
-                    typename result_of::BOOST_FUSION_FOLD_IMPL_FIRST_IT_FUNCTION<Seq>::type
+                    typename ::boost::fusion::result_of
+                    ::BOOST_FUSION_FOLD_IMPL_FIRST_IT_FUNCTION<Seq>::type
                 )
-              , add_reference<State>
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+              , ::boost::add_lvalue_reference<State>
+FUSION_HASH else
+              , ::std::add_lvalue_reference<State>
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+              , ::boost::add_lvalue_reference<State>
+#else
+              , ::std::add_lvalue_reference<State>
+#endif
               , F
             >(
-                typename result_of::size<Seq>::type()
+                typename ::boost::fusion::result_of::size<Seq>::type()
               , BOOST_FUSION_FOLD_IMPL_FIRST_IT_TRANSFORM(
-                    fusion::BOOST_FUSION_FOLD_IMPL_FIRST_IT_FUNCTION(seq)
+                    ::boost::fusion
+                    ::BOOST_FUSION_FOLD_IMPL_FIRST_IT_FUNCTION(seq)
                 )
               , state
               , f
@@ -228,58 +333,52 @@ FUSION_HASH endif
 
     namespace result_of
     {
-        template<typename Seq, typename State, typename F>
-        struct BOOST_FUSION_FOLD_NAME
-          : detail::BOOST_PP_CAT(result_of_,BOOST_FUSION_FOLD_NAME)<Seq, State, F>
-        {};
+        template <typename Seq, typename State, typename F>
+        struct BOOST_FUSION_FOLD_NAME :
+            ::boost::fusion::detail
+            ::BOOST_PP_CAT(result_of_,BOOST_FUSION_FOLD_NAME)<Seq, State, F>
+        {
+        };
     }
 
-    template<typename Seq, typename State, typename F>
+    template <typename Seq, typename State, typename F>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline typename result_of::BOOST_FUSION_FOLD_NAME<
-        Seq
-      , State const
-      , F
-    >::type
+    inline typename ::boost::fusion::result_of
+    ::BOOST_FUSION_FOLD_NAME<Seq, State const, F>::type
     BOOST_FUSION_FOLD_NAME(Seq& seq, State const& state, F f)
     {
-        return detail::BOOST_FUSION_FOLD_NAME<Seq, State const, F>(seq, state, f);
+        return ::boost::fusion::detail
+        ::BOOST_FUSION_FOLD_NAME<Seq, State const, F>(seq, state, f);
     }
 
-    template<typename Seq, typename State, typename F>
+    template <typename Seq, typename State, typename F>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline typename result_of::BOOST_FUSION_FOLD_NAME<
-        Seq const
-      , State const
-      , F
-    >::type
+    inline typename ::boost::fusion::result_of
+    ::BOOST_FUSION_FOLD_NAME<Seq const, State const, F>::type
     BOOST_FUSION_FOLD_NAME(Seq const& seq, State const& state, F f)
     {
-        return detail::BOOST_FUSION_FOLD_NAME<Seq const, State const, F>(seq, state, f);
+        return ::boost::fusion::detail
+        ::BOOST_FUSION_FOLD_NAME<Seq const, State const, F>(seq, state, f);
     }
 
-    template<typename Seq, typename State, typename F>
+    template <typename Seq, typename State, typename F>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline typename result_of::BOOST_FUSION_FOLD_NAME<
-        Seq
-      , State
-      , F
-    >::type
+    inline typename ::boost::fusion::result_of
+    ::BOOST_FUSION_FOLD_NAME<Seq, State, F>::type
     BOOST_FUSION_FOLD_NAME(Seq& seq, State& state, F f)
     {
-        return detail::BOOST_FUSION_FOLD_NAME<Seq, State, F>(seq, state, f);
+        return ::boost::fusion::detail
+        ::BOOST_FUSION_FOLD_NAME<Seq, State, F>(seq, state, f);
     }
 
-    template<typename Seq, typename State, typename F>
+    template <typename Seq, typename State, typename F>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline typename result_of::BOOST_FUSION_FOLD_NAME<
-        Seq const
-      , State
-      , F
-    >::type
+    inline typename ::boost::fusion::result_of
+    ::BOOST_FUSION_FOLD_NAME<Seq const, State, F>::type
     BOOST_FUSION_FOLD_NAME(Seq const& seq, State& state, F f)
     {
-        return detail::BOOST_FUSION_FOLD_NAME<Seq const, State, F>(seq, state, f);
+        return ::boost::fusion::detail
+        ::BOOST_FUSION_FOLD_NAME<Seq const, State, F>(seq, state, f);
     }
 }}
 
@@ -292,3 +391,4 @@ FUSION_HASH endif
 #undef BOOST_FUSION_FOLD_IMPL_INVOKE_IT_META_TRANSFORM
 #undef BOOST_FUSION_FOLD_IMPL_INVOKE_IT_TRANSFORM
 #undef FUSION_HASH
+

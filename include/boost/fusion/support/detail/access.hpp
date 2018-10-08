@@ -1,34 +1,15 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 2001-2011 Joel de Guzman
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
 #if !defined(FUSION_ACCESS_04182005_0737)
 #define FUSION_ACCESS_04182005_0737
 
-#include <boost/fusion/support/config.hpp>
-#include <boost/type_traits/add_const.hpp>
-#include <boost/type_traits/add_reference.hpp>
-
 namespace boost { namespace fusion { namespace detail
 {
-    template <typename T>
-    struct ref_result
-    {
-        typedef typename add_reference<T>::type type;
-    };
-
-    template <typename T>
-    struct cref_result
-    {
-        typedef typename
-            add_reference<
-                typename add_const<T>::type
-            >::type
-        type;
-    };
-
     template <typename T>
     struct call_param
     {
@@ -58,8 +39,41 @@ namespace boost { namespace fusion { namespace detail
     {
         typedef T const& type;
     };
-
 }}}
 
+#include <boost/fusion/support/config.hpp>
+
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#include <boost/type_traits/add_const.hpp>
+#include <boost/type_traits/add_lvalue_reference.hpp>
+#else
+#include <type_traits>
 #endif
+
+namespace boost { namespace fusion { namespace detail
+{
+    template <typename T>
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+    struct ref_result : ::boost::add_lvalue_reference<T>
+#else
+    struct ref_result : ::std::add_lvalue_reference<T>
+#endif
+    {
+    };
+
+    template <typename T>
+    struct cref_result :
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+        ::boost::add_lvalue_reference<
+            typename ::boost::add_const<T>::type
+#else
+        ::std::add_lvalue_reference<
+            typename ::std::add_const<T>::type
+#endif
+        >
+    {
+    };
+}}}
+
+#endif  // include guard
 

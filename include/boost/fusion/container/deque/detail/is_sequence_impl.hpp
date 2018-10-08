@@ -1,32 +1,28 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 2010 Christopher Schmidt
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
-
-#ifndef BOOST_FUSION_CONTAINER_DEQUE_DETAIL_IS_SEQUENCE_IMPL_HPP
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
+#if !defined(BOOST_FUSION_CONTAINER_DEQUE_DETAIL_IS_SEQUENCE_IMPL_HPP)
 #define BOOST_FUSION_CONTAINER_DEQUE_DETAIL_IS_SEQUENCE_IMPL_HPP
 
-#include <boost/fusion/support/config.hpp>
+#include <boost/fusion/support/is_sequence.hpp>
+#include <boost/fusion/container/deque/deque_fwd.hpp>
 #include <boost/mpl/bool.hpp>
 
-namespace boost { namespace fusion
+namespace boost { namespace fusion { namespace extension
 {
-    struct deque_tag;
-
-    namespace extension
+    template <>
+    struct is_sequence_impl< ::boost::fusion::deque_tag>
     {
-        template<typename T>
-        struct is_sequence_impl;
-
-        template<>
-        struct is_sequence_impl<deque_tag>
+        template <typename Sequence>
+        struct apply : ::boost::mpl::true_
         {
-            template<typename Sequence>
-            struct apply : mpl::true_ {};
         };
-    }
-}}
+    };
+}}}
 
-#endif
+#endif  // include guard
+

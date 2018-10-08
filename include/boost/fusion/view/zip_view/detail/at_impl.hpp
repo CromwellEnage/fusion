@@ -1,97 +1,138 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 2001-2011 Joel de Guzman
     Copyright (c) 2006 Dan Marsden
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying 
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
 #if !defined(FUSION_AT_IMPL_20060124_1933)
 #define FUSION_AT_IMPL_20060124_1933
 
-#include <boost/fusion/support/config.hpp>
-#include <boost/fusion/container/vector.hpp>
 #include <boost/fusion/sequence/intrinsic/at.hpp>
-#include <boost/fusion/container/vector/convert.hpp>
-#include <boost/fusion/algorithm/transformation/transform.hpp>
-#include <boost/type_traits/remove_reference.hpp>
-#include <boost/type_traits/is_reference.hpp>
-#include <boost/mpl/assert.hpp>
 #include <boost/fusion/support/unused.hpp>
+#include <boost/fusion/support/config.hpp>
+#include <boost/mpl/bool.hpp>
+#include <boost/mpl/if.hpp>
 #include <boost/mpl/eval_if.hpp>
 #include <boost/mpl/identity.hpp>
+#include <boost/mpl/assert.hpp>
+
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#include <boost/type_traits/is_lvalue_reference.hpp>
 #include <boost/type_traits/is_same.hpp>
-
-
-namespace boost { namespace fusion 
-{
-    struct zip_view_tag;
-
-    namespace detail
-    {
-        template<typename N>
-        struct poly_at
-        {
-            template<typename T>
-            struct result;
-
-            template<typename N1, typename SeqRef>
-            struct result<poly_at<N1>(SeqRef)>
-                : mpl::eval_if<is_same<SeqRef, unused_type const&>,
-                               mpl::identity<unused_type>,
-                               result_of::at<typename remove_reference<SeqRef>::type, N> >
-            {
-                BOOST_MPL_ASSERT((is_reference<SeqRef>));
-            };
-
-            template<typename Seq>
-            BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-            typename result<poly_at(Seq&)>::type
-            operator()(Seq& seq) const
-            {
-                return fusion::at<N>(seq);
-            }
-
-            template<typename Seq>
-            BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-            typename result<poly_at(Seq const&)>::type
-            operator()(Seq const& seq) const
-            {
-                return fusion::at<N>(seq);
-            }
-
-            BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-            unused_type operator()(unused_type const&) const
-            {
-                return unused_type();
-            }
-        };
-    }
-
-    namespace extension
-    {
-        template<typename Tag>
-        struct at_impl;
-
-        template<>
-        struct at_impl<zip_view_tag>
-        {
-            template<typename Seq, typename N>
-            struct apply
-            {
-                typedef typename result_of::as_vector<
-                    typename result_of::transform<
-                    typename Seq::sequences, detail::poly_at<N> >::type>::type type;
-
-                BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-                static type
-                call(Seq& seq)
-                {
-                    return type(
-                        fusion::transform(seq.sequences_, detail::poly_at<N>()));
-                }
-            };
-        };
-    }
-}}
-
+#include <boost/type_traits/remove_reference.hpp>
+#else
+#include <type_traits>
 #endif
+
+namespace boost { namespace fusion { namespace detail
+{
+    template <typename N>
+    struct poly_at
+    {
+        template <typename T>
+        struct result;
+
+        template <typename N1, typename SeqRef>
+        struct result< ::boost::fusion::detail::poly_at<N1>(SeqRef)> :
+            ::boost::mpl::eval_if<
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                ::boost::is_same<SeqRef, ::boost::fusion::unused_type const&>
+#else
+                ::std::is_same<SeqRef, ::boost::fusion::unused_type const&>
+#endif
+              , ::boost::mpl::identity< ::boost::fusion::unused_type>
+              , ::boost::fusion::result_of::at<
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                    typename ::boost::remove_reference<SeqRef>::type
+#else
+                    typename ::std::remove_reference<SeqRef>::type
+#endif
+                  , N
+                >
+            >
+        {
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+            BOOST_MPL_ASSERT((
+                typename ::boost::mpl::if_<
+                    ::boost::is_lvalue_reference<SeqRef>
+                  , ::boost::mpl::true_
+                  , ::boost::mpl::false_
+                >::type
+            ));
+#else
+            BOOST_MPL_ASSERT((
+                typename ::boost::mpl::if_<
+                    ::std::is_lvalue_reference<SeqRef>
+                  , ::boost::mpl::true_
+                  , ::boost::mpl::false_
+                >::type
+            ));
+#endif
+        };
+
+        template <typename Seq>
+        BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
+        typename ::boost::fusion::detail::poly_at<N>::template result<
+            ::boost::fusion::detail::poly_at<N>(Seq&)
+        >::type
+        operator()(Seq& seq) const
+        {
+            return ::boost::fusion::at<N>(seq);
+        }
+
+        template <typename Seq>
+        BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
+        typename ::boost::fusion::detail::poly_at<N>::template result<
+            ::boost::fusion::detail::poly_at<N>(Seq const&)
+        >::type
+        operator()(Seq const& seq) const
+        {
+            return ::boost::fusion::at<N>(seq);
+        }
+
+        BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
+        ::boost::fusion::unused_type
+        operator()(::boost::fusion::unused_type const&) const
+        {
+            return ::boost::fusion::unused_type();
+        }
+    };
+}}}
+
+#include <boost/fusion/view/zip_view/zip_view_tag_fwd.hpp>
+#include <boost/fusion/container/vector/convert.hpp>
+#include <boost/fusion/algorithm/transformation/transform.hpp>
+
+namespace boost { namespace fusion { namespace extension
+{
+    template <>
+    struct at_impl< ::boost::fusion::zip_view_tag>
+    {
+        template <typename Seq, typename N>
+        struct apply
+        {
+            typedef typename ::boost::fusion::result_of::as_vector<
+                typename ::boost::fusion::result_of::transform<
+                    typename Seq::sequences
+                  , ::boost::fusion::detail::poly_at<N>
+                >::type
+            >::type type;
+
+            BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
+            static type call(Seq& seq)
+            {
+                return type(
+                    ::boost::fusion::transform(
+                        seq.sequences_
+                      , ::boost::fusion::detail::poly_at<N>()
+                    )
+                );
+            }
+        };
+    };
+}}}
+
+#endif  // include guard
+
