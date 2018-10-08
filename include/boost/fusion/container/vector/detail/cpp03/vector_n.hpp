@@ -69,7 +69,7 @@ FUSION_HASH endif                                                            \
         {                                                                    \
 /*
 */\
-            return this->BOOST_PP_CAT(T, n);                                 \
+            return this->BOOST_PP_CAT(m, n);                                 \
 /*
 */\
         }                                                                    \
@@ -108,7 +108,7 @@ FUSION_HASH endif                                                            \
         {                                                                    \
 /*
 */\
-            return this->BOOST_PP_CAT(T, n);                                 \
+            return this->BOOST_PP_CAT(m, n);                                 \
 /*
 */\
         }
@@ -118,7 +118,7 @@ FUSION_HASH endif                                                            \
     typename ::boost::add_lvalue_reference<BOOST_PP_CAT(T, n)>::type         \
     at_impl(::boost::mpl::int_<n>)                                           \
     {                                                                        \
-        return this->BOOST_PP_CAT(T, n);                                     \
+        return this->BOOST_PP_CAT(m, n);                                     \
     }                                                                        \
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED                                 \
     typename ::boost::add_lvalue_reference<                                  \
@@ -126,7 +126,7 @@ FUSION_HASH endif                                                            \
     >::type                                                                  \
     at_impl(::boost::mpl::int_<n>) const                                     \
     {                                                                        \
-        return this->BOOST_PP_CAT(T, n);                                     \
+        return this->BOOST_PP_CAT(m, n);                                     \
     }
 #else
 #define FUSION_VECTOR_MEMBER_AT_IMPL(z, n, _)                                \
@@ -134,7 +134,7 @@ FUSION_HASH endif                                                            \
     typename ::std::add_lvalue_reference<BOOST_PP_CAT(T, n)>::type           \
     at_impl(::boost::mpl::int_<n>)                                           \
     {                                                                        \
-        return this->BOOST_PP_CAT(T, n);                                     \
+        return this->BOOST_PP_CAT(m, n);                                     \
     }                                                                        \
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED                                 \
     typename ::std::add_lvalue_reference<                                    \
@@ -142,7 +142,7 @@ FUSION_HASH endif                                                            \
     >::type                                                                  \
     at_impl(::boost::mpl::int_<n>) const                                     \
     {                                                                        \
-        return this->BOOST_PP_CAT(T, n);                                     \
+        return this->BOOST_PP_CAT(m, n);                                     \
     }
 #endif  // preprocess file, or BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
 

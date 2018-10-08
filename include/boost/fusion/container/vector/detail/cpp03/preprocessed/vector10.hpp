@@ -283,7 +283,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 0>) 
         { 
-            return this->T0; 
+            return this->m0; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -296,7 +296,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 0>) const 
         { 
-            return this->T0; 
+            return this->m0; 
         }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
@@ -583,7 +583,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 0>) 
         { 
-            return this->T0; 
+            return this->m0; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -596,7 +596,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 0>) const 
         { 
-            return this->T0; 
+            return this->m0; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T1>::type 
@@ -605,7 +605,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 1>) 
         { 
-            return this->T1; 
+            return this->m1; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -618,7 +618,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 1>) const 
         { 
-            return this->T1; 
+            return this->m1; 
         }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
@@ -917,7 +917,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 0>) 
         { 
-            return this->T0; 
+            return this->m0; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -930,7 +930,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 0>) const 
         { 
-            return this->T0; 
+            return this->m0; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T1>::type 
@@ -939,7 +939,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 1>) 
         { 
-            return this->T1; 
+            return this->m1; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -952,7 +952,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 1>) const 
         { 
-            return this->T1; 
+            return this->m1; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T2>::type 
@@ -961,7 +961,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 2>) 
         { 
-            return this->T2; 
+            return this->m2; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -974,7 +974,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 2>) const 
         { 
-            return this->T2; 
+            return this->m2; 
         }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
@@ -1285,7 +1285,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 0>) 
         { 
-            return this->T0; 
+            return this->m0; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -1298,7 +1298,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 0>) const 
         { 
-            return this->T0; 
+            return this->m0; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T1>::type 
@@ -1307,7 +1307,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 1>) 
         { 
-            return this->T1; 
+            return this->m1; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -1320,7 +1320,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 1>) const 
         { 
-            return this->T1; 
+            return this->m1; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T2>::type 
@@ -1329,7 +1329,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 2>) 
         { 
-            return this->T2; 
+            return this->m2; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -1342,7 +1342,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 2>) const 
         { 
-            return this->T2; 
+            return this->m2; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T3>::type 
@@ -1351,7 +1351,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 3>) 
         { 
-            return this->T3; 
+            return this->m3; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -1364,7 +1364,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 3>) const 
         { 
-            return this->T3; 
+            return this->m3; 
         }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
@@ -1687,7 +1687,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 0>) 
         { 
-            return this->T0; 
+            return this->m0; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -1700,7 +1700,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 0>) const 
         { 
-            return this->T0; 
+            return this->m0; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T1>::type 
@@ -1709,7 +1709,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 1>) 
         { 
-            return this->T1; 
+            return this->m1; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -1722,7 +1722,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 1>) const 
         { 
-            return this->T1; 
+            return this->m1; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T2>::type 
@@ -1731,7 +1731,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 2>) 
         { 
-            return this->T2; 
+            return this->m2; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -1744,7 +1744,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 2>) const 
         { 
-            return this->T2; 
+            return this->m2; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T3>::type 
@@ -1753,7 +1753,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 3>) 
         { 
-            return this->T3; 
+            return this->m3; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -1766,7 +1766,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 3>) const 
         { 
-            return this->T3; 
+            return this->m3; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T4>::type 
@@ -1775,7 +1775,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 4>) 
         { 
-            return this->T4; 
+            return this->m4; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -1788,7 +1788,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 4>) const 
         { 
-            return this->T4; 
+            return this->m4; 
         }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
@@ -2123,7 +2123,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 0>) 
         { 
-            return this->T0; 
+            return this->m0; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -2136,7 +2136,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 0>) const 
         { 
-            return this->T0; 
+            return this->m0; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T1>::type 
@@ -2145,7 +2145,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 1>) 
         { 
-            return this->T1; 
+            return this->m1; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -2158,7 +2158,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 1>) const 
         { 
-            return this->T1; 
+            return this->m1; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T2>::type 
@@ -2167,7 +2167,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 2>) 
         { 
-            return this->T2; 
+            return this->m2; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -2180,7 +2180,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 2>) const 
         { 
-            return this->T2; 
+            return this->m2; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T3>::type 
@@ -2189,7 +2189,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 3>) 
         { 
-            return this->T3; 
+            return this->m3; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -2202,7 +2202,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 3>) const 
         { 
-            return this->T3; 
+            return this->m3; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T4>::type 
@@ -2211,7 +2211,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 4>) 
         { 
-            return this->T4; 
+            return this->m4; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -2224,7 +2224,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 4>) const 
         { 
-            return this->T4; 
+            return this->m4; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T5>::type 
@@ -2233,7 +2233,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 5>) 
         { 
-            return this->T5; 
+            return this->m5; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -2246,7 +2246,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 5>) const 
         { 
-            return this->T5; 
+            return this->m5; 
         }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
@@ -2593,7 +2593,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 0>) 
         { 
-            return this->T0; 
+            return this->m0; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -2606,7 +2606,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 0>) const 
         { 
-            return this->T0; 
+            return this->m0; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T1>::type 
@@ -2615,7 +2615,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 1>) 
         { 
-            return this->T1; 
+            return this->m1; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -2628,7 +2628,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 1>) const 
         { 
-            return this->T1; 
+            return this->m1; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T2>::type 
@@ -2637,7 +2637,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 2>) 
         { 
-            return this->T2; 
+            return this->m2; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -2650,7 +2650,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 2>) const 
         { 
-            return this->T2; 
+            return this->m2; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T3>::type 
@@ -2659,7 +2659,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 3>) 
         { 
-            return this->T3; 
+            return this->m3; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -2672,7 +2672,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 3>) const 
         { 
-            return this->T3; 
+            return this->m3; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T4>::type 
@@ -2681,7 +2681,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 4>) 
         { 
-            return this->T4; 
+            return this->m4; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -2694,7 +2694,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 4>) const 
         { 
-            return this->T4; 
+            return this->m4; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T5>::type 
@@ -2703,7 +2703,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 5>) 
         { 
-            return this->T5; 
+            return this->m5; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -2716,7 +2716,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 5>) const 
         { 
-            return this->T5; 
+            return this->m5; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T6>::type 
@@ -2725,7 +2725,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 6>) 
         { 
-            return this->T6; 
+            return this->m6; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -2738,7 +2738,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 6>) const 
         { 
-            return this->T6; 
+            return this->m6; 
         }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
@@ -3097,7 +3097,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 0>) 
         { 
-            return this->T0; 
+            return this->m0; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3110,7 +3110,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 0>) const 
         { 
-            return this->T0; 
+            return this->m0; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T1>::type 
@@ -3119,7 +3119,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 1>) 
         { 
-            return this->T1; 
+            return this->m1; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3132,7 +3132,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 1>) const 
         { 
-            return this->T1; 
+            return this->m1; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T2>::type 
@@ -3141,7 +3141,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 2>) 
         { 
-            return this->T2; 
+            return this->m2; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3154,7 +3154,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 2>) const 
         { 
-            return this->T2; 
+            return this->m2; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T3>::type 
@@ -3163,7 +3163,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 3>) 
         { 
-            return this->T3; 
+            return this->m3; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3176,7 +3176,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 3>) const 
         { 
-            return this->T3; 
+            return this->m3; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T4>::type 
@@ -3185,7 +3185,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 4>) 
         { 
-            return this->T4; 
+            return this->m4; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3198,7 +3198,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 4>) const 
         { 
-            return this->T4; 
+            return this->m4; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T5>::type 
@@ -3207,7 +3207,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 5>) 
         { 
-            return this->T5; 
+            return this->m5; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3220,7 +3220,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 5>) const 
         { 
-            return this->T5; 
+            return this->m5; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T6>::type 
@@ -3229,7 +3229,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 6>) 
         { 
-            return this->T6; 
+            return this->m6; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3242,7 +3242,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 6>) const 
         { 
-            return this->T6; 
+            return this->m6; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T7>::type 
@@ -3251,7 +3251,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 7>) 
         { 
-            return this->T7; 
+            return this->m7; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3264,7 +3264,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 7>) const 
         { 
-            return this->T7; 
+            return this->m7; 
         }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
@@ -3635,7 +3635,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 0>) 
         { 
-            return this->T0; 
+            return this->m0; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3648,7 +3648,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 0>) const 
         { 
-            return this->T0; 
+            return this->m0; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T1>::type 
@@ -3657,7 +3657,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 1>) 
         { 
-            return this->T1; 
+            return this->m1; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3670,7 +3670,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 1>) const 
         { 
-            return this->T1; 
+            return this->m1; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T2>::type 
@@ -3679,7 +3679,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 2>) 
         { 
-            return this->T2; 
+            return this->m2; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3692,7 +3692,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 2>) const 
         { 
-            return this->T2; 
+            return this->m2; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T3>::type 
@@ -3701,7 +3701,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 3>) 
         { 
-            return this->T3; 
+            return this->m3; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3714,7 +3714,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 3>) const 
         { 
-            return this->T3; 
+            return this->m3; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T4>::type 
@@ -3723,7 +3723,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 4>) 
         { 
-            return this->T4; 
+            return this->m4; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3736,7 +3736,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 4>) const 
         { 
-            return this->T4; 
+            return this->m4; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T5>::type 
@@ -3745,7 +3745,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 5>) 
         { 
-            return this->T5; 
+            return this->m5; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3758,7 +3758,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 5>) const 
         { 
-            return this->T5; 
+            return this->m5; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T6>::type 
@@ -3767,7 +3767,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 6>) 
         { 
-            return this->T6; 
+            return this->m6; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3780,7 +3780,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 6>) const 
         { 
-            return this->T6; 
+            return this->m6; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T7>::type 
@@ -3789,7 +3789,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 7>) 
         { 
-            return this->T7; 
+            return this->m7; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3802,7 +3802,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 7>) const 
         { 
-            return this->T7; 
+            return this->m7; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T8>::type 
@@ -3811,7 +3811,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 8>) 
         { 
-            return this->T8; 
+            return this->m8; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -3824,7 +3824,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 8>) const 
         { 
-            return this->T8; 
+            return this->m8; 
         }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
@@ -4207,7 +4207,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 0>) 
         { 
-            return this->T0; 
+            return this->m0; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -4220,7 +4220,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 0>) const 
         { 
-            return this->T0; 
+            return this->m0; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T1>::type 
@@ -4229,7 +4229,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 1>) 
         { 
-            return this->T1; 
+            return this->m1; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -4242,7 +4242,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 1>) const 
         { 
-            return this->T1; 
+            return this->m1; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T2>::type 
@@ -4251,7 +4251,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 2>) 
         { 
-            return this->T2; 
+            return this->m2; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -4264,7 +4264,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 2>) const 
         { 
-            return this->T2; 
+            return this->m2; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T3>::type 
@@ -4273,7 +4273,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 3>) 
         { 
-            return this->T3; 
+            return this->m3; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -4286,7 +4286,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 3>) const 
         { 
-            return this->T3; 
+            return this->m3; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T4>::type 
@@ -4295,7 +4295,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 4>) 
         { 
-            return this->T4; 
+            return this->m4; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -4308,7 +4308,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 4>) const 
         { 
-            return this->T4; 
+            return this->m4; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T5>::type 
@@ -4317,7 +4317,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 5>) 
         { 
-            return this->T5; 
+            return this->m5; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -4330,7 +4330,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 5>) const 
         { 
-            return this->T5; 
+            return this->m5; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T6>::type 
@@ -4339,7 +4339,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 6>) 
         { 
-            return this->T6; 
+            return this->m6; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -4352,7 +4352,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 6>) const 
         { 
-            return this->T6; 
+            return this->m6; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T7>::type 
@@ -4361,7 +4361,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 7>) 
         { 
-            return this->T7; 
+            return this->m7; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -4374,7 +4374,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 7>) const 
         { 
-            return this->T7; 
+            return this->m7; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T8>::type 
@@ -4383,7 +4383,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 8>) 
         { 
-            return this->T8; 
+            return this->m8; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -4396,7 +4396,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 8>) const 
         { 
-            return this->T8; 
+            return this->m8; 
         } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
         typename ::boost::add_lvalue_reference<T9>::type 
@@ -4405,7 +4405,7 @@ namespace boost { namespace fusion
 # endif 
         at_impl(::boost::mpl::int_< 9>) 
         { 
-            return this->T9; 
+            return this->m9; 
         } 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
@@ -4418,7 +4418,7 @@ namespace boost { namespace fusion
         >::type 
         at_impl(::boost::mpl::int_< 9>) const 
         { 
-            return this->T9; 
+            return this->m9; 
         }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
