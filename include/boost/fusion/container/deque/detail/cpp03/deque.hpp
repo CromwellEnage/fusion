@@ -129,7 +129,13 @@ namespace boost { namespace fusion
             Sequence const& seq
           , typename ::boost::disable_if<
                 typename ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                    ::boost::is_convertible<Sequence, T0>
+FUSION_HASH else
+                    ::std::is_convertible<Sequence, T0>
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                     ::boost::is_convertible<Sequence, T0>
 #else
                     ::std::is_convertible<Sequence, T0>
@@ -166,7 +172,13 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
             T0_&& t0
           , typename ::boost::enable_if<
                 typename ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                    ::boost::is_convertible<T0_, T0>
+FUSION_HASH else
+                    ::std::is_convertible<T0_, T0>
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                     ::boost::is_convertible<T0_, T0>
 #else
                     ::std::is_convertible<T0_, T0>
@@ -212,7 +224,13 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
             >&& seq
           , typename ::boost::disable_if<
                 typename ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                    ::boost::is_convertible<
+FUSION_HASH else
+                    ::std::is_convertible<
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                     ::boost::is_convertible<
 #else
                     ::std::is_convertible<

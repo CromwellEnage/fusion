@@ -45,7 +45,7 @@ namespace boost { namespace fusion { namespace extension
                 ::std::is_const<typename It::seq_type>
 #endif
               , ::boost::fusion::detail::cref_result<data>
-              , ::boost::fusion::ref_result<data>
+              , ::boost::fusion::detail::ref_result<data>
             >::type type;
 
             BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
