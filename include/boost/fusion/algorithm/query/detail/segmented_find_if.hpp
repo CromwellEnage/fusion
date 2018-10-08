@@ -10,7 +10,7 @@
 
 #include <boost/fusion/algorithm/query/find_if_fwd.hpp>
 #include <boost/fusion/iterator/equal_to.hpp>
-#include <boost/fusion/sequence/intrinsic/detail/end.hpp>
+#include <boost/fusion/sequence/intrinsic/end.hpp>
 #include <boost/fusion/support/segmented_fold_until.hpp>
 #include <boost/fusion/support/config.hpp>
 #include <boost/mpl/bool.hpp>

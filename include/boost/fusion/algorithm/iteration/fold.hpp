@@ -12,7 +12,7 @@
 #define BOOST_FUSION_ALGORITHM_ITERATION_FOLD_HPP
 
 #include <boost/fusion/algorithm/iteration/fold_fwd.hpp>
-#include <boost/fusion/sequence/intrinsic/detail/begin.hpp>
+#include <boost/fusion/sequence/intrinsic/begin.hpp>
 #include <boost/fusion/sequence/intrinsic/size.hpp>
 #include <boost/fusion/iterator/deref.hpp>
 #include <boost/fusion/iterator/value_of.hpp>
