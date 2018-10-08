@@ -1,88 +1,78 @@
 # Copyright 2016, 2017 Peter Dimov
 # Copyright 2017-2018 Kohei Takahashi
 # Distributed under the Boost Software License, Version 1.0.
-# (See accompanying file LICENSE_1_0.txt or copy at http://boost.org/LICENSE_1_0.txt)
+# (See accompanying file LICENSE_1_0.txt or copy at
+# http://boost.org/LICENSE_1_0.txt)
 
 version: 1.0.{build}-{branch}
 
 shallow_clone: true
 
+branches:
+  only:
+    - master
+    - develop
+
+platform:
+  - x64
+
 environment:
   matrix:
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
-      TOOLSET: msvc-9.0
-      CXXSTD: latest # fake
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
-      TOOLSET: msvc-10.0
-      CXXSTD: latest # fake
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
-      TOOLSET: msvc-11.0
-      CXXSTD: latest # fake
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
-      TOOLSET: msvc-12.0
-      CXXSTD: latest # fake
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      TOOLSET: msvc-14.0
-      CXXSTD: 14
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      TOOLSET: msvc-14.0
-      CXXSTD: latest
+    - ARGS: --toolset=gcc address-model=32
+      PATH: C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin;%PATH%
+      TEST_SUITE: fusion_all_tests
+    - ARGS: --toolset=gcc address-model=32 linkflags=-Wl,-allow-multiple-definition
+      PATH: C:\MinGW\bin;%PATH%
+      TEST_SUITE: fusion_all_tests
+    - ARGS: --toolset=gcc address-model=64
+      PATH: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\bin;%PATH%
+      TEST_SUITE: fusion_all_tests
+    - ARGS: --toolset=gcc address-model=64 cxxflags=-std=gnu++1z
+      PATH: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\bin;%PATH%
+      TEST_SUITE: fusion_all_tests
+    - ARGS: --toolset=msvc-9.0  address-model=32
+      TEST_SUITE: fusion_all_tests
+    - ARGS: --toolset=msvc-10.0 address-model=32
+      TEST_SUITE: fusion_all_tests
+    - ARGS: --toolset=msvc-11.0 address-model=32
+      TEST_SUITE: fusion_all_tests
+    - ARGS: --toolset=msvc-12.0 address-model=32
+      TEST_SUITE: fusion_all_tests
+    - ARGS: --toolset=msvc-12.0 address-model=64
+      TEST_SUITE: fusion_all_tests
+    - ARGS: --toolset=msvc-14.0 address-model=32
+      TEST_SUITE: fusion_all_tests
+    - ARGS: --toolset=msvc-14.0 address-model=64
+      TEST_SUITE: fusion_all_tests
+    - ARGS: --toolset=msvc-14.0 address-model=64 cxxflags=-std:c++latest
+      TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      TOOLSET: msvc-14.1
-      CXXSTD: 14
+      ARGS: --toolset=msvc-14.1 address-model=32
+      TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      TOOLSET: msvc-14.1
-      CXXSTD: 17
+      ARGS: --toolset=msvc-14.1 address-model=64
+      TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      TOOLSET: msvc-14.1
-      CXXSTD: latest
+      ARGS: --toolset=msvc-14.1 address-model=64 cxxflags=-std:c++latest
+      TEST_SUITE: fusion_all_tests
 
 install:
-  - set BOOST_BRANCH=develop
-  - if "%APPVEYOR_REPO_BRANCH%" == "master" set BOOST_BRANCH=master
   - cd ..
-  - git clone --depth 1 -b %BOOST_BRANCH% https://github.com/boostorg/boost.git boost-root
+  - git clone -b %APPVEYOR_REPO_BRANCH% https://github.com/boostorg/boost.git boost-root
   - cd boost-root
-
-  - git submodule init libs/array
-  - git submodule init libs/assert
-  - git submodule init libs/bimap
-  - git submodule init libs/bind
-  - git submodule init libs/concept_check
-  - git submodule init libs/config
-  - git submodule init libs/container
-  - git submodule init libs/container_hash
-  - git submodule init libs/conversion
-  - git submodule init libs/core
-  - git submodule init libs/detail
-  - git submodule init libs/function
-  - git submodule init libs/function_types
-  - git submodule init libs/functional
-  - git submodule init libs/integer
-  - git submodule init libs/intrusive
-  - git submodule init libs/iterator
-  - git submodule init libs/lambda
-  - git submodule init libs/move
-  - git submodule init libs/mpl
-  - git submodule init libs/optional
-  - git submodule init libs/predef
-  - git submodule init libs/preprocessor
-  - git submodule init libs/smart_ptr
-  - git submodule init libs/static_assert
-  - git submodule init libs/throw_exception
-  - git submodule init libs/tuple
-  - git submodule init libs/type_index
-  - git submodule init libs/type_traits
-  - git submodule init libs/typeof
-  - git submodule init libs/utility
-
-  - git submodule init tools/build
-  - git submodule update
+  - git submodule update --init tools/build
+  - git submodule update --init libs/config
+  - git submodule update --init tools/boostdep
   - xcopy /s /e /q %APPVEYOR_BUILD_FOLDER% libs\fusion
-  - cmd /c bootstrap
+  - python tools/boostdep/depinst/depinst.py fusion
+  - bootstrap
   - b2 headers
 
 build: off
 
 test_script:
-  - b2 -j%NUMBER_OF_PROCESSORS% --hash libs/fusion/test toolset=%TOOLSET% cxxstd=%CXXSTD%
+  - cd libs\config\test
+  - ..\..\..\b2 config_info_travis_install %ARGS%
+  - config_info_travis
+  - cd ..\..\fusion\test
+  - ..\..\..\b2 -j%NUMBER_OF_PROCESSORS% --hash %ARGS% %TEST_SUITE%
