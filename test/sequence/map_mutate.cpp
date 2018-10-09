@@ -9,6 +9,7 @@
 #include <boost/fusion/container/map/map.hpp>
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/fusion/sequence/intrinsic/at.hpp>
+#include <boost/fusion/support/pair.hpp>
 
 struct k1 {};
 struct k2 {};

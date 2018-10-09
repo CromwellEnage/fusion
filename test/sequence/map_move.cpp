@@ -7,6 +7,7 @@
 ==============================================================================*/
 #define BOOST_FUSION_DONT_USE_PREPROCESSED_FILES
 #include <boost/fusion/container/map/map.hpp>
+#include <boost/fusion/support/pair.hpp>
 
 struct k1 {};
 struct k2 {};

@@ -299,6 +299,8 @@ alias fusion_min_tests
     [ run support/pair_set.cpp ]
     [ run support/pair_vector.cpp ]
     [ run support/and.cpp
+        :
+        :
         : [ requires cxx11_variadic_templates ]
     ]
     [ compile support/index_sequence.cpp

@@ -26,7 +26,7 @@ MPL_TEST_CASE()
     // Make sure deque's constructor is SFINAE-friendly.
 #if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
     BOOST_MPL_ASSERT((
-        typename boost::mpl::if_<
+        boost::mpl::if_<
             boost::is_constructible<boost::fusion::deque<int>, Dummy const&>
           , boost::mpl::false_
           , boost::mpl::true_
@@ -34,7 +34,7 @@ MPL_TEST_CASE()
     ));
 #else
     BOOST_MPL_ASSERT((
-        typename boost::mpl::if_<
+        boost::mpl::if_<
             std::is_constructible<boost::fusion::deque<int>, Dummy const&>
           , boost::mpl::false_
           , boost::mpl::true_

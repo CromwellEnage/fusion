@@ -30,9 +30,7 @@ main()
 
     {
         vector0<> empty;
-        list<int, double, std::string> l(1, 1.23, "harru");
-        std::cout << l << std::endl;
-        std::cout << as_set(l) << std::endl;
+        std::cout << as_set(make_list(1, 1.23, "harru")) << std::endl;
         std::cout << as_set(push_back(empty, 999)) << std::endl;
         
         BOOST_TEST(as_list(as_set(make_list(1, 1.23, "harru")))

@@ -13,6 +13,7 @@
 #include <boost/fusion/sequence/intrinsic/detail/begin.hpp>
 #include <boost/fusion/sequence/intrinsic/size.hpp>
 #include <boost/fusion/support/config.hpp>
+#include <boost/static_assert.hpp>
 
 namespace boost { namespace fusion
 {
@@ -21,12 +22,16 @@ namespace boost { namespace fusion
         template <typename Sequence>
         struct as_set
         {
-            typedef typename ::boost::fusion::detail::as_set<
+            typedef ::boost::fusion::detail::as_set<
                 ::boost::fusion::result_of::size<Sequence>::value
             > gen;
             typedef typename gen::template apply<
                 typename ::boost::fusion::result_of::begin<Sequence>::type
             >::type type;
+            BOOST_STATIC_ASSERT((
+                ::boost::fusion::result_of::size<Sequence>::value ==
+                ::boost::fusion::result_of::size<type>::value
+            ));
         };
     }
 
