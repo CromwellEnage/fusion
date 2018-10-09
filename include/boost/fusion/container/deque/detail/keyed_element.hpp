@@ -159,8 +159,12 @@ namespace boost { namespace fusion { namespace detail
             ::boost::fusion::detail::keyed_element<Key, U, Rst> const& rhs
         )
         {
+#if BOOST_WORKAROUND(BOOST_MSVC, < 1800) || !defined(BOOST_CLANG)
+            base::operator=(static_cast<Rst const&>(rhs));
+#else
             Rst const& rhs_base = rhs.get_base();
             base::operator=(rhs_base);
+#endif
             this->value_ = rhs.value_;
             return *this;
         }

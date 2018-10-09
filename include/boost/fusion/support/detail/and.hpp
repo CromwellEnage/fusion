@@ -20,28 +20,25 @@
 #include <type_traits>
 #endif
 
-namespace boost { namespace fusion { namespace detail {
-
-#if defined(BOOST_NO_CXX17_FOLD_EXPRESSIONS) || \
-    BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1913))
+namespace boost { namespace fusion { namespace detail
+{
+#if 1//defined(BOOST_NO_CXX17_FOLD_EXPRESSIONS) || BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1913))
     template <typename ...Cond>
-    struct and_impl :
 #if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-        ::boost::false_type
+    struct and_impl : ::boost::false_type
 #else
-        ::std::false_type
+    struct and_impl : ::std::false_type
 #endif
     {
     };
 
     template <typename ...T>
-    struct and_impl<
 #if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-        ::boost::integral_constant<T, true>...
-    > : ::boost::true_type
+    struct and_impl<void, ::boost::integral_constant<T, true>...> :
+        ::boost::true_type
 #else
-        ::std::integral_constant<T, true>...
-    > : ::std::true_type
+    struct and_impl<void, ::std::integral_constant<T, true>...> :
+        ::std::true_type
 #endif
     {
     };
@@ -51,10 +48,11 @@ namespace boost { namespace fusion { namespace detail {
     template <bool ...Cond>
     struct and_impl1 :
         ::boost::fusion::detail::and_impl<
+            void
 #if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-            ::boost::integral_constant<bool, Cond>...
+          , ::boost::integral_constant<bool, Cond>...
 #else
-            ::std::integral_constant<bool, Cond>...
+          , ::std::integral_constant<bool, Cond>...
 #endif
         >
     {
