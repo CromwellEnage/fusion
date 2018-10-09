@@ -58,14 +58,16 @@ namespace boost { namespace fusion
       , typename D0
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
 # else 
       , typename ::std::add_lvalue_reference<D0>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0)
     {
         return ::boost::fusion::map<
@@ -116,7 +118,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -130,7 +133,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D1>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1)
     {
         return ::boost::fusion::map<
@@ -195,7 +199,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -216,7 +221,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D2>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2)
     {
         return ::boost::fusion::map<
@@ -295,7 +301,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -323,7 +330,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D3>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3)
     {
         return ::boost::fusion::map<
@@ -416,7 +424,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3 , typename D4
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -451,7 +460,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D4>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3 , D4 & arg4)
     {
         return ::boost::fusion::map<
@@ -558,7 +568,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3 , typename D4 , typename D5
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -600,7 +611,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D5>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3 , D4 & arg4 , D5 & arg5)
     {
         return ::boost::fusion::map<
@@ -721,7 +733,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3 , typename D4 , typename D5 , typename D6
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -770,7 +783,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D6>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3 , D4 & arg4 , D5 & arg5 , D6 & arg6)
     {
         return ::boost::fusion::map<
@@ -905,7 +919,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3 , typename D4 , typename D5 , typename D6 , typename D7
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -961,7 +976,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D7>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3 , D4 & arg4 , D5 & arg5 , D6 & arg6 , D7 & arg7)
     {
         return ::boost::fusion::map<
@@ -1110,7 +1126,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3 , typename D4 , typename D5 , typename D6 , typename D7 , typename D8
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -1173,7 +1190,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D8>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3 , D4 & arg4 , D5 & arg5 , D6 & arg6 , D7 & arg7 , D8 & arg8)
     {
         return ::boost::fusion::map<
@@ -1336,7 +1354,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3 , typename D4 , typename D5 , typename D6 , typename D7 , typename D8 , typename D9
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -1406,7 +1425,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D9>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3 , D4 & arg4 , D5 & arg5 , D6 & arg6 , D7 & arg7 , D8 & arg8 , D9 & arg9)
     {
         return ::boost::fusion::map<
@@ -1583,7 +1603,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3 , typename D4 , typename D5 , typename D6 , typename D7 , typename D8 , typename D9 , typename D10
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -1660,7 +1681,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D10>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3 , D4 & arg4 , D5 & arg5 , D6 & arg6 , D7 & arg7 , D8 & arg8 , D9 & arg9 , D10 & arg10)
     {
         return ::boost::fusion::map<
@@ -1851,7 +1873,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3 , typename D4 , typename D5 , typename D6 , typename D7 , typename D8 , typename D9 , typename D10 , typename D11
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -1935,7 +1958,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D11>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3 , D4 & arg4 , D5 & arg5 , D6 & arg6 , D7 & arg7 , D8 & arg8 , D9 & arg9 , D10 & arg10 , D11 & arg11)
     {
         return ::boost::fusion::map<
@@ -2140,7 +2164,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3 , typename D4 , typename D5 , typename D6 , typename D7 , typename D8 , typename D9 , typename D10 , typename D11 , typename D12
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -2231,7 +2256,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D12>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3 , D4 & arg4 , D5 & arg5 , D6 & arg6 , D7 & arg7 , D8 & arg8 , D9 & arg9 , D10 & arg10 , D11 & arg11 , D12 & arg12)
     {
         return ::boost::fusion::map<
@@ -2450,7 +2476,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3 , typename D4 , typename D5 , typename D6 , typename D7 , typename D8 , typename D9 , typename D10 , typename D11 , typename D12 , typename D13
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -2548,7 +2575,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D13>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3 , D4 & arg4 , D5 & arg5 , D6 & arg6 , D7 & arg7 , D8 & arg8 , D9 & arg9 , D10 & arg10 , D11 & arg11 , D12 & arg12 , D13 & arg13)
     {
         return ::boost::fusion::map<
@@ -2781,7 +2809,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3 , typename D4 , typename D5 , typename D6 , typename D7 , typename D8 , typename D9 , typename D10 , typename D11 , typename D12 , typename D13 , typename D14
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -2886,7 +2915,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D14>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3 , D4 & arg4 , D5 & arg5 , D6 & arg6 , D7 & arg7 , D8 & arg8 , D9 & arg9 , D10 & arg10 , D11 & arg11 , D12 & arg12 , D13 & arg13 , D14 & arg14)
     {
         return ::boost::fusion::map<
@@ -3133,7 +3163,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3 , typename D4 , typename D5 , typename D6 , typename D7 , typename D8 , typename D9 , typename D10 , typename D11 , typename D12 , typename D13 , typename D14 , typename D15
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -3245,7 +3276,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D15>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3 , D4 & arg4 , D5 & arg5 , D6 & arg6 , D7 & arg7 , D8 & arg8 , D9 & arg9 , D10 & arg10 , D11 & arg11 , D12 & arg12 , D13 & arg13 , D14 & arg14 , D15 & arg15)
     {
         return ::boost::fusion::map<
@@ -3506,7 +3538,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3 , typename D4 , typename D5 , typename D6 , typename D7 , typename D8 , typename D9 , typename D10 , typename D11 , typename D12 , typename D13 , typename D14 , typename D15 , typename D16
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -3625,7 +3658,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D16>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3 , D4 & arg4 , D5 & arg5 , D6 & arg6 , D7 & arg7 , D8 & arg8 , D9 & arg9 , D10 & arg10 , D11 & arg11 , D12 & arg12 , D13 & arg13 , D14 & arg14 , D15 & arg15 , D16 & arg16)
     {
         return ::boost::fusion::map<
@@ -3900,7 +3934,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3 , typename D4 , typename D5 , typename D6 , typename D7 , typename D8 , typename D9 , typename D10 , typename D11 , typename D12 , typename D13 , typename D14 , typename D15 , typename D16 , typename D17
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -4026,7 +4061,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D17>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3 , D4 & arg4 , D5 & arg5 , D6 & arg6 , D7 & arg7 , D8 & arg8 , D9 & arg9 , D10 & arg10 , D11 & arg11 , D12 & arg12 , D13 & arg13 , D14 & arg14 , D15 & arg15 , D16 & arg16 , D17 & arg17)
     {
         return ::boost::fusion::map<
@@ -4315,7 +4351,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3 , typename D4 , typename D5 , typename D6 , typename D7 , typename D8 , typename D9 , typename D10 , typename D11 , typename D12 , typename D13 , typename D14 , typename D15 , typename D16 , typename D17 , typename D18
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -4448,7 +4485,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D18>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3 , D4 & arg4 , D5 & arg5 , D6 & arg6 , D7 & arg7 , D8 & arg8 , D9 & arg9 , D10 & arg10 , D11 & arg11 , D12 & arg12 , D13 & arg13 , D14 & arg14 , D15 & arg15 , D16 & arg16 , D17 & arg17 , D18 & arg18)
     {
         return ::boost::fusion::map<
@@ -4751,7 +4789,8 @@ namespace boost { namespace fusion
       , typename D0 , typename D1 , typename D2 , typename D3 , typename D4 , typename D5 , typename D6 , typename D7 , typename D8 , typename D9 , typename D10 , typename D11 , typename D12 , typename D13 , typename D14 , typename D15 , typename D16 , typename D17 , typename D18 , typename D19
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<::boost::fusion::pair< 
+    inline ::boost::fusion::map<
+        ::boost::fusion::pair< 
         K0 
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) 
       , typename ::boost::add_lvalue_reference<D0>::type 
@@ -4891,7 +4930,8 @@ namespace boost { namespace fusion
 # else 
       , typename ::std::add_lvalue_reference<D19>::type 
 # endif 
-    > >
+    >
+    >
     map_tie(D0 & arg0 , D1 & arg1 , D2 & arg2 , D3 & arg3 , D4 & arg4 , D5 & arg5 , D6 & arg6 , D7 & arg7 , D8 & arg8 , D9 & arg9 , D10 & arg10 , D11 & arg11 , D12 & arg12 , D13 & arg13 , D14 & arg14 , D15 & arg15 , D16 & arg16 , D17 & arg17 , D18 & arg18 , D19 & arg19)
     {
         return ::boost::fusion::map<

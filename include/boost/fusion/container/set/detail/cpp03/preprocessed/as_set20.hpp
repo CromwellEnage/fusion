@@ -22,7 +22,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<1>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<1>
@@ -44,7 +44,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<2>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<2>
@@ -66,7 +66,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<3>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<3>
@@ -88,7 +88,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<4>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<4>
@@ -110,7 +110,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<5>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<5>
@@ -132,7 +132,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<6>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<6>
@@ -154,7 +154,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<7>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<7>
@@ -176,7 +176,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<8>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<8>
@@ -198,7 +198,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<9>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<9>
@@ -220,7 +220,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<10>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<10>
@@ -242,7 +242,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<11>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<11>
@@ -264,7 +264,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<12>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<12>
@@ -286,7 +286,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<13>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<13>
@@ -308,7 +308,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<14>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<14>
@@ -330,7 +330,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<15>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<15>
@@ -352,7 +352,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<16>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<16>
@@ -374,7 +374,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<17>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<17>
@@ -396,7 +396,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<18>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<18>
@@ -418,7 +418,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<19>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<19>
@@ -440,7 +440,7 @@ BOOST_FUSION_BARRIER_BEGIN
         };
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<20>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<20>

@@ -47,6 +47,7 @@
 #if !defined(FUSION_AS_MAP_0932005_1339)
 #define FUSION_AS_MAP_0932005_1339
 
+#include <boost/fusion/container/map/detail/pair_from.hpp>
 #include <boost/fusion/container/map/detail/cpp03/map.hpp>
 #include <boost/fusion/iterator/value_of.hpp>
 #include <boost/fusion/iterator/deref.hpp>

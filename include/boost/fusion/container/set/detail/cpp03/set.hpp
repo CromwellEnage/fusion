@@ -27,7 +27,6 @@
 #include <boost/fusion/support/special_tags_fwd.hpp>
 #include <boost/fusion/support/config.hpp>
 #include <boost/mpl/bool.hpp>
-#include <boost/mpl/identity.hpp>
 #include <boost/core/enable_if.hpp>
 
 #if defined(BOOST_FUSION_DONT_USE_PREPROCESSED_FILES)

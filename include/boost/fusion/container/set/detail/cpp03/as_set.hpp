@@ -27,7 +27,7 @@
 
         template <typename Iterator>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static typename ::boost::fusion::detail::as_set<0>
+        static typename ::boost::fusion::detail::as_set<N>
         ::template apply<Iterator>::type call(Iterator const& i0)
         {
             typedef typename ::boost::fusion::detail::as_set<N>

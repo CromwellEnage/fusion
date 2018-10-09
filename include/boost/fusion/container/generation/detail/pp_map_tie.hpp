@@ -51,7 +51,9 @@
       , BOOST_PP_ENUM_PARAMS(N, typename D)
     >
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline ::boost::fusion::map<BOOST_PP_ENUM(N, BOOST_FUSION_TIED_PAIR, _)>
+    inline ::boost::fusion::map<
+        BOOST_PP_ENUM(N, BOOST_FUSION_TIED_PAIR, _)
+    >
     map_tie(BOOST_PP_ENUM_BINARY_PARAMS(N, D, & arg))
     {
         return ::boost::fusion::map<
