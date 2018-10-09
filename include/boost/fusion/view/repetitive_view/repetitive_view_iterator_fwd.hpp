@@ -5,11 +5,16 @@
     (See accompanying file LICENSE_1_0.txt or copy at
     http://www.boost.org/LICENSE_1_0.txt)
 ============================================================================*/
-#if !defined(BOOST_FUSION_REPETITIVE_VIEW_HPP_INCLUDED)
-#define BOOST_FUSION_REPETITIVE_VIEW_HPP_INCLUDED
+#if !defined(BOOST_FUSION_VIEW_REPETITIVE_VIEW_ITERATOR_FWD_HPP)
+#define BOOST_FUSION_VIEW_REPETITIVE_VIEW_ITERATOR_FWD_HPP
 
-#include <boost/fusion/view/repetitive_view/repetitive_view.hpp>
-#include <boost/fusion/view/repetitive_view/repetitive_view_iterator.hpp>
+namespace boost { namespace fusion
+{
+    struct repetitive_view_iterator_tag;
+
+    template <typename Sequence, typename Pos>
+    struct repetitive_view_iterator;
+}}
 
 #endif  // include guard
 

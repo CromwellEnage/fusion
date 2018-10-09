@@ -14,7 +14,7 @@
 #error ::boost::fusion::detail::and_ requires variadic templates
 #endif
 
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS_INTEGRAL_CONSTANT)
 #include <boost/type_traits/integral_constant.hpp>
 #else
 #include <type_traits>
@@ -26,7 +26,7 @@ namespace boost { namespace fusion { namespace detail {
     BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1913))
     template <typename ...Cond>
     struct and_impl :
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS_INTEGRAL_CONSTANT)
         ::boost::false_type
 #else
         ::std::false_type
@@ -36,7 +36,7 @@ namespace boost { namespace fusion { namespace detail {
 
     template <typename ...T>
     struct and_impl<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS_INTEGRAL_CONSTANT)
         ::boost::integral_constant<T, true>...
     > : ::boost::true_type
 #else
@@ -51,7 +51,7 @@ namespace boost { namespace fusion { namespace detail {
     template <bool ...Cond>
     struct and_impl1 :
         ::boost::fusion::detail::and_impl<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS_INTEGRAL_CONSTANT)
             ::boost::integral_constant<bool, Cond>...
 #else
             ::std::integral_constant<bool, Cond>...
@@ -75,7 +75,7 @@ namespace boost { namespace fusion { namespace detail {
 #else   // C++17 fold expressions available && not MSVC-12
     template <typename ...Cond>
     struct and_ :
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS_INTEGRAL_CONSTANT)
         ::boost::integral_constant<
 #else
         ::std::integral_constant<

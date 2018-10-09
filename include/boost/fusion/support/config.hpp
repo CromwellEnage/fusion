@@ -147,5 +147,9 @@ namespace std
 #define BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
 #endif
 
+// TODO:
+// Find out which compilers choke when and<> uses std::integral_constant.
+#define BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS_INTEGRAL_CONSTANT
+
 #endif  // include guard
 
