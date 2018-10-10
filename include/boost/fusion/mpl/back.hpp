@@ -10,7 +10,7 @@
 
 #include <boost/mpl/back_fwd.hpp>
 #include <boost/fusion/support/special_tags_fwd.hpp>
-#include <boost/fusion/sequence/intrinsic/detail/end.hpp>
+#include <boost/fusion/sequence/intrinsic/end.hpp>
 #include <boost/fusion/iterator/prior.hpp>
 #include <boost/fusion/iterator/value_of.hpp>
 

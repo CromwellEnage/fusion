@@ -10,7 +10,7 @@
 
 #include <boost/mpl/front_fwd.hpp>
 #include <boost/fusion/support/special_tags_fwd.hpp>
-#include <boost/fusion/sequence/intrinsic/detail/begin.hpp>
+#include <boost/fusion/sequence/intrinsic/begin.hpp>
 #include <boost/fusion/iterator/value_of.hpp>
 
 namespace boost { namespace mpl

@@ -9,12 +9,33 @@
 #if !defined(FUSION_NOT_EQUAL_TO_05052005_1141)
 #define FUSION_NOT_EQUAL_TO_05052005_1141
 
+namespace boost { namespace fusion { namespace detail
+{
+    template <typename Seq1, typename Seq2, bool same_size>
+    struct sequence_not_equal_to;
+}}}
+
+#include <boost/fusion/support/config.hpp>
+
+namespace boost { namespace fusion { namespace detail
+{
+    template <typename Seq1, typename Seq2>
+    struct sequence_not_equal_to<Seq1, Seq2, false>
+    {
+        template <typename I1, typename I2>
+        BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
+        static bool call(I1 const& a, I2 const& b)
+        {
+            return true;
+        }
+    };
+}}}
+
 #include <boost/fusion/sequence/intrinsic/end.hpp>
 #include <boost/fusion/iterator/deref.hpp>
 #include <boost/fusion/iterator/next.hpp>
 #include <boost/fusion/iterator/equal_to.hpp>
 #include <boost/fusion/support/as_const.hpp>
-#include <boost/fusion/support/config.hpp>
 #include <boost/mpl/bool.hpp>
 
 namespace boost { namespace fusion { namespace detail
@@ -59,17 +80,6 @@ namespace boost { namespace fusion { namespace detail
                 a, b, typename ::boost::fusion::result_of
                 ::equal_to<I1, end1_type>::type()
             )
-        }
-    };
-
-    template <typename Seq1, typename Seq2>
-    struct sequence_not_equal_to<Seq1, Seq2, false>
-    {
-        template <typename I1, typename I2>
-        BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        static bool call(I1 const& a, I2 const& b)
-        {
-            return true;
         }
     };
 }}}

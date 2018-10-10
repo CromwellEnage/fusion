@@ -22,7 +22,8 @@
 
 namespace boost { namespace fusion { namespace detail
 {
-#if 1//defined(BOOST_NO_CXX17_FOLD_EXPRESSIONS) || BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1913))
+#if defined(BOOST_NO_CXX17_FOLD_EXPRESSIONS) || \
+    BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1913))
     template <typename ...Cond>
 #if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
     struct and_impl : ::boost::false_type
@@ -79,7 +80,7 @@ namespace boost { namespace fusion { namespace detail
         ::std::integral_constant<
 #endif
             bool
-          , static_cast<bool>(Cond::value) && ...
+          , static_cast<bool>((... && Cond::value))
         >
     {
     };

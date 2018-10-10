@@ -139,8 +139,7 @@ namespace boost { namespace fusion { namespace detail
             ::boost::fusion::detail::keyed_element<Key, U, Rst> const& rhs
         )
         {
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || \
-    BOOST_WORKAROUND(BOOST_MSVC, < 1900) || defined(__MINGW32__) || \
+#if BOOST_WORKAROUND(BOOST_MSVC, < 1900) || defined(__MINGW32__) || \
     !defined(__cplusplus) || (__cplusplus < 201103L)
             Rst const& rhs_base = rhs.get_base();
             base::operator=(rhs_base);
