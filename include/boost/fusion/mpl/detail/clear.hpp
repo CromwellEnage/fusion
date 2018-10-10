@@ -8,7 +8,9 @@
 #if !defined(FUSION_CLEAR_10022005_1442)
 #define FUSION_CLEAR_10022005_1442
 
+#include <boost/fusion/container/list/cons_fwd.hpp>
 #include <boost/fusion/container/list/list_fwd.hpp>
+#include <boost/fusion/container/vector/vector_tag_fwd.hpp>
 #include <boost/fusion/container/vector/vector_fwd.hpp>
 #include <boost/fusion/container/deque/deque_fwd.hpp>
 #include <boost/fusion/container/set/set_tag_fwd.hpp>
