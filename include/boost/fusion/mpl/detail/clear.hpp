@@ -11,9 +11,10 @@
 #include <boost/fusion/container/list/list_fwd.hpp>
 #include <boost/fusion/container/vector/vector_fwd.hpp>
 #include <boost/fusion/container/deque/deque_fwd.hpp>
+#include <boost/fusion/container/set/set_tag_fwd.hpp>
 #include <boost/fusion/container/set/set_fwd.hpp>
-#include <boost/fusion/container/map/map_fwd.hpp>
 #include <boost/fusion/container/map/map_tag_fwd.hpp>
+#include <boost/fusion/container/map/map_fwd.hpp>
 #include <boost/mpl/identity.hpp>
 
 namespace boost { namespace fusion { namespace detail
