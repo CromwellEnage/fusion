@@ -156,7 +156,6 @@ alias fusion_min_tests
     [ run sequence/tuple_make.cpp ]
     [ run sequence/tuple_misc.cpp ]
     [ run sequence/tuple_mutate.cpp ]
-    [ run sequence/tuple_nest.cpp ]
     [ run sequence/tuple_hash.cpp ]
     [ run sequence/tuple_tie.cpp ]
     [ run sequence/tuple_traits.cpp
@@ -310,6 +309,11 @@ alias fusion_min_tests
 #    [ compile-fail xxx.cpp ]
     ;
 
+alias fusion_tuple_nest_test
+    :
+    [ run sequence/tuple_nest.cpp ]
+    ;
+
 alias fusion_move_tests
     :
     [ run sequence/deque_nest.cpp ]
@@ -337,18 +341,28 @@ alias fusion_string_tests
 alias fusion_all_but_move_tests
     :
         fusion_min_tests
+        fusion_tuple_nest_test
         fusion_string_tests
     ;
 
 alias fusion_all_but_string_tests
     :
         fusion_min_tests
+        fusion_tuple_nest_test
         fusion_move_tests
+    ;
+
+alias fusion_all_mingw_tests
+    :
+        fusion_min_tests
+        fusion_move_tests
+        fusion_string_tests
     ;
 
 alias fusion_all_tests
     :
         fusion_min_tests
+        fusion_tuple_nest_test
         fusion_move_tests
         fusion_string_tests
     ;
