@@ -1,9 +1,10 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 2001-2011 Joel de Guzman
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying 
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/fusion/container/vector/vector10.hpp>
 #include <boost/fusion/adapted/mpl.hpp>
@@ -24,9 +25,7 @@
 #include <boost/fusion/algorithm/transformation/push_back.hpp>
 #include <boost/mpl/vector_c.hpp>
 
-
-int
-main()
+int main()
 {
     using namespace boost::fusion;
     using namespace boost;
@@ -94,7 +93,7 @@ main()
     }
 
     {
-        vector2<int, int> t1(123, 456);
+        vector2<int, short> t1(123, 456);
         vector2<double, float> t2(t1);
         (void)t2;
     }
