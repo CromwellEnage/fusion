@@ -10,8 +10,8 @@
 #if !defined(BOOST_OUT_05042005_0120)
 #define BOOST_OUT_05042005_0120
 
-#include <boost/fusion/sequence/io/detail/out.hpp>
 #include <ostream>
+#include <boost/fusion/sequence/io/detail/out.hpp>
 
 namespace boost { namespace fusion
 {
