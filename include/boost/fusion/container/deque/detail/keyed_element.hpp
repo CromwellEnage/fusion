@@ -160,7 +160,7 @@ namespace boost { namespace fusion { namespace detail
         )
         {
 #if BOOST_WORKAROUND(BOOST_MSVC, < 1800) || !defined(BOOST_CLANG)
-            base::operator=(static_cast<Rst const&>(rhs));
+            base::operator=(rhs);
 #else
             Rst const& rhs_base = rhs.get_base();
             base::operator=(rhs_base);
