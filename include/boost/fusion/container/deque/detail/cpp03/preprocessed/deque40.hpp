@@ -1390,8 +1390,13 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
             >::type = ::boost::fusion::detail::enabler
           , typename ::boost::disable_if<
                 typename ::boost::mpl::if_<
+# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                    ::boost::is_same<
+                        typename ::boost::remove_reference<T0_>::type const
+# else
                     ::std::is_same<
                         typename ::std::remove_reference<T0_>::type const
+# endif
                       , deque const
                     >
                   , ::boost::mpl::true_

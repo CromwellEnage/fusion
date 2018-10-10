@@ -46,12 +46,7 @@ namespace test_detail
             return val == other.val;
         }
     };
-}
 
-#include <string>
-
-namespace test_detail
-{
     // another class without a public default constructor
     class no_def_constructor
     {
@@ -60,7 +55,7 @@ namespace test_detail
         }
 
      public:
-        no_def_constructor(std::string)
+        no_def_constructor(test_detail::foo)
         {
         }
     };
@@ -170,15 +165,15 @@ inline void test()
             boost::fusion::pair<
                 test_detail::key1
               , test_detail::no_def_constructor
-            >(std::string("Jaba"))
+            >(test_detail::foo(0))
           , boost::fusion::pair<
                 test_detail::key2
               , test_detail::no_def_constructor
-            >(std::string("Daba"))
+            >(test_detail::foo(1))
           , boost::fusion::pair<
                 test_detail::key3
               , test_detail::no_def_constructor
-            >(std::string("Doo"))
+            >(test_detail::foo(2))
         )
     );
 

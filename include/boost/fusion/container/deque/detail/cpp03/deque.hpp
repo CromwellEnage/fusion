@@ -190,7 +190,15 @@ FUSION_HASH endif
             >::type = ::boost::fusion::detail::enabler
           , typename ::boost::disable_if<
                 typename ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                    ::boost::is_same<
+                        typename ::boost::remove_reference<T0_>::type const
+FUSION_HASH else
+                    ::std::is_same<
+                        typename ::std::remove_reference<T0_>::type const
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                     ::boost::is_same<
                         typename ::boost::remove_reference<T0_>::type const
 #else

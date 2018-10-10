@@ -95,7 +95,6 @@ namespace boost { namespace fusion { namespace result_of
     };
 }}}
 
-#include <boost/fusion/support/config.hpp>
 #include <boost/fusion/support/is_iterator.hpp>
 #include <boost/core/enable_if.hpp>
 
@@ -134,8 +133,8 @@ namespace boost { namespace fusion
         }
     }
 
-    using iterator_operators::operator==;
-    using iterator_operators::operator!=;
+    using ::boost::fusion::iterator_operators::operator==;
+    using ::boost::fusion::iterator_operators::operator!=;
 }}
 
 #endif  // include guard

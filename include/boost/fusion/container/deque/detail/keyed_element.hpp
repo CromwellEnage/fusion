@@ -38,15 +38,22 @@ namespace boost { namespace fusion { namespace detail
 #include <boost/mpl/eval_if.hpp>
 #include <boost/tti/detail/dnullptr.hpp>
 
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-#include <boost/type_traits/is_assignable.hpp>
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || \
+    BOOST_WORKAROUND(BOOST_MSVC, < 1900) || defined(__MINGW32__) || \
+    !defined(__cplusplus) || (__cplusplus < 201103L)
 #include <boost/type_traits/is_convertible.hpp>
-#if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES) && \
-    BOOST_WORKAROUND(BOOST_GCC, / 100 == 404)
-#include <boost/type_traits/is_same.hpp>
-#endif
+#include <boost/type_traits/is_assignable.hpp>
 #else
 #include <type_traits>
+#endif
+
+#if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES) && \
+    BOOST_WORKAROUND(BOOST_GCC, / 100 == 404)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#include <boost/type_traits/is_same.hpp>
+#else
+#include <type_traits>
+#endif
 #endif
 
 namespace boost { namespace fusion { namespace detail
@@ -84,7 +91,9 @@ namespace boost { namespace fusion { namespace detail
             ::boost::fusion::detail::keyed_element<Key, U, Rst> const& rhs
           , typename ::boost::enable_if<
                 typename ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || \
+    BOOST_WORKAROUND(BOOST_MSVC, < 1900) || defined(__MINGW32__) || \
+    !defined(__cplusplus) || (__cplusplus < 201103L)
                     ::boost::is_convertible<U, Value>
 #else
                     ::std::is_convertible<U, Value>
@@ -137,14 +146,18 @@ namespace boost { namespace fusion { namespace detail
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         typename ::boost::enable_if<
             typename ::boost::mpl::eval_if<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || \
+    BOOST_WORKAROUND(BOOST_MSVC, < 1900) || defined(__MINGW32__) || \
+    !defined(__cplusplus) || (__cplusplus < 201103L)
                 ::boost::is_convertible<U, Value>
 #else
                 ::std::is_convertible<U, Value>
 #endif
               , ::boost::mpl::true_
               , ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || \
+    BOOST_WORKAROUND(BOOST_MSVC, < 1900) || defined(__MINGW32__) || \
+    !defined(__cplusplus) || (__cplusplus < 201103L)
                     ::boost::is_assignable<Value, U>
 #else
                     ::std::is_assignable<Value, U>
@@ -159,12 +172,8 @@ namespace boost { namespace fusion { namespace detail
             ::boost::fusion::detail::keyed_element<Key, U, Rst> const& rhs
         )
         {
-#if BOOST_WORKAROUND(BOOST_MSVC, < 1800) || !defined(BOOST_CLANG)
-            base::operator=(rhs);
-#else
             Rst const& rhs_base = rhs.get_base();
             base::operator=(rhs_base);
-#endif
             this->value_ = rhs.value_;
             return *this;
         }
