@@ -35,9 +35,7 @@ namespace boost { namespace fusion { namespace detail
 #include <boost/fusion/iterator/next.hpp>
 #include <boost/tti/detail/dnullptr.hpp>
 
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
-    defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900) \
-)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
 #include <boost/type_traits/is_convertible.hpp>
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES) && \
     BOOST_WORKAROUND(BOOST_GCC, / 100 == 404)
@@ -81,9 +79,7 @@ namespace boost { namespace fusion { namespace detail
         keyed_element(
             ::boost::fusion::detail::keyed_element<Key, U, Rst> const& rhs
           , typename ::boost::enable_if_c<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
-    defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900) \
-)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                 ::boost::is_convertible<U, Value>::value
 #else
                 ::std::is_convertible<U, Value>::value
@@ -106,9 +102,7 @@ namespace boost { namespace fusion { namespace detail
         template <
             typename Value_
           , typename = typename ::boost::enable_if_c<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
-    defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900) \
-)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                 ::boost::is_same<Value_, Value>::value
 #else
                 ::std::is_same<Value_, Value>::value
