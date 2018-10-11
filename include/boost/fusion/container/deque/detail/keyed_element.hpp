@@ -33,12 +33,11 @@ namespace boost { namespace fusion { namespace detail
 #include <boost/fusion/support/detail/access.hpp>
 #include <boost/fusion/iterator/deref.hpp>
 #include <boost/fusion/iterator/next.hpp>
-#include <boost/mpl/bool.hpp>
-#include <boost/mpl/if.hpp>
-#include <boost/mpl/eval_if.hpp>
 #include <boost/tti/detail/dnullptr.hpp>
 
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900) \
+)
 #include <boost/type_traits/is_convertible.hpp>
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES) && \
     BOOST_WORKAROUND(BOOST_GCC, / 100 == 404)
@@ -81,16 +80,14 @@ namespace boost { namespace fusion { namespace detail
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         keyed_element(
             ::boost::fusion::detail::keyed_element<Key, U, Rst> const& rhs
-          , typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<U, Value>
+          , typename ::boost::enable_if_c<
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900) \
+)
+                ::boost::is_convertible<U, Value>::value
 #else
-                    ::std::is_convertible<U, Value>
+                ::std::is_convertible<U, Value>::value
 #endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
             >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : Rest(rhs.get_base()), value_(rhs.value_)
         {
@@ -108,16 +105,14 @@ namespace boost { namespace fusion { namespace detail
 #if BOOST_WORKAROUND(BOOST_GCC, / 100 == 404)
         template <
             typename Value_
-          , typename = typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_same<Value_, Value>
+          , typename = typename ::boost::enable_if_c<
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900) \
+)
+                ::boost::is_same<Value_, Value>::value
 #else
-                    ::std::is_same<Value_, Value>
-#endif  // BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
+                ::std::is_same<Value_, Value>::value
+#endif  // BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS, or MSVC-10/11/12
             >::type
         >
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
