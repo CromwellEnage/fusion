@@ -54,13 +54,13 @@ void test()
         boost::fusion::pair<k1, int>
       , boost::fusion::pair<k1, float>
       , boost::fusion::pair<k1, bool>
-      , boost::fusion::pair<k1, test::detail::foo>
-    > t1(5, 12.2f, true, test::detail::foo(4));
+      , boost::fusion::pair<k1, test_detail::foo>
+    > t1(5, 12.2f, true, test_detail::foo(4));
 
     boost::fusion::at_c<0>(t1).second = 6;
     boost::fusion::at_c<1>(t1).second = 2.2f;
     boost::fusion::at_c<2>(t1).second = false;
-    boost::fusion::at_c<3>(t1).second = test::detail::foo(5);
+    boost::fusion::at_c<3>(t1).second = test_detail::foo(5);
 
     BOOST_TEST(boost::fusion::at_c<0>(t1).second == 6);
     BOOST_TEST(
@@ -69,7 +69,7 @@ void test()
         )
     );
     BOOST_TEST(boost::fusion::at_c<2>(t1).second == false);
-    BOOST_TEST(boost::fusion::at_c<3>(t1).second == test::detail::foo(5));
+    BOOST_TEST(boost::fusion::at_c<3>(t1).second == test_detail::foo(5));
 }
 
 int main()

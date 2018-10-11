@@ -34,7 +34,7 @@ namespace test_detail
 
         bool operator==(foo const& other) const
         {
-            return val == other.val;
+            return this->val == other.val;
         }
     };
 }
@@ -50,7 +50,7 @@ void test()
     FUSION_AT<3>(t1) = test_detail::foo(5);
 
     BOOST_TEST(FUSION_AT<0>(t1) == 6);
-    BOOST_TEST(FUSION_AT<1>(t1) > 2.1f && FUSION_AT<1>(t1) < 2.3f);
+    BOOST_TEST((FUSION_AT<1>(t1)) > 2.1f && (FUSION_AT<1>(t1) < 2.3f));
     BOOST_TEST(FUSION_AT<2>(t1) == false);
     BOOST_TEST(FUSION_AT<3>(t1) == test_detail::foo(5));
 }
