@@ -685,16 +685,16 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
         BOOST_FUSION_GPU_ENABLED
         deque(
             Sequence const& seq
-          , typename ::boost::disable_if_c<
-# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<Sequence, T0>::value
-# else
-                ::std::is_convertible<Sequence, T0>::value
-# endif
-              , ::boost::fusion::detail::enabler_
-            >::type = ::boost::fusion::detail::enabler
           , typename ::boost::enable_if<
-                ::boost::fusion::traits::is_sequence<Sequence>
+                typename ::boost::mpl::if_<
+# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                    ::boost::is_convertible<Sequence, T0>
+# else
+                    ::std::is_convertible<Sequence, T0>
+# endif
+                  , ::boost::mpl::false_
+                  , ::boost::fusion::traits::is_sequence<Sequence>
+                >::type
               , ::boost::fusion::detail::enabler_
             >::type = ::boost::fusion::detail::enabler
         ) : base(base::from_iterator(::boost::fusion::begin(seq)))
@@ -712,24 +712,28 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
         BOOST_FUSION_GPU_ENABLED
         explicit deque(
             T0_&& t0
-          , typename ::boost::enable_if_c<
+          , typename ::boost::enable_if<
+                typename ::boost::mpl::eval_if<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<T0_, T0>::value
+                    ::boost::is_same<
+                        typename ::boost::remove_reference<T0_>::type const
 # else
-                ::std::is_convertible<T0_, T0>::value
+                    ::std::is_same<
+                        typename ::std::remove_reference<T0_>::type const
 # endif
-              , ::boost::fusion::detail::enabler_
-            >::type = ::boost::fusion::detail::enabler
-          , typename ::boost::disable_if_c<
+                      , deque const
+                    >
+                  , ::boost::mpl::false_
+                  , ::boost::mpl::if_<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_same<
-                    typename ::boost::remove_reference<T0_>::type const
+                        ::boost::is_convertible<T0_, T0>
 # else
-                ::std::is_same<
-                    typename ::std::remove_reference<T0_>::type const
+                        ::std::is_convertible<T0_, T0>
 # endif
-                  , deque const
-                >::value
+                      , ::boost::mpl::true_
+                      , ::boost::mpl::false_
+                    >
+                >::type
               , ::boost::fusion::detail::enabler_
             >::type = ::boost::fusion::detail::enabler
         ) : base(

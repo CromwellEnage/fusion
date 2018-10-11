@@ -34,6 +34,7 @@
 #include <boost/mpl/bool.hpp>
 #include <boost/mpl/int.hpp>
 #include <boost/mpl/if.hpp>
+#include <boost/mpl/eval_if.hpp>
 #include <boost/core/enable_if.hpp>
 #include <boost/preprocessor/repetition/enum_binary_params.hpp>
 #include <boost/preprocessor/repetition/enum_params.hpp>
@@ -127,22 +128,22 @@ namespace boost { namespace fusion
         BOOST_FUSION_GPU_ENABLED
         deque(
             Sequence const& seq
-          , typename ::boost::disable_if_c<
+          , typename ::boost::enable_if<
+                typename ::boost::mpl::if_<
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<Sequence, T0>::value
+                    ::boost::is_convertible<Sequence, T0>
 FUSION_HASH else
-                ::std::is_convertible<Sequence, T0>::value
+                    ::std::is_convertible<Sequence, T0>
 FUSION_HASH endif
 #elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<Sequence, T0>::value
+                    ::boost::is_convertible<Sequence, T0>
 #else
-                ::std::is_convertible<Sequence, T0>::value
+                    ::std::is_convertible<Sequence, T0>
 #endif
-              , ::boost::fusion::detail::enabler_
-            >::type = ::boost::fusion::detail::enabler
-          , typename ::boost::enable_if<
-                ::boost::fusion::traits::is_sequence<Sequence>
+                  , ::boost::mpl::false_
+                  , ::boost::fusion::traits::is_sequence<Sequence>
+                >::type
               , ::boost::fusion::detail::enabler_
             >::type = ::boost::fusion::detail::enabler
         ) : base(base::from_iterator(::boost::fusion::begin(seq)))
@@ -166,38 +167,42 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
         BOOST_FUSION_GPU_ENABLED
         explicit deque(
             T0_&& t0
-          , typename ::boost::enable_if_c<
+          , typename ::boost::enable_if<
+                typename ::boost::mpl::eval_if<
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<T0_, T0>::value
+                    ::boost::is_same<
+                        typename ::boost::remove_reference<T0_>::type const
 FUSION_HASH else
-                ::std::is_convertible<T0_, T0>::value
+                    ::std::is_same<
+                        typename ::std::remove_reference<T0_>::type const
 FUSION_HASH endif
 #elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<T0_, T0>::value
+                    ::boost::is_same<
+                        typename ::boost::remove_reference<T0_>::type const
 #else
-                ::std::is_convertible<T0_, T0>::value
+                    ::std::is_same<
+                        typename ::std::remove_reference<T0_>::type const
 #endif
-              , ::boost::fusion::detail::enabler_
-            >::type = ::boost::fusion::detail::enabler
-          , typename ::boost::disable_if_c<
+                      , deque const
+                    >
+                  , ::boost::mpl::false_
+                  , ::boost::mpl::if_<
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_same<
-                    typename ::boost::remove_reference<T0_>::type const
+                        ::boost::is_convertible<T0_, T0>
 FUSION_HASH else
-                ::std::is_same<
-                    typename ::std::remove_reference<T0_>::type const
+                        ::std::is_convertible<T0_, T0>
 FUSION_HASH endif
 #elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_same<
-                    typename ::boost::remove_reference<T0_>::type const
+                        ::boost::is_convertible<T0_, T0>
 #else
-                ::std::is_same<
-                    typename ::std::remove_reference<T0_>::type const
+                        ::std::is_convertible<T0_, T0>
 #endif
-                  , deque const
-                >::value
+                      , ::boost::mpl::true_
+                      , ::boost::mpl::false_
+                    >
+                >::type
               , ::boost::fusion::detail::enabler_
             >::type = ::boost::fusion::detail::enabler
         ) : base(
