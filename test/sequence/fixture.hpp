@@ -87,9 +87,10 @@ namespace test_detail
     struct can_lvalue_implicit_construct    
     {
         template <typename Source, typename Expected>
-        bool operator()(Source source, Expected const& expected) const
+        bool operator()(Source const& source, Expected const& expected) const
         {
-            return expected == test_detail::implicit_construct<T>(source);
+            Source m_src(source);
+            return expected == test_detail::implicit_construct<T>(m_src);
         }
     };
 
@@ -135,9 +136,10 @@ namespace test_detail
     struct can_lvalue_construct    
     {
         template <typename Source, typename Expected>
-        bool operator()(Source source, Expected const& expected) const
+        bool operator()(Source const& source, Expected const& expected) const
         {
-            return expected == T(source);
+            Source mutable_source(source);
+            return expected == T(mutable_source);
         }
     };
 
