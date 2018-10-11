@@ -1,23 +1,43 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 2016-2018 Kohei Takahashi
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
-#include <boost/detail/lightweight_test.hpp>
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
 #include <boost/fusion/adapted/struct/define_struct_inline.hpp>
+#include <boost/core/lightweight_test.hpp>
 #include <utility>
 
 struct wrapper
 {
     int value;
 
-    wrapper() : value(42) {}
-    wrapper(wrapper&& other) : value(other.value) { other.value = 0; }
-    wrapper(wrapper const& other) : value(other.value) {}
+    wrapper() : value(42)
+    {
+    }
 
-    wrapper& operator=(wrapper&& other) { value = other.value; other.value = 0; return *this; }
-    wrapper& operator=(wrapper const& other) { value = other.value; return *this; }
+    wrapper(wrapper&& other) : value(other.value)
+    {
+        other.value = 0;
+    }
+
+    wrapper(wrapper const& other) : value(other.value)
+    {
+    }
+
+    wrapper& operator=(wrapper&& other)
+    {
+        this->value = other.value;
+        other.value = 0;
+        return *this;
+    }
+
+    wrapper& operator=(wrapper const& other)
+    {
+        this->value = other.value;
+        return *this;
+    }
 };
 
 namespace ns
@@ -48,7 +68,12 @@ int main()
     }
 
     // Older MSVCs and gcc 4.4 don't generate move ctor by default.
-#if !(defined(CI_SKIP_KNOWN_FAILURE) && (BOOST_WORKAROUND(BOOST_MSVC, < 1900) || BOOST_WORKAROUND(BOOST_GCC, / 100 == 404)))
+#if !( \
+    defined(CI_SKIP_KNOWN_FAILURE) && ( \
+        BOOST_WORKAROUND(BOOST_MSVC, < 1900) || \
+        BOOST_WORKAROUND(BOOST_GCC, / 100 == 404) \
+    ) \
+)
     {
         ns::value x;
         ns::value y(std::move(x)); // move

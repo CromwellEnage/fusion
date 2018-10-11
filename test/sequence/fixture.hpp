@@ -54,6 +54,67 @@ namespace test_detail
     }
 } // namespace test_detail
 
+#include <boost/fusion/sequence/comparison.hpp>
+
+namespace test_detail
+{
+    template <typename T>
+    struct can_const_lvalue_construct
+    {
+        template <typename Source, typename Expected>
+        bool operator()(Source const& source, Expected const& expected) const
+        {
+            return expected == T(source);
+        }
+    };
+
+    template <typename T>
+    struct can_lvalue_construct    
+    {
+        template <typename Source, typename Expected>
+        bool operator()(Source source, Expected const& expected) const
+        {
+            return expected == T(source);
+        }
+    };
+
+    template <typename T>
+    struct can_const_lvalue_assign
+    {
+        template <typename Source, typename Expected>
+        bool operator()(Source const& source, Expected const& expected) const
+        {
+            bool result = true;
+            {
+                T seq;
+                result &= ((seq == expected) || (seq != expected));
+
+                seq = source;
+                result &= (seq == expected);
+            }
+            return result;
+        }
+    };
+
+    template <typename T>    
+    struct can_lvalue_assign
+    {
+        template <typename Source, typename Expected>
+        bool operator()(Source source, Expected const& expected) const
+        {
+            bool result = true;
+            {
+                T seq;
+                result &= ((seq == expected) || (seq != expected));
+
+                seq = source;
+                result &= (seq == expected);
+            }
+            return result;
+        }
+    };
+} // namespace test_detail
+
 #include <boost/mpl/identity.hpp>
 
 namespace test_detail
@@ -65,12 +126,7 @@ namespace test_detail
     {
         return source;
     }
-}
 
-#include <boost/fusion/sequence/comparison.hpp>
-
-namespace test_detail
-{
     template <typename T>
     struct can_rvalue_implicit_construct
     {
@@ -80,17 +136,6 @@ namespace test_detail
             return expected == test_detail::implicit_construct<T>(
                 test_detail::implicit_construct<Source>(source)
             );
-        }
-    };
-
-    template <typename T>
-    struct can_lvalue_implicit_construct    
-    {
-        template <typename Source, typename Expected>
-        bool operator()(Source const& source, Expected const& expected) const
-        {
-            Source m_src(source);
-            return expected == test_detail::implicit_construct<T>(m_src);
         }
     };
 
@@ -105,18 +150,12 @@ namespace test_detail
     };
 
     template <typename T>
-    struct can_implicit_construct
+    struct can_lvalue_implicit_construct    
     {
         template <typename Source, typename Expected>
-        bool operator()(Source const& source, Expected const& expected) const
+        bool operator()(Source source, Expected const& expected) const
         {
-            return test_detail::run<
-                test_detail::can_rvalue_implicit_construct<T>
-            >(source, expected) && test_detail::run<
-                test_detail::can_lvalue_implicit_construct<T>
-            >(source, expected) && test_detail::run<
-                test_detail::can_const_lvalue_implicit_construct<T>
-            >(source, expected);
+            return expected == test_detail::implicit_construct<T>(source);
         }
     };
 
@@ -133,23 +172,18 @@ namespace test_detail
     };
 
     template <typename T>
-    struct can_lvalue_construct    
+    struct can_implicit_construct
     {
         template <typename Source, typename Expected>
         bool operator()(Source const& source, Expected const& expected) const
         {
-            Source mutable_source(source);
-            return expected == T(mutable_source);
-        }
-    };
-
-    template <typename T>
-    struct can_const_lvalue_construct
-    {
-        template <typename Source, typename Expected>
-        bool operator()(Source const& source, Expected const& expected) const
-        {
-            return expected == T(source);
+            return test_detail::run<
+                test_detail::can_rvalue_implicit_construct<T>
+            >(source, expected) && test_detail::run<
+                test_detail::can_lvalue_implicit_construct<T>
+            >(source, expected) && test_detail::run<
+                test_detail::can_const_lvalue_implicit_construct<T>
+            >(source, expected);
         }
     };
 
@@ -187,42 +221,6 @@ namespace test_detail
         }
     };
 
-    template <typename T>    
-    struct can_lvalue_assign
-    {
-        template <typename Source, typename Expected>
-        bool operator()(Source source, Expected const& expected) const
-        {
-            bool result = true;
-            {
-                T seq;
-                result &= ((seq == expected) || (seq != expected));
-
-                seq = source;
-                result &= (seq == expected);
-            }
-            return result;
-        }
-    };
-
-    template <typename T>
-    struct can_const_lvalue_assign
-    {
-        template <typename Source, typename Expected>
-        bool operator()(Source const& source, Expected const& expected) const
-        {
-            bool result = true;
-            {
-                T seq;
-                result &= ((seq == expected) || (seq != expected));
-
-                seq = source;
-                result &= (seq == expected);
-            }
-            return result;
-        }
-    };
-    
     template <typename T>
     struct can_assign
     {

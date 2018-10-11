@@ -1,20 +1,31 @@
-/*=============================================================================
+/*============================================================================
     Copyright (c) 1999-2003 Jaakko Jarvi
     Copyright (c) 2001-2011 Joel de Guzman
-    Copyright (c) 2006
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-==============================================================================*/
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+============================================================================*/
 #include <boost/fusion/container/map/map.hpp>
-#include <boost/detail/lightweight_test.hpp>
 #include <boost/fusion/sequence/intrinsic/at.hpp>
 #include <boost/fusion/support/pair.hpp>
+#include <boost/core/lightweight_test.hpp>
 
-struct k1 {};
-struct k2 {};
-struct k3 {};
-struct k4 {};
+struct k1
+{
+};
+
+struct k2
+{
+};
+
+struct k3
+{
+};
+
+struct k4
+{
+};
 
 namespace test_detail
 {
@@ -37,32 +48,31 @@ namespace test_detail
     };
 }
 
-void
-test()
+void test()
 {
-    using namespace boost::fusion;
-    using namespace test_detail;
+    boost::fusion::map<
+        boost::fusion::pair<k1, int>
+      , boost::fusion::pair<k1, float>
+      , boost::fusion::pair<k1, bool>
+      , boost::fusion::pair<k1, test::detail::foo>
+    > t1(5, 12.2f, true, test::detail::foo(4));
 
-    map<
-        pair<k1, int>,
-        pair<k1, float>,
-        pair<k1, bool>,
-        pair<k1, foo>
-    > t1(5, 12.2f, true, foo(4));
+    boost::fusion::at_c<0>(t1).second = 6;
+    boost::fusion::at_c<1>(t1).second = 2.2f;
+    boost::fusion::at_c<2>(t1).second = false;
+    boost::fusion::at_c<3>(t1).second = test::detail::foo(5);
 
-    at_c<0>(t1).second = 6;
-    at_c<1>(t1).second = 2.2f;
-    at_c<2>(t1).second = false;
-    at_c<3>(t1).second = foo(5);
-
-    BOOST_TEST(at_c<0>(t1).second == 6);
-    BOOST_TEST(at_c<1>(t1).second > 2.1f && at_c<1>(t1).second < 2.3f);
-    BOOST_TEST(at_c<2>(t1).second == false);
-    BOOST_TEST(at_c<3>(t1).second == foo(5));
+    BOOST_TEST(boost::fusion::at_c<0>(t1).second == 6);
+    BOOST_TEST(
+        (boost::fusion::at_c<1>(t1).second > 2.1f) && (
+            boost::fusion::at_c<1>(t1).second < 2.3f
+        )
+    );
+    BOOST_TEST(boost::fusion::at_c<2>(t1).second == false);
+    BOOST_TEST(boost::fusion::at_c<3>(t1).second == test::detail::foo(5));
 }
 
-int
-main()
+int main()
 {
     test();
     return boost::report_errors();
