@@ -68,7 +68,7 @@ namespace boost { namespace fusion
     struct deque
       : ::boost::fusion::detail::deque_keyed_values<
             BOOST_PP_ENUM_PARAMS(FUSION_MAX_DEQUE_SIZE, T)
-        >::type,
+        >::type
       , ::boost::fusion::sequence_base<
             ::boost::fusion::deque<
                 BOOST_PP_ENUM_PARAMS(FUSION_MAX_DEQUE_SIZE, T)
