@@ -31,37 +31,48 @@ environment:
       PATH: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\bin;%PATH%
       TEST_SUITE: fusion_all_mingw_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
-      ARGS: --toolset=msvc-9.0  address-model=32 cxxstd=latest # fake
+      ARGS: --toolset=msvc-9.0  address-model=32
+      CXXSTD: latest # fake
       TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
-      ARGS: --toolset=msvc-10.0 address-model=32 cxxstd=latest # fake
+      ARGS: --toolset=msvc-10.0 address-model=32
+      CXXSTD: latest # fake
       TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
-      ARGS: --toolset=msvc-11.0 address-model=32 cxxstd=latest # fake
+      ARGS: --toolset=msvc-11.0 address-model=32
+      CXXSTD: latest # fake
       TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
-      ARGS: --toolset=msvc-12.0 address-model=32 cxxstd=latest # fake
+      ARGS: --toolset=msvc-12.0 address-model=32
+      CXXSTD: latest # fake
       TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
-      ARGS: --toolset=msvc-12.0 address-model=64 cxxstd=latest # fake
+      ARGS: --toolset=msvc-12.0 address-model=64
+      CXXSTD: latest # fake
       TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      ARGS: --toolset=msvc-14.0 address-model=32 cxxstd=14
+      ARGS: --toolset=msvc-14.0 address-model=32
+      CXXSTD: 14
       TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      ARGS: --toolset=msvc-14.0 address-model=64 cxxstd=14
+      ARGS: --toolset=msvc-14.0 address-model=64
+      CXXSTD: 14
       TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      ARGS: --toolset=msvc-14.0 address-model=64 cxxstd=latest
+      ARGS: --toolset=msvc-14.0 address-model=64
+      CXXSTD: latest
       TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      ARGS: --toolset=msvc-14.1 address-model=32 cxxstd=14
+      ARGS: --toolset=msvc-14.1 address-model=32
+      CXXSTD: 14
       TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      ARGS: --toolset=msvc-14.1 address-model=64 cxxstd=14
+      ARGS: --toolset=msvc-14.1 address-model=64
+      CXXSTD: 14
       TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      ARGS: --toolset=msvc-14.1 address-model=64 cxxstd=latest
+      ARGS: --toolset=msvc-14.1 address-model=64
+      CXXSTD: latest
       TEST_SUITE: fusion_all_tests
 
 install:
@@ -83,4 +94,4 @@ test_script:
   - ..\..\..\b2 config_info_travis_install %ARGS%
   - config_info_travis
   - cd ..\..\fusion\test
-  - ..\..\..\b2 -j%NUMBER_OF_PROCESSORS% --hash %ARGS% %TEST_SUITE%
+  - ..\..\..\b2 -j%NUMBER_OF_PROCESSORS% --hash %ARGS% %TEST_SUITE% cxxstd=%CXXSTD%
