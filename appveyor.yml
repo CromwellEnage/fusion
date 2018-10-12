@@ -32,23 +32,23 @@ environment:
       TEST_SUITE: fusion_all_mingw_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
       ARGS: --toolset=msvc-9.0  address-model=32
-      CXXSTD: latest # fake
+      CXXSTD: 11
       TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
       ARGS: --toolset=msvc-10.0 address-model=32
-      CXXSTD: latest # fake
+      CXXSTD: 11
       TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
       ARGS: --toolset=msvc-11.0 address-model=32
-      CXXSTD: latest # fake
+      CXXSTD: 11
       TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
       ARGS: --toolset=msvc-12.0 address-model=32
-      CXXSTD: latest # fake
+      CXXSTD: 11
       TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
       ARGS: --toolset=msvc-12.0 address-model=64
-      CXXSTD: latest # fake
+      CXXSTD: 11
       TEST_SUITE: fusion_all_tests
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       ARGS: --toolset=msvc-14.0 address-model=32
