@@ -357,7 +357,7 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
             Sequence const& seq
           , typename ::boost::enable_if<
                 typename ::boost::mpl::if_<
-# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900) )
                     ::boost::is_convertible<Sequence, T0>
 # else
                     ::std::is_convertible<Sequence, T0>
@@ -382,6 +382,19 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
         BOOST_FUSION_GPU_ENABLED
         explicit deque(
             T0_&& t0
+# if defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900)
+          , typename ::boost::enable_if<
+                ::boost::is_convertible<T0_, T0>
+              , ::boost::fusion::detail::enabler_
+            >::type = ::boost::fusion::detail::enabler
+          , typename ::boost::disable_if_c<
+                ::boost::is_same<
+                    deque const
+                  , typename ::boost::remove_reference<T0_>::type const
+                >::value
+              , ::boost::fusion::detail::enabler_
+            >::type = ::boost::fusion::detail::enabler
+# else
           , typename ::boost::enable_if<
                 typename ::boost::mpl::eval_if<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
@@ -406,6 +419,7 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
                 >::type
               , ::boost::fusion::detail::enabler_
             >::type = ::boost::fusion::detail::enabler
+# endif
         ) : base(
                 ::std::forward<T0_>( t0)
               , ::boost::fusion::detail::nil_keyed_element()
@@ -423,7 +437,7 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
                 U0 , U1 , U2 , U3 , U4 , U5 , U6 , U7 , U8 , U9
             >&& seq
           , typename ::boost::disable_if_c<
-# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900) )
                 ::boost::is_convertible<
 # else
                 ::std::is_convertible<

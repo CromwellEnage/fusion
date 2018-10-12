@@ -35,13 +35,11 @@ struct skip_issues
                 >::to<T>
             >(source, expected) &&
 #else
-#if defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900)
             test_detail::run<
                 test_detail::can_lvalue_construct<T>
             >(source, expected) &&
-#endif
             test_detail::run< test_detail::can_copy<T> >(source, expected) &&
-#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+#endif
             test_detail::run<
                 test_detail::can_construct_from_elements<T>
             >(source, expected)

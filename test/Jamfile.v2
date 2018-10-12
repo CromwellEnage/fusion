@@ -115,6 +115,7 @@ alias fusion_min_tests
         : [ requires cxx11_rvalue_references ]
     ]
     [ run sequence/deque_mutate.cpp ]
+    [ run sequence/deque_nest.cpp ]
     [ run sequence/deque_tie.cpp ]
     [ run sequence/deque_value_at.cpp ]
     [ run sequence/front_extended_deque.cpp ]
@@ -240,6 +241,11 @@ alias fusion_min_tests
     ]
     [ run sequence/define_struct_inline.cpp ]
     [ run sequence/define_struct_inline_empty.cpp ]
+    [ run sequence/define_struct_inline_move.cpp
+        :
+        :
+        : [ requires cxx11_rvalue_references ]
+    ]
     [ run sequence/define_assoc_struct.cpp ]
     [ run sequence/define_assoc_struct_empty.cpp ]
     [ run sequence/define_assoc_struct_move.cpp
@@ -256,6 +262,11 @@ alias fusion_min_tests
     ]
     [ run sequence/define_tpl_struct_inline.cpp ]
     [ run sequence/define_tpl_struct_inline_empty.cpp ]
+    [ run sequence/define_tpl_struct_inline_move.cpp
+        :
+        :
+        : [ requires cxx11_rvalue_references ]
+    ]
     [ run sequence/define_assoc_tpl_struct.cpp ]
     [ run sequence/define_assoc_tpl_struct_empty.cpp ]
     [ run sequence/define_assoc_tpl_struct_move.cpp
@@ -314,21 +325,6 @@ alias fusion_tuple_nest_test
     [ run sequence/tuple_nest.cpp ]
     ;
 
-alias fusion_move_tests
-    :
-    [ run sequence/deque_nest.cpp ]
-    [ run sequence/define_struct_inline_move.cpp
-        :
-        :
-        : [ requires cxx11_rvalue_references ]
-    ]
-    [ run sequence/define_tpl_struct_inline_move.cpp
-        :
-        :
-        : [ requires cxx11_rvalue_references ]
-    ]
-    ;
-
 alias fusion_string_tests
     :
     [ run algorithm/segmented_fold.cpp ]
@@ -349,13 +345,11 @@ alias fusion_all_but_string_tests
     :
         fusion_min_tests
         fusion_tuple_nest_test
-        fusion_move_tests
     ;
 
 alias fusion_all_mingw_tests
     :
         fusion_min_tests
-        fusion_move_tests
         fusion_string_tests
     ;
 
@@ -363,7 +357,6 @@ alias fusion_all_tests
     :
         fusion_min_tests
         fusion_tuple_nest_test
-        fusion_move_tests
         fusion_string_tests
     ;
 
