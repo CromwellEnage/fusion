@@ -6,7 +6,9 @@
     http://www.boost.org/LICENSE_1_0.txt)
 ============================================================================*/
 
-struct Dummy { };
+struct Dummy
+{
+};
 
 #include <boost/fusion/include/deque.hpp>
 #include <boost/fusion/support/config.hpp>
@@ -15,7 +17,10 @@ struct Dummy { };
 #include <boost/mpl/assert.hpp>
 #include <boost/mpl/aux_/test.hpp>
 
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1800) && (BOOST_MSVC < 1900) \
+)
+// MSVC-12.0 with 32-bit addressing has problems with std::is_constructible.
 #include <boost/type_traits/is_constructible.hpp>
 #else
 #include <type_traits>
