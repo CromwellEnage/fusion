@@ -10,6 +10,8 @@
 #define BOOST_FUSION_DEQUE_26112006_1649
 
 #include <boost/fusion/container/deque/deque_fwd.hpp>
+#include <boost/fusion/container/deque/front_extended_deque.hpp>
+#include <boost/fusion/container/deque/back_extended_deque.hpp>
 
 #if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
 
@@ -23,8 +25,6 @@
 #include <boost/fusion/container/deque/detail/end_impl.hpp>
 #include <boost/fusion/container/deque/detail/value_at_impl.hpp>
 #include <boost/fusion/container/deque/detail/at_impl.hpp>
-#include <boost/fusion/container/deque/front_extended_deque.hpp>
-#include <boost/fusion/container/deque/back_extended_deque.hpp>
 #include <boost/fusion/sequence/intrinsic/empty.hpp>
 #include <boost/fusion/support/detail/enabler.hpp>
 #include <boost/fusion/support/detail/access.hpp>

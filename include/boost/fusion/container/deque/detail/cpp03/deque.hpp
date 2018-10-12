@@ -36,6 +36,7 @@
 #include <boost/mpl/if.hpp>
 #include <boost/mpl/eval_if.hpp>
 #include <boost/core/enable_if.hpp>
+#include <boost/preprocessor/repetition/enum.hpp>
 #include <boost/preprocessor/repetition/enum_binary_params.hpp>
 #include <boost/preprocessor/repetition/enum_params.hpp>
 #include <boost/preprocessor/repetition/enum_params_with_a_default.hpp>
@@ -97,19 +98,43 @@ namespace boost { namespace fusion
         typedef ::boost::mpl::int_<-1> next_down;
         typedef ::boost::mpl::false_ is_view;
 
-#include <boost/fusion/container/deque/detail/cpp03/deque_forward_ctor.hpp>
-
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         deque()
         {
         }
 
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
+#endif
+#if defined(BOOST_NO_CXX11_RVALUE_REFERENCES) || \
+    (defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES))
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         explicit deque(
             typename ::boost::fusion::detail::call_param<T0>::type t0
         ) : base(t0, ::boost::fusion::detail::nil_keyed_element())
         {
         }
+#endif
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH endif
+#endif
+
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
+#endif
+#if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES) || \
+    (defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES))
+        BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
+        explicit deque(T0 const& t0) :
+            base(t0, ::boost::fusion::detail::nil_keyed_element())
+        {
+        }
+#endif
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH endif
+#endif
+
+#include <boost/fusion/container/deque/detail/cpp03/deque_forward_ctor.hpp>
 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         explicit deque(deque const& rhs) : base(rhs)

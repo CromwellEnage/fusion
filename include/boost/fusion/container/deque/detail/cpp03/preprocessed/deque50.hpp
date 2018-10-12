@@ -31,6 +31,25 @@ namespace boost { namespace fusion
         typedef ::boost::mpl::int_<size::value> next_up;
         typedef ::boost::mpl::int_<-1> next_down;
         typedef ::boost::mpl::false_ is_view;
+        BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
+        deque()
+        {
+        }
+# if defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
+        BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
+        explicit deque(
+            typename ::boost::fusion::detail::call_param<T0>::type t0
+        ) : base(t0, ::boost::fusion::detail::nil_keyed_element())
+        {
+        }
+# endif
+# if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
+        BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
+        explicit deque(T0 const& t0) :
+            base(t0, ::boost::fusion::detail::nil_keyed_element())
+        {
+        }
+# endif
 # if defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
 BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
 deque(
@@ -1648,16 +1667,6 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
 {
 }
 # endif
-        BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        deque()
-        {
-        }
-        BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        explicit deque(
-            typename ::boost::fusion::detail::call_param<T0>::type t0
-        ) : base(t0, ::boost::fusion::detail::nil_keyed_element())
-        {
-        }
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         explicit deque(deque const& rhs) : base(rhs)
         {

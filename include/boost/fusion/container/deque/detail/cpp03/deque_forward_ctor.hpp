@@ -77,8 +77,6 @@ FUSION_HASH endif
     BOOST_FUSION_FWD_ELEM(T_##n, t##n)
 
 #include <boost/preprocessor/iterate.hpp>
-#include <boost/preprocessor/repetition/enum_shifted_params.hpp>
-#include <boost/preprocessor/repetition/enum_binary_params.hpp>
 
 #define BOOST_PP_FILENAME_1 \
     <boost/fusion/container/deque/detail/cpp03/deque_forward_ctor.hpp>
