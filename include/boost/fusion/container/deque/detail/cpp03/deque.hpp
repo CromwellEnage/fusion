@@ -40,7 +40,9 @@
 #include <boost/preprocessor/repetition/enum_params.hpp>
 #include <boost/preprocessor/repetition/enum_params_with_a_default.hpp>
 
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900) \
+)
 #include <boost/type_traits/is_convertible.hpp>
 #include <boost/type_traits/is_same.hpp>
 #include <boost/type_traits/remove_reference.hpp>
@@ -131,12 +133,16 @@ namespace boost { namespace fusion
           , typename ::boost::enable_if<
                 typename ::boost::mpl::if_<
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
-FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900) \
+)
                     ::boost::is_convertible<Sequence, T0>
 FUSION_HASH else
                     ::std::is_convertible<Sequence, T0>
 FUSION_HASH endif
-#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900) \
+)
                     ::boost::is_convertible<Sequence, T0>
 #else
                     ::std::is_convertible<Sequence, T0>
@@ -167,6 +173,34 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
         BOOST_FUSION_GPU_ENABLED
         explicit deque(
             T0_&& t0
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900)
+#endif
+#if ( \
+    defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES) \
+) || ( \
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900) \
+)
+          , typename ::boost::enable_if<
+                ::boost::is_convertible<T0_, T0>
+              , ::boost::fusion::detail::enabler_
+            >::type = ::boost::fusion::detail::enabler
+          , typename ::boost::disable_if_c<
+                ::boost::is_same<
+                    deque const
+                  , typename ::boost::remove_reference<T0_>::type const
+                >::value
+              , ::boost::fusion::detail::enabler_
+            >::type = ::boost::fusion::detail::enabler
+#endif
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH else
+#endif
+#if ( \
+    defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES) \
+) || !( \
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900) \
+)
           , typename ::boost::enable_if<
                 typename ::boost::mpl::eval_if<
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
@@ -205,6 +239,10 @@ FUSION_HASH endif
                 >::type
               , ::boost::fusion::detail::enabler_
             >::type = ::boost::fusion::detail::enabler
+#endif
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH endif
+#endif
         ) : base(
                 BOOST_FUSION_FWD_ELEM(T0_, t0)
               , ::boost::fusion::detail::nil_keyed_element()
@@ -225,12 +263,16 @@ FUSION_HASH endif
             >&& seq
           , typename ::boost::disable_if_c<
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
-FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900) \
+)
                 ::boost::is_convertible<
 FUSION_HASH else
                 ::std::is_convertible<
 FUSION_HASH endif
-#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1600) && (BOOST_MSVC < 1900) \
+)
                 ::boost::is_convertible<
 #else
                 ::std::is_convertible<
