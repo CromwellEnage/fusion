@@ -665,7 +665,7 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         explicit deque(
             typename ::boost::fusion::detail::call_param<T0>::type t0
-        ) : base(t0, detail::nil_keyed_element())
+        ) : base(t0, ::boost::fusion::detail::nil_keyed_element())
         {
         }
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
@@ -686,7 +686,7 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
         deque(
             Sequence const& seq
           , typename ::boost::disable_if<
-                ::boost::is_convertible<Sequence, T0>
+                is_convertible<Sequence, T0>
               , ::boost::fusion::detail::enabler_
             >::type = ::boost::fusion::detail::enabler
           , typename ::boost::enable_if<
@@ -709,7 +709,7 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
         explicit deque(
             T0_&& t0
           , typename ::boost::enable_if<
-                ::boost::is_convertible<T0_, T0>
+                is_convertible<T0_, T0>
               , ::boost::fusion::detail::enabler_
             >::type = ::boost::fusion::detail::enabler
           , typename ::boost::disable_if_c<
@@ -736,7 +736,7 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
                 U0 , U1 , U2 , U3 , U4 , U5 , U6 , U7 , U8 , U9 , U10 , U11 , U12 , U13 , U14 , U15 , U16 , U17 , U18 , U19
             >&& seq
           , typename ::boost::disable_if<
-                ::boost::is_convertible<
+                is_convertible<
                     ::boost::fusion::deque<
                         U0 , U1 , U2 , U3 , U4 , U5 , U6 , U7 , U8 , U9 , U10 , U11 , U12 , U13 , U14 , U15 , U16 , U17 , U18 , U19
                     >
