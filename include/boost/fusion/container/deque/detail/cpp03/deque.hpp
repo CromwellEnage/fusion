@@ -121,11 +121,11 @@ namespace boost { namespace fusion
         BOOST_FUSION_GPU_ENABLED
         deque(
             Sequence const& seq
-          , typename ::boost::disable_if<
+          , typename disable_if<
                 is_convertible<Sequence, T0>
               , ::boost::fusion::detail::enabler_
             >::type = ::boost::fusion::detail::enabler
-          , typename ::boost::enable_if<
+          , typename enable_if<
                 ::boost::fusion::traits::is_sequence<Sequence>
               , ::boost::fusion::detail::enabler_
             >::type = ::boost::fusion::detail::enabler
@@ -150,11 +150,11 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
         BOOST_FUSION_GPU_ENABLED
         explicit deque(
             T0_&& t0
-          , typename ::boost::enable_if<
+          , typename enable_if<
                 is_convertible<T0_, T0>
               , ::boost::fusion::detail::enabler_
             >::type = ::boost::fusion::detail::enabler
-          , typename ::boost::disable_if_c<
+          , typename disable_if_c<
                 ::boost::is_same<
                     deque const
                   , typename ::boost::remove_reference<T0_>::type const
@@ -179,7 +179,7 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
             ::boost::fusion::deque<
                 BOOST_PP_ENUM_PARAMS(FUSION_MAX_DEQUE_SIZE, U)
             >&& seq
-          , typename ::boost::disable_if<
+          , typename disable_if<
                 is_convertible<
                     ::boost::fusion::deque<
                         BOOST_PP_ENUM_PARAMS(FUSION_MAX_DEQUE_SIZE, U)
@@ -187,7 +187,7 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
                   , T0
                 >
               , ::boost::fusion::detail::enabler_
-            >::type = detail::enabler
+            >::type = ::boost::fusion::detail::enabler
         ) : base(
                 ::std::forward<
                     ::boost::fusion::deque<
