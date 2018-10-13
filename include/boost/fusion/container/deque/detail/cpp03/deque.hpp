@@ -37,9 +37,12 @@
 #include <boost/preprocessor/repetition/enum_binary_params.hpp>
 #include <boost/preprocessor/repetition/enum_params_with_a_default.hpp>
 
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
 #include <boost/type_traits/is_convertible.hpp>
 #include <boost/type_traits/is_same.hpp>
 #include <boost/type_traits/remove_reference.hpp>
+#else
+#include <type_traits>
 
 #if defined(BOOST_FUSION_DONT_USE_PREPROCESSED_FILES)
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
@@ -122,7 +125,17 @@ namespace boost { namespace fusion
         deque(
             Sequence const& seq
           , typename disable_if<
-                is_convertible<Sequence, T0>
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                ::boost::is_convertible<Sequence, T0>
+FUSION_HASH else
+                ::std::is_convertible<Sequence, T0>
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                ::boost::is_convertible<Sequence, T0>
+#else
+                ::std::is_convertible<Sequence, T0>
+#endif
               , ::boost::fusion::detail::enabler_
             >::type = ::boost::fusion::detail::enabler
           , typename enable_if<
@@ -151,13 +164,36 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
         explicit deque(
             T0_&& t0
           , typename enable_if<
-                is_convertible<T0_, T0>
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                ::boost::is_convertible<T0_, T0>
+FUSION_HASH else
+                ::std::is_convertible<T0_, T0>
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                ::boost::is_convertible<T0_, T0>
+#else
+                ::std::is_convertible<T0_, T0>
+#endif
               , ::boost::fusion::detail::enabler_
             >::type = ::boost::fusion::detail::enabler
           , typename disable_if_c<
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                 ::boost::is_same<
-                    deque const
-                  , typename ::boost::remove_reference<T0_>::type const
+                    typename ::boost::remove_reference<T0_>::type const
+FUSION_HASH else
+                ::std::is_same<
+                    typename ::std::remove_reference<T0_>::type const
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                ::boost::is_same<
+                    typename ::boost::remove_reference<T0_>::type const
+#else
+                ::std::is_same<
+                    typename ::std::remove_reference<T0_>::type const
+#endif
+                  , deque const
                 >::value
               , ::boost::fusion::detail::enabler_
             >::type = ::boost::fusion::detail::enabler
@@ -180,7 +216,17 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
                 BOOST_PP_ENUM_PARAMS(FUSION_MAX_DEQUE_SIZE, U)
             >&& seq
           , typename disable_if<
-                is_convertible<
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                ::boost::is_convertible<
+FUSION_HASH else
+                ::std::is_convertible<
+FUSION_HASH endif
+#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                ::boost::is_convertible<
+#else
+                ::std::is_convertible<
+#endif
                     ::boost::fusion::deque<
                         BOOST_PP_ENUM_PARAMS(FUSION_MAX_DEQUE_SIZE, U)
                     >
@@ -234,7 +280,7 @@ FUSION_HASH endif
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         deque(
             Sequence const&
-          , typename ::boost::enable_if<
+          , typename enable_if<
                 ::boost::mpl::and_<
                     ::boost::fusion::traits::is_sequence<Sequence>
                   , ::boost::fusion::result_of::empty<Sequence>

@@ -29,7 +29,9 @@ struct Dummy
 MPL_TEST_CASE()
 {
     // Make sure deque's constructor is SFINAE-friendly.
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800) \
+)
     BOOST_MPL_ASSERT((
         boost::mpl::if_<
             boost::is_constructible<boost::fusion::deque<int>, Dummy const&>
