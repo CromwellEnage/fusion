@@ -9,19 +9,28 @@
 ============================================================================*/
 namespace boost { namespace fusion
 {
-    template<typename T0 , typename T1 , typename T2 , typename T3 , typename T4 , typename T5 , typename T6 , typename T7 , typename T8 , typename T9 , typename T10 , typename T11 , typename T12 , typename T13 , typename T14 , typename T15 , typename T16 , typename T17 , typename T18 , typename T19>
-    struct deque
-        :
-        detail::deque_keyed_values<T0 , T1 , T2 , T3 , T4 , T5 , T6 , T7 , T8 , T9 , T10 , T11 , T12 , T13 , T14 , T15 , T16 , T17 , T18 , T19>::type,
-        sequence_base<deque<T0 , T1 , T2 , T3 , T4 , T5 , T6 , T7 , T8 , T9 , T10 , T11 , T12 , T13 , T14 , T15 , T16 , T17 , T18 , T19> >
+    template <typename T0 , typename T1 , typename T2 , typename T3 , typename T4 , typename T5 , typename T6 , typename T7 , typename T8 , typename T9 , typename T10 , typename T11 , typename T12 , typename T13 , typename T14 , typename T15 , typename T16 , typename T17 , typename T18 , typename T19>
+    struct deque :
+        ::boost::fusion::detail::deque_keyed_values<
+            T0 , T1 , T2 , T3 , T4 , T5 , T6 , T7 , T8 , T9 , T10 , T11 , T12 , T13 , T14 , T15 , T16 , T17 , T18 , T19
+        >::type
+      , ::boost::fusion::sequence_base<
+            ::boost::fusion::deque<
+                T0 , T1 , T2 , T3 , T4 , T5 , T6 , T7 , T8 , T9 , T10 , T11 , T12 , T13 , T14 , T15 , T16 , T17 , T18 , T19
+            >
+        >
     {
-        typedef deque_tag fusion_tag;
-        typedef bidirectional_traversal_tag category;
-        typedef typename detail::deque_keyed_values<T0 , T1 , T2 , T3 , T4 , T5 , T6 , T7 , T8 , T9 , T10 , T11 , T12 , T13 , T14 , T15 , T16 , T17 , T18 , T19>::type base;
-        typedef typename detail::deque_initial_size<T0 , T1 , T2 , T3 , T4 , T5 , T6 , T7 , T8 , T9 , T10 , T11 , T12 , T13 , T14 , T15 , T16 , T17 , T18 , T19>::type size;
-        typedef mpl::int_<size::value> next_up;
-        typedef mpl::int_<-1> next_down;
-        typedef mpl::false_ is_view;
+        typedef ::boost::fusion::deque_tag fusion_tag;
+        typedef ::boost::fusion::bidirectional_traversal_tag category;
+        typedef typename ::boost::fusion::detail::deque_keyed_values<
+            T0 , T1 , T2 , T3 , T4 , T5 , T6 , T7 , T8 , T9 , T10 , T11 , T12 , T13 , T14 , T15 , T16 , T17 , T18 , T19
+        >::type base;
+        typedef typename ::boost::fusion::detail::deque_initial_size<
+            T0 , T1 , T2 , T3 , T4 , T5 , T6 , T7 , T8 , T9 , T10 , T11 , T12 , T13 , T14 , T15 , T16 , T17 , T18 , T19
+        >::type size;
+        typedef ::boost::mpl::int_<size::value> next_up;
+        typedef ::boost::mpl::int_<-1> next_down;
+        typedef ::boost::mpl::false_ is_view;
 # if defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
 BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
 deque(
@@ -651,31 +660,45 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
 # endif
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         deque()
-            {}
+        {
+        }
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        explicit deque(typename detail::call_param<T0>::type t0)
-            : base(t0, detail::nil_keyed_element())
-            {}
+        explicit deque(
+            typename ::boost::fusion::detail::call_param<T0>::type t0
+        ) : base(t0, detail::nil_keyed_element())
+        {
+        }
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        explicit deque(deque const& rhs)
-            : base(rhs)
-            {}
-        template<typename U0 , typename U1 , typename U2 , typename U3 , typename U4 , typename U5 , typename U6 , typename U7 , typename U8 , typename U9 , typename U10 , typename U11 , typename U12 , typename U13 , typename U14 , typename U15 , typename U16 , typename U17 , typename U18 , typename U19>
+        explicit deque(deque const& rhs) : base(rhs)
+        {
+        }
+        template <typename U0 , typename U1 , typename U2 , typename U3 , typename U4 , typename U5 , typename U6 , typename U7 , typename U8 , typename U9 , typename U10 , typename U11 , typename U12 , typename U13 , typename U14 , typename U15 , typename U16 , typename U17 , typename U18 , typename U19>
         BOOST_FUSION_GPU_ENABLED
-        deque(deque<U0 , U1 , U2 , U3 , U4 , U5 , U6 , U7 , U8 , U9 , U10 , U11 , U12 , U13 , U14 , U15 , U16 , U17 , U18 , U19> const& seq)
-            : base(seq)
-            {}
-        template<typename Sequence>
+        deque(
+            ::boost::fusion::deque<
+                U0 , U1 , U2 , U3 , U4 , U5 , U6 , U7 , U8 , U9 , U10 , U11 , U12 , U13 , U14 , U15 , U16 , U17 , U18 , U19
+            > const& seq
+        ) : base(seq)
+        {
+        }
+        template <typename Sequence>
         BOOST_FUSION_GPU_ENABLED
-        deque(Sequence const& seq
-            , typename disable_if<is_convertible<Sequence, T0>, detail::enabler_>::type = detail::enabler
-            , typename enable_if<traits::is_sequence<Sequence>, detail::enabler_>::type = detail::enabler)
-            : base(base::from_iterator(fusion::begin(seq)))
-            {}
+        deque(
+            Sequence const& seq
+          , typename ::boost::disable_if<
+                ::boost::is_convertible<Sequence, T0>
+              , ::boost::fusion::detail::enabler_
+            >::type = ::boost::fusion::detail::enabler
+          , typename ::boost::enable_if<
+                ::boost::fusion::traits::is_sequence<Sequence>
+              , ::boost::fusion::detail::enabler_
+            >::type = ::boost::fusion::detail::enabler
+        ) : base(base::from_iterator(::boost::fusion::begin(seq)))
+        {
+        }
         template <typename T>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        deque&
-        operator=(T const& rhs)
+        deque& operator=(T const& rhs)
         {
             base::operator=(rhs);
             return *this;
@@ -683,40 +706,63 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
 # if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
         template <typename T0_>
         BOOST_FUSION_GPU_ENABLED
-        explicit deque(T0_&& t0
-          , typename enable_if<is_convertible<T0_, T0>, detail::enabler_>::type = detail::enabler
-          , typename disable_if_c<
-                boost::is_same<deque const, typename boost::remove_reference<T0_>::type const>::value
+        explicit deque(
+            T0_&& t0
+          , typename ::boost::enable_if<
+                ::boost::is_convertible<T0_, T0>
               , detail::enabler_
             >::type = detail::enabler
-         )
-            : base(::std::forward<T0_>( t0), detail::nil_keyed_element())
-            {}
+          , typename ::boost::disable_if_c<
+                ::boost::is_same<
+                    deque const
+                  , typename ::boost::remove_reference<T0_>::type const
+                >::value
+              , detail::enabler_
+            >::type = detail::enabler
+        ) : base(
+                ::std::forward<T0_>( t0)
+              , ::boost::fusion::detail::nil_keyed_element()
+            )
+        {
+        }
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        explicit deque(deque&& rhs)
-            : base(std::forward<deque>(rhs))
-            {}
+        explicit deque(deque&& rhs) : base(::std::forward<deque>(rhs))
+        {
+        }
         template<typename U0 , typename U1 , typename U2 , typename U3 , typename U4 , typename U5 , typename U6 , typename U7 , typename U8 , typename U9 , typename U10 , typename U11 , typename U12 , typename U13 , typename U14 , typename U15 , typename U16 , typename U17 , typename U18 , typename U19>
         BOOST_FUSION_GPU_ENABLED
-        deque(deque<U0 , U1 , U2 , U3 , U4 , U5 , U6 , U7 , U8 , U9 , U10 , U11 , U12 , U13 , U14 , U15 , U16 , U17 , U18 , U19>&& seq
-            , typename disable_if<
-                  is_convertible<deque<U0 , U1 , U2 , U3 , U4 , U5 , U6 , U7 , U8 , U9 , U10 , U11 , U12 , U13 , U14 , U15 , U16 , U17 , U18 , U19>, T0>
-                , detail::enabler_
-              >::type = detail::enabler)
-            : base(std::forward<deque<U0 , U1 , U2 , U3 , U4 , U5 , U6 , U7 , U8 , U9 , U10 , U11 , U12 , U13 , U14 , U15 , U16 , U17 , U18 , U19>>(seq))
-            {}
+        deque(
+            ::boost::fusion::deque<
+                U0 , U1 , U2 , U3 , U4 , U5 , U6 , U7 , U8 , U9 , U10 , U11 , U12 , U13 , U14 , U15 , U16 , U17 , U18 , U19
+            >&& seq
+          , typename ::boost::disable_if<
+                ::boost::is_convertible<
+                    ::boost::fusion::deque<
+                        U0 , U1 , U2 , U3 , U4 , U5 , U6 , U7 , U8 , U9 , U10 , U11 , U12 , U13 , U14 , U15 , U16 , U17 , U18 , U19
+                    >
+                  , T0
+                >
+              , ::boost::fusion::detail::enabler_
+            >::type = detail::enabler
+        ) : base(
+                ::std::forward<
+                    ::boost::fusion::deque<
+                        U0 , U1 , U2 , U3 , U4 , U5 , U6 , U7 , U8 , U9 , U10 , U11 , U12 , U13 , U14 , U15 , U16 , U17 , U18 , U19
+                    >
+                >(seq)
+            )
+        {
+        }
         template <typename T>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        deque&
-        operator=(T&& rhs)
+        deque& operator=(T&& rhs)
         {
             base::operator=(::std::forward<T>( rhs));
             return *this;
         }
         
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        deque&
-        operator=(deque const& rhs)
+        deque& operator=(deque const& rhs)
         {
             base::operator=(static_cast<base const&>(rhs));
             return *this;
@@ -724,23 +770,32 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
 # endif
     };
     template <>
-    struct deque<> : detail::nil_keyed_element
+    struct ::boost::fusion::deque<> :
+        ::boost::fusion::detail::nil_keyed_element
     {
-        typedef deque_tag fusion_tag;
-        typedef bidirectional_traversal_tag category;
-        typedef mpl::int_<0> size;
-        typedef mpl::int_<0> next_up;
-        typedef mpl::int_<-1> next_down;
-        typedef mpl::false_ is_view;
+        typedef ::boost::fusion::deque_tag fusion_tag;
+        typedef ::boost::fusion::bidirectional_traversal_tag category;
+        typedef ::boost::mpl::int_<0> size;
+        typedef ::boost::mpl::int_<0> next_up;
+        typedef ::boost::mpl::int_<-1> next_down;
+        typedef ::boost::mpl::false_ is_view;
         template <typename Sequence>
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        deque(Sequence const&,
-            typename enable_if<
-                mpl::and_<
-                    traits::is_sequence<Sequence>
-                  , result_of::empty<Sequence> >, detail::enabler_>::type = detail::enabler) BOOST_NOEXCEPT
-        {}
+        deque(
+            Sequence const&
+          , typename ::boost::enable_if<
+                ::boost::mpl::and_<
+                    ::boost::fusion::traits::is_sequence<Sequence>
+                  , ::boost::fusion::result_of::empty<Sequence>
+                >
+              , ::boost::fusion::detail::enabler_
+            >::type = ::boost::fusion::detail::enabler
+        ) BOOST_NOEXCEPT
+        {
+        }
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        deque() BOOST_NOEXCEPT {}
+        deque() BOOST_NOEXCEPT
+        {
+        }
     };
 }}

@@ -18,9 +18,9 @@ struct Dummy
 #include <boost/mpl/aux_/test.hpp>
 
 #if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
-    defined(BOOST_MSVC) && (BOOST_MSVC >= 1800) && (BOOST_MSVC < 1900) \
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800) \
 )
-// MSVC-12.0 with 32-bit addressing has problems with std::is_constructible.
+// MSVC-11 has problems with std::is_constructible.
 #include <boost/type_traits/is_constructible.hpp>
 #else
 #include <type_traits>
