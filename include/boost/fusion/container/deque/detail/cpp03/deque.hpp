@@ -219,8 +219,7 @@ FUSION_HASH endif
     };
 
     template <>
-    struct ::boost::fusion::deque<> :
-        ::boost::fusion::detail::nil_keyed_element
+    struct deque<> : ::boost::fusion::detail::nil_keyed_element
     {
         typedef ::boost::fusion::deque_tag fusion_tag;
         typedef ::boost::fusion::bidirectional_traversal_tag category;

@@ -770,8 +770,7 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
 # endif
     };
     template <>
-    struct ::boost::fusion::deque<> :
-        ::boost::fusion::detail::nil_keyed_element
+    struct deque<> : ::boost::fusion::detail::nil_keyed_element
     {
         typedef ::boost::fusion::deque_tag fusion_tag;
         typedef ::boost::fusion::bidirectional_traversal_tag category;
