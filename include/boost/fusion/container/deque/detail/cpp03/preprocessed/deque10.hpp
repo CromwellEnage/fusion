@@ -10,8 +10,8 @@
 namespace boost { namespace fusion
 {
     template <typename T0 , typename T1 , typename T2 , typename T3 , typename T4 , typename T5 , typename T6 , typename T7 , typename T8 , typename T9>
-    struct deque
-      : ::boost::fusion::detail::deque_keyed_values<
+    struct deque :
+        ::boost::fusion::detail::deque_keyed_values<
             T0 , T1 , T2 , T3 , T4 , T5 , T6 , T7 , T8 , T9
         >::type
       , ::boost::fusion::sequence_base<
@@ -329,13 +329,13 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
 }
 # endif
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        deque() : base()
+        deque()
         {
         }
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         explicit deque(
             typename ::boost::fusion::detail::call_param<T0>::type t0
-        ) : base(t0, ::boost::fusion::detail::nil_keyed_element())
+        ) : base(t0, detail::nil_keyed_element())
         {
         }
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
@@ -380,15 +380,15 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
             T0_&& t0
           , typename ::boost::enable_if<
                 ::boost::is_convertible<T0_, T0>
-              , detail::enabler_
-            >::type = detail::enabler
+              , ::boost::fusion::detail::enabler_
+            >::type = ::boost::fusion::detail::enabler
           , typename ::boost::disable_if_c<
                 ::boost::is_same<
                     deque const
                   , typename ::boost::remove_reference<T0_>::type const
                 >::value
-              , detail::enabler_
-            >::type = detail::enabler
+              , ::boost::fusion::detail::enabler_
+            >::type = ::boost::fusion::detail::enabler
         ) : base(
                 ::std::forward<T0_>( t0)
               , ::boost::fusion::detail::nil_keyed_element()
@@ -440,7 +440,8 @@ deque(T_0 && t0 , T_1 && t1 , T_2 && t2 , T_3 && t3 , T_4 && t4 , T_5 && t5 , T_
 # endif
     };
     template <>
-    struct deque<> : ::boost::fusion::detail::nil_keyed_element
+    struct deque<> :
+        ::boost::fusion::detail::nil_keyed_element
     {
         typedef ::boost::fusion::deque_tag fusion_tag;
         typedef ::boost::fusion::bidirectional_traversal_tag category;
