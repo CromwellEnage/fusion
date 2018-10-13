@@ -19,13 +19,6 @@
 #include <boost/fusion/support/sequence_base.hpp>
 #include <boost/fusion/support/detail/access.hpp>
 #include <boost/fusion/container/deque/detail/keyed_element.hpp>
-#include <boost/preprocessor/repetition/enum_params.hpp>
-#include <boost/preprocessor/repetition/enum_binary_params.hpp>
-#include <boost/preprocessor/repetition/enum_params_with_a_default.hpp>
-#include <boost/type_traits/is_convertible.hpp>
-#include <boost/type_traits/is_same.hpp>
-#include <boost/type_traits/remove_reference.hpp>
-
 #include <boost/fusion/container/deque/deque_fwd.hpp>
 #include <boost/fusion/container/deque/detail/value_at_impl.hpp>
 #include <boost/fusion/container/deque/detail/at_impl.hpp>
@@ -33,16 +26,21 @@
 #include <boost/fusion/container/deque/detail/end_impl.hpp>
 #include <boost/fusion/container/deque/detail/is_sequence_impl.hpp>
 #include <boost/fusion/sequence/intrinsic/begin.hpp>
-#include <boost/mpl/bool.hpp>
-
 #include <boost/fusion/support/traversal_tags.hpp>
 #include <boost/fusion/support/void.hpp>
 #include <boost/fusion/support/detail/enabler.hpp>
+#include <boost/mpl/bool.hpp>
+#include <boost/mpl/and.hpp>
 #include <boost/core/enable_if.hpp>
+#include <boost/preprocessor/repetition/enum_params.hpp>
+#include <boost/preprocessor/repetition/enum_binary_params.hpp>
+#include <boost/preprocessor/repetition/enum_params_with_a_default.hpp>
 
-#if !defined(BOOST_FUSION_DONT_USE_PREPROCESSED_FILES)
-#include <boost/fusion/container/deque/detail/cpp03/preprocessed/deque.hpp>
-#else
+#include <boost/type_traits/is_convertible.hpp>
+#include <boost/type_traits/is_same.hpp>
+#include <boost/type_traits/remove_reference.hpp>
+
+#if defined(BOOST_FUSION_DONT_USE_PREPROCESSED_FILES)
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 #pragma wave option(preserve: 2, line: 0, output: "preprocessed/deque" \
 FUSION_MAX_DEQUE_SIZE_STR ".hpp")
@@ -67,8 +65,8 @@ FUSION_MAX_DEQUE_SIZE_STR ".hpp")
 namespace boost { namespace fusion
 {
     template <BOOST_PP_ENUM_PARAMS(FUSION_MAX_DEQUE_SIZE, typename T)>
-    struct deque :
-        ::boost::fusion::detail::deque_keyed_values<
+    struct deque
+      : ::boost::fusion::detail::deque_keyed_values<
             BOOST_PP_ENUM_PARAMS(FUSION_MAX_DEQUE_SIZE, T)
         >::type
       , ::boost::fusion::sequence_base<
@@ -92,14 +90,14 @@ namespace boost { namespace fusion
 #include <boost/fusion/container/deque/detail/cpp03/deque_forward_ctor.hpp>
 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        deque()
+        deque() : base()
         {
         }
 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         explicit deque(
             typename ::boost::fusion::detail::call_param<T0>::type t0
-        ) : base(t0, detail::nil_keyed_element())
+        ) : base(t0, ::boost::fusion::detail::nil_keyed_element())
         {
         }
 
@@ -259,7 +257,8 @@ FUSION_HASH endif
 #pragma wave option(output: null)
 #endif
 
-#endif // BOOST_FUSION_DONT_USE_PREPROCESSED_FILES
-
+#else
+#include <boost/fusion/container/deque/detail/cpp03/preprocessed/deque.hpp>
+#endif  // BOOST_FUSION_DONT_USE_PREPROCESSED_FILES
 #endif  // include guard
 
