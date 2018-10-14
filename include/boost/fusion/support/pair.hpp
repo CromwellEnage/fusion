@@ -35,9 +35,7 @@ namespace boost { namespace fusion { namespace result_of
 #include <boost/core/enable_if.hpp>
 
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
-    defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800) \
-)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
 // MSVC-11 has problems with C++11 type traits.
 #include <boost/type_traits/is_convertible.hpp>
 #include <boost/type_traits/is_lvalue_reference.hpp>
@@ -96,9 +94,7 @@ namespace boost { namespace fusion
 #endif
                   , ::boost::mpl::false_
                   , ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
-    defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800) \
-)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                         ::boost::is_convertible<Second2, Second>
 #else
                         ::std::is_convertible<Second2, Second>

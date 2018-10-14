@@ -142,7 +142,7 @@ namespace std
         ) \
     )
 // Most other compilers fulfilling the condition above have ICEd on certain
-// tests due to using Cxx11 type traits instead of the Boost versions.
+// tests due to using C++11 type traits instead of the Boost versions.
 // -- Cromwell D. Enage
 #define BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
 #endif

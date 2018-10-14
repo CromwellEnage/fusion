@@ -17,10 +17,7 @@ struct Dummy
 #include <boost/mpl/assert.hpp>
 #include <boost/mpl/aux_/test.hpp>
 
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
-    defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800) \
-)
-// MSVC-11 has problems with C++11 type traits.
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
 #include <boost/type_traits/is_constructible.hpp>
 #else
 #include <type_traits>
@@ -29,9 +26,7 @@ struct Dummy
 MPL_TEST_CASE()
 {
     // Make sure deque's constructor is SFINAE-friendly.
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
-    defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800) \
-)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
     BOOST_MPL_ASSERT((
         boost::mpl::if_<
             boost::is_constructible<boost::fusion::deque<int>, Dummy const&>
