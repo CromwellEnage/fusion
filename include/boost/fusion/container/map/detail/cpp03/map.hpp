@@ -27,7 +27,6 @@
 #include <boost/fusion/support/void_fwd.hpp>
 #include <boost/fusion/support/config.hpp>
 #include <boost/mpl/bool.hpp>
-#include <boost/mpl/if.hpp>
 #include <boost/mpl/identity.hpp>
 #include <boost/preprocessor/iterate.hpp>
 #include <boost/preprocessor/repetition/enum.hpp>

@@ -42,29 +42,21 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
         // workaround for MSVC 10
 FUSION_HASH if defined(BOOST_MSVC) && (BOOST_MSVC == 1700)
-      , typename ::boost::enable_if<
-            typename ::boost::mpl::if_<
+      , typename enable_if_c<
 FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_same<U0, T0>
+            ::boost::is_same<U0, T0>::value
 FUSION_HASH else
-                ::std::is_same<U0, T0>
+            ::std::is_same<U0, T0>::value
 FUSION_HASH endif
-              , ::boost::mpl::true_
-              , ::boost::mpl::false_
-            >::type
         >::type* = BOOST_TTI_DETAIL_NULLPTR
 FUSION_HASH endif
 #elif defined(BOOST_MSVC) && (BOOST_MSVC == 1700)
-      , typename ::boost::enable_if<
-            typename ::boost::mpl::if_<
+      , typename enable_if_c<
 #if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_same<U0, T0>
-#else
-                ::std::is_same<U0, T0>
+            ::boost::is_same<U0, T0>::value
+FUSION_HASH else
+            ::std::is_same<U0, T0>::value
 #endif
-              , ::boost::mpl::true_
-              , ::boost::mpl::false_
-            >::type
         >::type* = BOOST_TTI_DETAIL_NULLPTR
 #endif  // preprocess file, or workaround for MSVC 10
 #endif  // N == 1

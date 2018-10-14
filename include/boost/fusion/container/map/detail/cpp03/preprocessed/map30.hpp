@@ -56,16 +56,12 @@ namespace boost { namespace fusion
         U0 && arg0
         
 # if defined(BOOST_MSVC) && (BOOST_MSVC == 1700)
-      , typename ::boost::enable_if<
-            typename ::boost::mpl::if_<
+      , typename enable_if_c<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_same<U0, T0>
+            ::boost::is_same<U0, T0>::value
 # else
-                ::std::is_same<U0, T0>
+            ::std::is_same<U0, T0>::value
 # endif
-              , ::boost::mpl::true_
-              , ::boost::mpl::false_
-            >::type
         >::type* = BOOST_TTI_DETAIL_NULLPTR
 # endif
     ) : data(::std::forward<U0>( arg0))
