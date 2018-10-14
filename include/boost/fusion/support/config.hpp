@@ -125,6 +125,9 @@ namespace std
 
 #if !defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) && ( \
         defined(BOOST_NO_CXX11_HDR_TYPE_TRAITS) || ( \
+            defined(BOOST_MSVC) && \
+            (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800) \
+        ) || ( \
             !defined(BOOST_MSVC) && ( \
                 ( \
                     defined(BOOST_CLANG) && (1 == BOOST_CLANG) && \
@@ -141,6 +144,7 @@ namespace std
             ) \
         ) \
     )
+// MSVC-11.0 has problems with mixing C++11 type traits and rvalue references.
 // Most other compilers fulfilling the condition above have ICEd on certain
 // tests due to using C++11 type traits instead of the Boost versions.
 // -- Cromwell D. Enage
