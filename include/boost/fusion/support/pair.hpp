@@ -31,10 +31,14 @@ namespace boost { namespace fusion { namespace result_of
 #include <boost/tti/detail/dnullptr.hpp>
 #include <boost/mpl/bool.hpp>
 #include <boost/mpl/if.hpp>
+#include <boost/mpl/eval_if.hpp>
 #include <boost/core/enable_if.hpp>
 
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800) \
+)
+// MSVC-11 has problems with C++11 type traits.
 #include <boost/type_traits/is_convertible.hpp>
 #include <boost/type_traits/is_lvalue_reference.hpp>
 #else
@@ -82,25 +86,26 @@ namespace boost { namespace fusion
         pair(
             Second2&& val
           , typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                typename ::boost::mpl::eval_if<
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800) \
+)
                     ::boost::is_lvalue_reference<Second2>
 #else
                     ::std::is_lvalue_reference<Second2>
 #endif
                   , ::boost::mpl::false_
-                  , ::boost::mpl::true_
-                >::type
-            >::type* /* dummy */ = BOOST_TTI_DETAIL_NULLPTR
-          , typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<Second2, Second>
+                  , ::boost::mpl::if_<
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800) \
+)
+                        ::boost::is_convertible<Second2, Second>
 #else
-                    ::std::is_convertible<Second2, Second>
+                        ::std::is_convertible<Second2, Second>
 #endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
+                      , ::boost::mpl::true_
+                      , ::boost::mpl::false_
+                    >
                 >::type
             >::type* /*dummy*/ = BOOST_TTI_DETAIL_NULLPTR
         ) : second(BOOST_FUSION_FWD_ELEM(Second, val))
@@ -110,7 +115,9 @@ namespace boost { namespace fusion
 
         template <typename Second2>
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        pair(pair<First, Second2> const& rhs) : second(rhs.second)
+        pair(
+            ::boost::fusion::pair<First, Second2> const& rhs
+        ) : second(rhs.second)
         {
         }
 
@@ -118,14 +125,14 @@ namespace boost { namespace fusion
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         pair& operator=(::boost::fusion::pair<First, Second2> const& rhs)
         {
-            second = rhs.second;
+            this->second = rhs.second;
             return *this;
         }
 
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         pair& operator=(pair const& rhs)
         {
-            second = rhs.second;
+            this->second = rhs.second;
             return *this;
         }
 
@@ -133,7 +140,7 @@ namespace boost { namespace fusion
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         pair& operator=(pair&& rhs)
         {
-            second = BOOST_FUSION_FWD_ELEM(Second, rhs.second);
+            this->second = BOOST_FUSION_FWD_ELEM(Second, rhs.second);
             return *this;
         }
 #endif

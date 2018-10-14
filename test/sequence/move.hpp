@@ -22,7 +22,7 @@ namespace test_detail
 
     void incr_copy()
     {
-        copies++;
+        ++test_detail::copies;
     }
 
     struct x
@@ -39,18 +39,18 @@ namespace test_detail
 
         x& operator=(x&& rhs)
         {
-            i = rhs.i;
+            this->i = rhs.i;
             return *this;
         }
 
         x(x const& /*rhs*/)
         {
-            incr_copy();
+            test_detail::incr_copy();
         }
 
         x& operator=(x const& /*rhs*/)
         {
-            incr_copy();
+            test_detail::incr_copy();
             return *this;
         }
     };
@@ -58,17 +58,17 @@ namespace test_detail
     typedef std::vector<test_detail::x> vector_type;
     extern bool disable_rvo; // to disable RVO
 
-    vector_type generate_vec()
+    test_detail::vector_type generate_vec()
     {
-        vector_type v;
+        test_detail::vector_type v;
         v.push_back(test_detail::x());
 
-        if (disable_rvo)
+        if (test_detail::disable_rvo)
         {
             return v;
         }
 
-        return vector_type();
+        return test_detail::vector_type();
     }
 
 
@@ -77,7 +77,7 @@ namespace test_detail
     {
         T r(std::move(val));
 
-        if (disable_rvo)
+        if (test_detail::disable_rvo)
         {
             return r;
         }
@@ -87,30 +87,33 @@ namespace test_detail
 
     typedef FUSION_SEQUENCE return_type;
 
-    return_type generate()
+    test_detail::return_type generate()
     {
-        return_type r(test_detail::generate_vec());
+        test_detail::return_type r(test_detail::generate_vec());
 
-        if (disable_rvo)
+        if (test_detail::disable_rvo)
         {
             return r;
         }
 
-        return return_type();
+        return test_detail::return_type();
     }
 
     typedef FUSION_SEQUENCE2 return_type2;
 
-    return_type2 generate2()
+    test_detail::return_type2 generate2()
     {
-        return_type2 r(test_detail::generate_vec(), test_detail::x());
+        test_detail::return_type2 r(
+            test_detail::generate_vec()
+          , test_detail::x()
+        );
 
-        if (disable_rvo)
+        if (test_detail::disable_rvo)
         {
             return r;
         }
 
-        return return_type2();
+        return test_detail::return_type2();
     }
 }
 

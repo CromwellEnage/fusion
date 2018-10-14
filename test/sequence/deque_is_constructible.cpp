@@ -20,7 +20,7 @@ struct Dummy
 #if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
     defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800) \
 )
-// MSVC-11 has problems with std::is_constructible.
+// MSVC-11 has problems with C++11 type traits.
 #include <boost/type_traits/is_constructible.hpp>
 #else
 #include <type_traits>
