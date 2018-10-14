@@ -1048,7 +1048,7 @@ namespace boost { namespace fusion
         }
         template <typename T>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename ::boost::disable_if<
+        typename enable_if<
             typename ::boost::mpl::if_<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                 ::boost::is_same<
@@ -1064,8 +1064,8 @@ namespace boost { namespace fusion
 # endif 
                   , vector
                 >
-              , ::boost::mpl::true_
               , ::boost::mpl::false_
+              , ::boost::mpl::true_
             >::type
           , vector&
         >::type
