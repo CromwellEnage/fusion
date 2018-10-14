@@ -85,9 +85,7 @@ namespace boost { namespace fusion
             Second2&& val
           , typename ::boost::enable_if<
                 typename ::boost::mpl::eval_if<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS) || ( \
-    defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800) \
-)
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                     ::boost::is_lvalue_reference<Second2>
 #else
                     ::std::is_lvalue_reference<Second2>
