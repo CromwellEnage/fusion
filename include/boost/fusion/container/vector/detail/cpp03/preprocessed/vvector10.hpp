@@ -94,8 +94,8 @@ namespace boost { namespace fusion
       , typename ::boost::disable_if_c<
 # endif
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-            ::boost::is_same<
-                typename ::boost::remove_cv_ref<U0>::type
+            is_same<
+                typename remove_cv_ref<U0>::type
 # else
             ::std::is_same<
                 
@@ -364,8 +364,8 @@ namespace boost { namespace fusion
         typename ::boost::disable_if_c<
 # endif
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-            ::boost::is_same<
-                typename ::boost::remove_cv_ref<T>::type
+            is_same<
+                typename remove_cv_ref<T>::type
 # else
             ::std::is_same<
                 

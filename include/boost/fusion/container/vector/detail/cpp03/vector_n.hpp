@@ -194,22 +194,30 @@ FUSION_HASH endif
         BOOST_FUSION_GPU_ENABLED
         BOOST_PP_CAT(vector_data, N)(
             BOOST_PP_ENUM_BINARY_PARAMS(N, U, && arg)
-          , typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
-FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<U0, T0>
+FUSION_HASH if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && \
+(BOOST_MSVC < 1800)
+          , typename enable_if_c<
 FUSION_HASH else
-                    ::std::is_convertible<U0, T0>
+          , typename ::boost::enable_if_c<
 FUSION_HASH endif
-#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<U0, T0>
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                is_convertible<U0, T0>::value
+FUSION_HASH else
+                ::std::is_convertible<U0, T0>::value
+FUSION_HASH endif
+#else   // !preprocessing
+#if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
+          , typename enable_if_c<
 #else
-                    ::std::is_convertible<U0, T0>
+          , typename ::boost::enable_if_c<
 #endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                is_convertible<U0, T0>::value
+#else
+                ::std::is_convertible<U0, T0>::value
+#endif
+#endif  // preprocessed file creation
             >::type* /*dummy*/ = BOOST_TTI_DETAIL_NULLPTR
         ) : BOOST_PP_ENUM(N, FUSION_VECTOR_CTOR_ARG_FWD, arg)
         {
@@ -393,7 +401,7 @@ FUSION_HASH else
           , typename ::boost::enable_if_c<
 FUSION_HASH endif
 FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<U0, T0>::value
+                is_convertible<U0, T0>::value
 FUSION_HASH else
                 ::std::is_convertible<U0, T0>::value
 FUSION_HASH endif
@@ -404,7 +412,7 @@ FUSION_HASH endif
           , typename ::boost::enable_if_c<
 #endif
 #if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<U0, T0>::value
+                is_convertible<U0, T0>::value
 #else
                 ::std::is_convertible<U0, T0>::value
 #endif

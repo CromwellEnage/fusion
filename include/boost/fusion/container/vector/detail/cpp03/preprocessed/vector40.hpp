@@ -25,16 +25,16 @@ namespace boost { namespace fusion
         BOOST_FUSION_GPU_ENABLED
         vector_data31(
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13 , U14 && arg14 , U15 && arg15 , U16 && arg16 , U17 && arg17 , U18 && arg18 , U19 && arg19 , U20 && arg20 , U21 && arg21 , U22 && arg22 , U23 && arg23 , U24 && arg24 , U25 && arg25 , U26 && arg26 , U27 && arg27 , U28 && arg28 , U29 && arg29 , U30 && arg30
-          , typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
-# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<U0, T0>
+# if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
+          , typename enable_if_c<
 # else
-                    ::std::is_convertible<U0, T0>
+          , typename ::boost::enable_if_c<
 # endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
+# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                is_convertible<U0, T0>::value
+# else
+                ::std::is_convertible<U0, T0>::value
+# endif
             >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13)) , m14(::std::forward<U14>( arg14)) , m15(::std::forward<U15>( arg15)) , m16(::std::forward<U16>( arg16)) , m17(::std::forward<U17>( arg17)) , m18(::std::forward<U18>( arg18)) , m19(::std::forward<U19>( arg19)) , m20(::std::forward<U20>( arg20)) , m21(::std::forward<U21>( arg21)) , m22(::std::forward<U22>( arg22)) , m23(::std::forward<U23>( arg23)) , m24(::std::forward<U24>( arg24)) , m25(::std::forward<U25>( arg25)) , m26(::std::forward<U26>( arg26)) , m27(::std::forward<U27>( arg27)) , m28(::std::forward<U28>( arg28)) , m29(::std::forward<U29>( arg29)) , m30(::std::forward<U30>( arg30))
         {
@@ -1329,16 +1329,16 @@ namespace boost { namespace fusion
         BOOST_FUSION_GPU_ENABLED
         vector_data32(
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13 , U14 && arg14 , U15 && arg15 , U16 && arg16 , U17 && arg17 , U18 && arg18 , U19 && arg19 , U20 && arg20 , U21 && arg21 , U22 && arg22 , U23 && arg23 , U24 && arg24 , U25 && arg25 , U26 && arg26 , U27 && arg27 , U28 && arg28 , U29 && arg29 , U30 && arg30 , U31 && arg31
-          , typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
-# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<U0, T0>
+# if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
+          , typename enable_if_c<
 # else
-                    ::std::is_convertible<U0, T0>
+          , typename ::boost::enable_if_c<
 # endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
+# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                is_convertible<U0, T0>::value
+# else
+                ::std::is_convertible<U0, T0>::value
+# endif
             >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13)) , m14(::std::forward<U14>( arg14)) , m15(::std::forward<U15>( arg15)) , m16(::std::forward<U16>( arg16)) , m17(::std::forward<U17>( arg17)) , m18(::std::forward<U18>( arg18)) , m19(::std::forward<U19>( arg19)) , m20(::std::forward<U20>( arg20)) , m21(::std::forward<U21>( arg21)) , m22(::std::forward<U22>( arg22)) , m23(::std::forward<U23>( arg23)) , m24(::std::forward<U24>( arg24)) , m25(::std::forward<U25>( arg25)) , m26(::std::forward<U26>( arg26)) , m27(::std::forward<U27>( arg27)) , m28(::std::forward<U28>( arg28)) , m29(::std::forward<U29>( arg29)) , m30(::std::forward<U30>( arg30)) , m31(::std::forward<U31>( arg31))
         {
@@ -2667,16 +2667,16 @@ namespace boost { namespace fusion
         BOOST_FUSION_GPU_ENABLED
         vector_data33(
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13 , U14 && arg14 , U15 && arg15 , U16 && arg16 , U17 && arg17 , U18 && arg18 , U19 && arg19 , U20 && arg20 , U21 && arg21 , U22 && arg22 , U23 && arg23 , U24 && arg24 , U25 && arg25 , U26 && arg26 , U27 && arg27 , U28 && arg28 , U29 && arg29 , U30 && arg30 , U31 && arg31 , U32 && arg32
-          , typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
-# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<U0, T0>
+# if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
+          , typename enable_if_c<
 # else
-                    ::std::is_convertible<U0, T0>
+          , typename ::boost::enable_if_c<
 # endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
+# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                is_convertible<U0, T0>::value
+# else
+                ::std::is_convertible<U0, T0>::value
+# endif
             >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13)) , m14(::std::forward<U14>( arg14)) , m15(::std::forward<U15>( arg15)) , m16(::std::forward<U16>( arg16)) , m17(::std::forward<U17>( arg17)) , m18(::std::forward<U18>( arg18)) , m19(::std::forward<U19>( arg19)) , m20(::std::forward<U20>( arg20)) , m21(::std::forward<U21>( arg21)) , m22(::std::forward<U22>( arg22)) , m23(::std::forward<U23>( arg23)) , m24(::std::forward<U24>( arg24)) , m25(::std::forward<U25>( arg25)) , m26(::std::forward<U26>( arg26)) , m27(::std::forward<U27>( arg27)) , m28(::std::forward<U28>( arg28)) , m29(::std::forward<U29>( arg29)) , m30(::std::forward<U30>( arg30)) , m31(::std::forward<U31>( arg31)) , m32(::std::forward<U32>( arg32))
         {
@@ -4039,16 +4039,16 @@ namespace boost { namespace fusion
         BOOST_FUSION_GPU_ENABLED
         vector_data34(
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13 , U14 && arg14 , U15 && arg15 , U16 && arg16 , U17 && arg17 , U18 && arg18 , U19 && arg19 , U20 && arg20 , U21 && arg21 , U22 && arg22 , U23 && arg23 , U24 && arg24 , U25 && arg25 , U26 && arg26 , U27 && arg27 , U28 && arg28 , U29 && arg29 , U30 && arg30 , U31 && arg31 , U32 && arg32 , U33 && arg33
-          , typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
-# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<U0, T0>
+# if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
+          , typename enable_if_c<
 # else
-                    ::std::is_convertible<U0, T0>
+          , typename ::boost::enable_if_c<
 # endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
+# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                is_convertible<U0, T0>::value
+# else
+                ::std::is_convertible<U0, T0>::value
+# endif
             >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13)) , m14(::std::forward<U14>( arg14)) , m15(::std::forward<U15>( arg15)) , m16(::std::forward<U16>( arg16)) , m17(::std::forward<U17>( arg17)) , m18(::std::forward<U18>( arg18)) , m19(::std::forward<U19>( arg19)) , m20(::std::forward<U20>( arg20)) , m21(::std::forward<U21>( arg21)) , m22(::std::forward<U22>( arg22)) , m23(::std::forward<U23>( arg23)) , m24(::std::forward<U24>( arg24)) , m25(::std::forward<U25>( arg25)) , m26(::std::forward<U26>( arg26)) , m27(::std::forward<U27>( arg27)) , m28(::std::forward<U28>( arg28)) , m29(::std::forward<U29>( arg29)) , m30(::std::forward<U30>( arg30)) , m31(::std::forward<U31>( arg31)) , m32(::std::forward<U32>( arg32)) , m33(::std::forward<U33>( arg33))
         {
@@ -5445,16 +5445,16 @@ namespace boost { namespace fusion
         BOOST_FUSION_GPU_ENABLED
         vector_data35(
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13 , U14 && arg14 , U15 && arg15 , U16 && arg16 , U17 && arg17 , U18 && arg18 , U19 && arg19 , U20 && arg20 , U21 && arg21 , U22 && arg22 , U23 && arg23 , U24 && arg24 , U25 && arg25 , U26 && arg26 , U27 && arg27 , U28 && arg28 , U29 && arg29 , U30 && arg30 , U31 && arg31 , U32 && arg32 , U33 && arg33 , U34 && arg34
-          , typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
-# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<U0, T0>
+# if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
+          , typename enable_if_c<
 # else
-                    ::std::is_convertible<U0, T0>
+          , typename ::boost::enable_if_c<
 # endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
+# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                is_convertible<U0, T0>::value
+# else
+                ::std::is_convertible<U0, T0>::value
+# endif
             >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13)) , m14(::std::forward<U14>( arg14)) , m15(::std::forward<U15>( arg15)) , m16(::std::forward<U16>( arg16)) , m17(::std::forward<U17>( arg17)) , m18(::std::forward<U18>( arg18)) , m19(::std::forward<U19>( arg19)) , m20(::std::forward<U20>( arg20)) , m21(::std::forward<U21>( arg21)) , m22(::std::forward<U22>( arg22)) , m23(::std::forward<U23>( arg23)) , m24(::std::forward<U24>( arg24)) , m25(::std::forward<U25>( arg25)) , m26(::std::forward<U26>( arg26)) , m27(::std::forward<U27>( arg27)) , m28(::std::forward<U28>( arg28)) , m29(::std::forward<U29>( arg29)) , m30(::std::forward<U30>( arg30)) , m31(::std::forward<U31>( arg31)) , m32(::std::forward<U32>( arg32)) , m33(::std::forward<U33>( arg33)) , m34(::std::forward<U34>( arg34))
         {
@@ -6885,16 +6885,16 @@ namespace boost { namespace fusion
         BOOST_FUSION_GPU_ENABLED
         vector_data36(
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13 , U14 && arg14 , U15 && arg15 , U16 && arg16 , U17 && arg17 , U18 && arg18 , U19 && arg19 , U20 && arg20 , U21 && arg21 , U22 && arg22 , U23 && arg23 , U24 && arg24 , U25 && arg25 , U26 && arg26 , U27 && arg27 , U28 && arg28 , U29 && arg29 , U30 && arg30 , U31 && arg31 , U32 && arg32 , U33 && arg33 , U34 && arg34 , U35 && arg35
-          , typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
-# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<U0, T0>
+# if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
+          , typename enable_if_c<
 # else
-                    ::std::is_convertible<U0, T0>
+          , typename ::boost::enable_if_c<
 # endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
+# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                is_convertible<U0, T0>::value
+# else
+                ::std::is_convertible<U0, T0>::value
+# endif
             >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13)) , m14(::std::forward<U14>( arg14)) , m15(::std::forward<U15>( arg15)) , m16(::std::forward<U16>( arg16)) , m17(::std::forward<U17>( arg17)) , m18(::std::forward<U18>( arg18)) , m19(::std::forward<U19>( arg19)) , m20(::std::forward<U20>( arg20)) , m21(::std::forward<U21>( arg21)) , m22(::std::forward<U22>( arg22)) , m23(::std::forward<U23>( arg23)) , m24(::std::forward<U24>( arg24)) , m25(::std::forward<U25>( arg25)) , m26(::std::forward<U26>( arg26)) , m27(::std::forward<U27>( arg27)) , m28(::std::forward<U28>( arg28)) , m29(::std::forward<U29>( arg29)) , m30(::std::forward<U30>( arg30)) , m31(::std::forward<U31>( arg31)) , m32(::std::forward<U32>( arg32)) , m33(::std::forward<U33>( arg33)) , m34(::std::forward<U34>( arg34)) , m35(::std::forward<U35>( arg35))
         {
@@ -8359,16 +8359,16 @@ namespace boost { namespace fusion
         BOOST_FUSION_GPU_ENABLED
         vector_data37(
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13 , U14 && arg14 , U15 && arg15 , U16 && arg16 , U17 && arg17 , U18 && arg18 , U19 && arg19 , U20 && arg20 , U21 && arg21 , U22 && arg22 , U23 && arg23 , U24 && arg24 , U25 && arg25 , U26 && arg26 , U27 && arg27 , U28 && arg28 , U29 && arg29 , U30 && arg30 , U31 && arg31 , U32 && arg32 , U33 && arg33 , U34 && arg34 , U35 && arg35 , U36 && arg36
-          , typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
-# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<U0, T0>
+# if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
+          , typename enable_if_c<
 # else
-                    ::std::is_convertible<U0, T0>
+          , typename ::boost::enable_if_c<
 # endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
+# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                is_convertible<U0, T0>::value
+# else
+                ::std::is_convertible<U0, T0>::value
+# endif
             >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13)) , m14(::std::forward<U14>( arg14)) , m15(::std::forward<U15>( arg15)) , m16(::std::forward<U16>( arg16)) , m17(::std::forward<U17>( arg17)) , m18(::std::forward<U18>( arg18)) , m19(::std::forward<U19>( arg19)) , m20(::std::forward<U20>( arg20)) , m21(::std::forward<U21>( arg21)) , m22(::std::forward<U22>( arg22)) , m23(::std::forward<U23>( arg23)) , m24(::std::forward<U24>( arg24)) , m25(::std::forward<U25>( arg25)) , m26(::std::forward<U26>( arg26)) , m27(::std::forward<U27>( arg27)) , m28(::std::forward<U28>( arg28)) , m29(::std::forward<U29>( arg29)) , m30(::std::forward<U30>( arg30)) , m31(::std::forward<U31>( arg31)) , m32(::std::forward<U32>( arg32)) , m33(::std::forward<U33>( arg33)) , m34(::std::forward<U34>( arg34)) , m35(::std::forward<U35>( arg35)) , m36(::std::forward<U36>( arg36))
         {
@@ -9867,16 +9867,16 @@ namespace boost { namespace fusion
         BOOST_FUSION_GPU_ENABLED
         vector_data38(
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13 , U14 && arg14 , U15 && arg15 , U16 && arg16 , U17 && arg17 , U18 && arg18 , U19 && arg19 , U20 && arg20 , U21 && arg21 , U22 && arg22 , U23 && arg23 , U24 && arg24 , U25 && arg25 , U26 && arg26 , U27 && arg27 , U28 && arg28 , U29 && arg29 , U30 && arg30 , U31 && arg31 , U32 && arg32 , U33 && arg33 , U34 && arg34 , U35 && arg35 , U36 && arg36 , U37 && arg37
-          , typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
-# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<U0, T0>
+# if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
+          , typename enable_if_c<
 # else
-                    ::std::is_convertible<U0, T0>
+          , typename ::boost::enable_if_c<
 # endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
+# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                is_convertible<U0, T0>::value
+# else
+                ::std::is_convertible<U0, T0>::value
+# endif
             >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13)) , m14(::std::forward<U14>( arg14)) , m15(::std::forward<U15>( arg15)) , m16(::std::forward<U16>( arg16)) , m17(::std::forward<U17>( arg17)) , m18(::std::forward<U18>( arg18)) , m19(::std::forward<U19>( arg19)) , m20(::std::forward<U20>( arg20)) , m21(::std::forward<U21>( arg21)) , m22(::std::forward<U22>( arg22)) , m23(::std::forward<U23>( arg23)) , m24(::std::forward<U24>( arg24)) , m25(::std::forward<U25>( arg25)) , m26(::std::forward<U26>( arg26)) , m27(::std::forward<U27>( arg27)) , m28(::std::forward<U28>( arg28)) , m29(::std::forward<U29>( arg29)) , m30(::std::forward<U30>( arg30)) , m31(::std::forward<U31>( arg31)) , m32(::std::forward<U32>( arg32)) , m33(::std::forward<U33>( arg33)) , m34(::std::forward<U34>( arg34)) , m35(::std::forward<U35>( arg35)) , m36(::std::forward<U36>( arg36)) , m37(::std::forward<U37>( arg37))
         {
@@ -11409,16 +11409,16 @@ namespace boost { namespace fusion
         BOOST_FUSION_GPU_ENABLED
         vector_data39(
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13 , U14 && arg14 , U15 && arg15 , U16 && arg16 , U17 && arg17 , U18 && arg18 , U19 && arg19 , U20 && arg20 , U21 && arg21 , U22 && arg22 , U23 && arg23 , U24 && arg24 , U25 && arg25 , U26 && arg26 , U27 && arg27 , U28 && arg28 , U29 && arg29 , U30 && arg30 , U31 && arg31 , U32 && arg32 , U33 && arg33 , U34 && arg34 , U35 && arg35 , U36 && arg36 , U37 && arg37 , U38 && arg38
-          , typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
-# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<U0, T0>
+# if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
+          , typename enable_if_c<
 # else
-                    ::std::is_convertible<U0, T0>
+          , typename ::boost::enable_if_c<
 # endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
+# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                is_convertible<U0, T0>::value
+# else
+                ::std::is_convertible<U0, T0>::value
+# endif
             >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13)) , m14(::std::forward<U14>( arg14)) , m15(::std::forward<U15>( arg15)) , m16(::std::forward<U16>( arg16)) , m17(::std::forward<U17>( arg17)) , m18(::std::forward<U18>( arg18)) , m19(::std::forward<U19>( arg19)) , m20(::std::forward<U20>( arg20)) , m21(::std::forward<U21>( arg21)) , m22(::std::forward<U22>( arg22)) , m23(::std::forward<U23>( arg23)) , m24(::std::forward<U24>( arg24)) , m25(::std::forward<U25>( arg25)) , m26(::std::forward<U26>( arg26)) , m27(::std::forward<U27>( arg27)) , m28(::std::forward<U28>( arg28)) , m29(::std::forward<U29>( arg29)) , m30(::std::forward<U30>( arg30)) , m31(::std::forward<U31>( arg31)) , m32(::std::forward<U32>( arg32)) , m33(::std::forward<U33>( arg33)) , m34(::std::forward<U34>( arg34)) , m35(::std::forward<U35>( arg35)) , m36(::std::forward<U36>( arg36)) , m37(::std::forward<U37>( arg37)) , m38(::std::forward<U38>( arg38))
         {
@@ -12985,16 +12985,16 @@ namespace boost { namespace fusion
         BOOST_FUSION_GPU_ENABLED
         vector_data40(
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13 , U14 && arg14 , U15 && arg15 , U16 && arg16 , U17 && arg17 , U18 && arg18 , U19 && arg19 , U20 && arg20 , U21 && arg21 , U22 && arg22 , U23 && arg23 , U24 && arg24 , U25 && arg25 , U26 && arg26 , U27 && arg27 , U28 && arg28 , U29 && arg29 , U30 && arg30 , U31 && arg31 , U32 && arg32 , U33 && arg33 , U34 && arg34 , U35 && arg35 , U36 && arg36 , U37 && arg37 , U38 && arg38 , U39 && arg39
-          , typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
-# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<U0, T0>
+# if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
+          , typename enable_if_c<
 # else
-                    ::std::is_convertible<U0, T0>
+          , typename ::boost::enable_if_c<
 # endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
+# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                is_convertible<U0, T0>::value
+# else
+                ::std::is_convertible<U0, T0>::value
+# endif
             >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13)) , m14(::std::forward<U14>( arg14)) , m15(::std::forward<U15>( arg15)) , m16(::std::forward<U16>( arg16)) , m17(::std::forward<U17>( arg17)) , m18(::std::forward<U18>( arg18)) , m19(::std::forward<U19>( arg19)) , m20(::std::forward<U20>( arg20)) , m21(::std::forward<U21>( arg21)) , m22(::std::forward<U22>( arg22)) , m23(::std::forward<U23>( arg23)) , m24(::std::forward<U24>( arg24)) , m25(::std::forward<U25>( arg25)) , m26(::std::forward<U26>( arg26)) , m27(::std::forward<U27>( arg27)) , m28(::std::forward<U28>( arg28)) , m29(::std::forward<U29>( arg29)) , m30(::std::forward<U30>( arg30)) , m31(::std::forward<U31>( arg31)) , m32(::std::forward<U32>( arg32)) , m33(::std::forward<U33>( arg33)) , m34(::std::forward<U34>( arg34)) , m35(::std::forward<U35>( arg35)) , m36(::std::forward<U36>( arg36)) , m37(::std::forward<U37>( arg37)) , m38(::std::forward<U38>( arg38)) , m39(::std::forward<U39>( arg39))
         {

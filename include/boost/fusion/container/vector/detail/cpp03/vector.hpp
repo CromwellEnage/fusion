@@ -264,8 +264,8 @@ FUSION_HASH else
         typename ::boost::disable_if_c<
 FUSION_HASH endif
 FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-            ::boost::is_same<
-                typename ::boost::remove_cv_ref<T>::type
+            is_same<
+                typename remove_cv_ref<T>::type
 FUSION_HASH else
             ::std::is_same<
                 // TODO:
@@ -282,8 +282,8 @@ FUSION_HASH endif  // BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
         typename ::boost::disable_if_c<
 #endif
 #if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-            ::boost::is_same<
-                typename ::boost::remove_cv_ref<T>::type
+            is_same<
+                typename remove_cv_ref<T>::type
 #else
             ::std::is_same<
                 // TODO:
