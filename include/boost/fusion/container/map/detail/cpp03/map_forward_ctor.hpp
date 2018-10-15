@@ -40,26 +40,14 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
         BOOST_PP_ENUM_BINARY_PARAMS(N, U, && arg)
 #if N == 1
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
-        // workaround for MSVC 11
 FUSION_HASH if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && \
 (BOOST_MSVC < 1800)
-      , typename enable_if_c<
-FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-            ::boost::is_same<U0, T0>::value
-FUSION_HASH else
-            ::std::is_same<U0, T0>::value
-FUSION_HASH endif
-        >::type* = BOOST_TTI_DETAIL_NULLPTR
+      , typename enable_if<is_same<U0, T0> >::type* = BOOST_TTI_DETAIL_NULLPTR
 FUSION_HASH endif
 #elif defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
-      , typename enable_if_c<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-            ::boost::is_same<U0, T0>::value
-#else
-            ::std::is_same<U0, T0>::value
-#endif
-        >::type* = BOOST_TTI_DETAIL_NULLPTR
-#endif  // preprocess file, or workaround for MSVC 11
+        // workaround for MSVC 11
+      , typename enable_if<is_same<U0, T0> >::type* = BOOST_TTI_DETAIL_NULLPTR
+#endif  // preprocessed file creation, or workaround for MSVC 11
 #endif  // N == 1
     ) : data(BOOST_PP_ENUM(N, FUSION_FORWARD_CTOR_FORWARD, arg))
     {

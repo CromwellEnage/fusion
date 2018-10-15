@@ -39,11 +39,7 @@
 // see map_forward_ctor.hpp
 #include <boost/tti/detail/dnullptr.hpp>
 #include <boost/core/enable_if.hpp>
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
 #include <boost/type_traits/is_same.hpp>
-#else
-#include <type_traits>
-#endif
 #endif
 
 #if defined(BOOST_FUSION_DONT_USE_PREPROCESSED_FILES)

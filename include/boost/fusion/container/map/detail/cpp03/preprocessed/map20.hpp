@@ -54,15 +54,8 @@ namespace boost { namespace fusion
     explicit
     map(
         U0 && arg0
-        
 # if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
-      , typename enable_if_c<
-# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-            ::boost::is_same<U0, T0>::value
-# else
-            ::std::is_same<U0, T0>::value
-# endif
-        >::type* = BOOST_TTI_DETAIL_NULLPTR
+      , typename enable_if<is_same<U0, T0> >::type* = BOOST_TTI_DETAIL_NULLPTR
 # endif
     ) : data(::std::forward<U0>( arg0))
     {
