@@ -5,7 +5,20 @@
     (See accompanying file LICENSE_1_0.txt or copy at
     http://www.boost.org/LICENSE_1_0.txt)
 ============================================================================*/
-#if defined(BOOST_PP_IS_ITERATING)
+#ifndef BOOST_PP_IS_ITERATING
+#if !defined(FUSION_VECTOR_FORWARD_CTOR_07122005_1123)
+#define FUSION_VECTOR_FORWARD_CTOR_07122005_1123
+
+#define FUSION_FORWARD_CTOR_FORWARD(z, n, _)    BOOST_FUSION_FWD_ELEM(U##n, _##n)
+
+#define BOOST_PP_FILENAME_1 \
+    <boost/fusion/container/vector/detail/cpp03/vector_forward_ctor.hpp>
+#define BOOST_PP_ITERATION_LIMITS (1, FUSION_MAX_VECTOR_SIZE)
+#include BOOST_PP_ITERATE()
+
+#undef FUSION_FORWARD_CTOR_FORWARD
+#endif
+#else // defined(BOOST_PP_IS_ITERATING)
 //////////////////////////////////////////////////////////////////////////////
 //
 //  Preprocessor vertical repetition code
@@ -23,18 +36,14 @@ FUSION_HASH endif
 #if !defined(BOOST_CLANG)
     BOOST_CONSTEXPR
 #endif
-#endif  // preprocessed file creation
+#endif
     BOOST_FUSION_GPU_ENABLED
 #if M == 1
     explicit
 #endif
-    vector(
-        BOOST_PP_ENUM_BINARY_PARAMS(
-            M, typename ::boost::fusion::detail::call_param<T, >::type arg
-        )
-    ) : vec(BOOST_PP_ENUM_PARAMS(M, arg))
-    {
-    }
+    vector(BOOST_PP_ENUM_BINARY_PARAMS(
+        M, typename detail::call_param<T, >::type arg))
+        : vec(BOOST_PP_ENUM_PARAMS(M, arg)) {}
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
@@ -51,78 +60,22 @@ FUSION_HASH endif
 #if !defined(BOOST_CLANG)
     BOOST_CXX14_CONSTEXPR
 #endif
-#endif  // preprocessed file creation
+#endif
     BOOST_FUSION_GPU_ENABLED
 #if M == 1
     explicit
 #endif
-    vector(
-        BOOST_PP_ENUM_BINARY_PARAMS(M, U, && arg)
+    vector(BOOST_PP_ENUM_BINARY_PARAMS(M, U, && arg)
 #if M == 1
-#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
-FUSION_HASH if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && \
-(BOOST_MSVC < 1800)
-      , typename disable_if_c<
-FUSION_HASH else
-      , typename ::boost::disable_if_c<
-FUSION_HASH endif
-FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-            is_same<
-                typename remove_cv_ref<U0>::type
-FUSION_HASH else
-            ::std::is_same<
-                // TODO: replace the statements below
-                // with ::std::remove_cvref
-                // if C++20 type_traits is detectable.
-                typename ::std::remove_cv<
-                    typename ::std::remove_reference<U0>::type
-                >::type
-FUSION_HASH endif
-#else   // !preprocessing
-#if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
-      , typename disable_if_c<
-#else
-      , typename ::boost::disable_if_c<
+        , typename boost::disable_if_c<boost::is_same<vector, typename boost::remove_cv_ref<U0>::type>::value, detail::enabler_>::type = detail::enabler
 #endif
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-            is_same<
-                typename remove_cv_ref<U0>::type
-#else
-            ::std::is_same<
-                // TODO: replace the statements below
-                // with ::std::remove_cvref
-                // if C++20 type_traits is detectable.
-                typename ::std::remove_cv<
-                    typename ::std::remove_reference<U0>::type
-                >::type
-#endif  // BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
-#endif  // preprocessed file creation
-              , vector
-            >::value
-          , ::boost::fusion::detail::enabler_
-        >::type = ::boost::fusion::detail::enabler
-#endif  // M == 1
-    ) : vec(BOOST_PP_ENUM(M, FUSION_FORWARD_CTOR_FORWARD, arg))
-    {
-    }
-#endif  // rvalue reference support or preprocessed-file creation
+        )
+        : vec(BOOST_PP_ENUM(M, FUSION_FORWARD_CTOR_FORWARD, arg)) {}
+#endif
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH endif
 #endif
 
 #undef M
-#else   // !defined(BOOST_PP_IS_ITERATING)
-#if !defined(FUSION_VECTOR_FORWARD_CTOR_07122005_1123)
-#define FUSION_VECTOR_FORWARD_CTOR_07122005_1123
-
-#define FUSION_FORWARD_CTOR_FORWARD(z, n, _) BOOST_FUSION_FWD_ELEM(U##n, _##n)
-
-#define BOOST_PP_FILENAME_1 \
-    <boost/fusion/container/vector/detail/cpp03/vector_forward_ctor.hpp>
-#define BOOST_PP_ITERATION_LIMITS (1, FUSION_MAX_VECTOR_SIZE)
-#include BOOST_PP_ITERATE()
-
-#undef FUSION_FORWARD_CTOR_FORWARD
-#endif  // include guard
-#endif  // defined(BOOST_PP_IS_ITERATING)
+#endif // defined(BOOST_PP_IS_ITERATING)
 
