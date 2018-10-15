@@ -256,38 +256,46 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
 
         template <typename T>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename enable_if<
-            typename ::boost::mpl::if_<
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
-FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_same<
-                    typename ::boost::remove_cv_ref<T>::type
+FUSION_HASH if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && \
+(BOOST_MSVC < 1800)
+        typename disable_if_c<
 FUSION_HASH else
-                ::std::is_same<
-                    // TODO:
-                    // replace the statements below with ::std::remove_cvref
-                    // if C++20 type_traits is detectable.
-                    typename ::std::remove_cv<
-                        typename ::std::remove_reference<T>::type
-                    >::type
+        typename ::boost::disable_if_c<
+FUSION_HASH endif
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+            ::boost::is_same<
+                typename ::boost::remove_cv_ref<T>::type
+FUSION_HASH else
+            ::std::is_same<
+                // TODO:
+                // replace the statements below with ::std::remove_cvref
+                // if C++20 type_traits is detectable.
+                typename ::std::remove_cv<
+                    typename ::std::remove_reference<T>::type
+                >::type
 FUSION_HASH endif  // BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
-#elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_same<
-                    typename ::boost::remove_cv_ref<T>::type
 #else
-                ::std::is_same<
-                    // TODO:
-                    // replace the statements below with ::std::remove_cvref
-                    // if C++20 type_traits is detectable.
-                    typename ::std::remove_cv<
-                        typename ::std::remove_reference<T>::type
-                    >::type
-#endif  // preprocess file, or BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
-                  , vector
-                >
-              , ::boost::mpl::false_
-              , ::boost::mpl::true_
-            >::type
+#if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
+        typename disable_if_c<
+#else
+        typename ::boost::disable_if_c<
+#endif
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+            ::boost::is_same<
+                typename ::boost::remove_cv_ref<T>::type
+#else
+            ::std::is_same<
+                // TODO:
+                // replace the statements below with ::std::remove_cvref
+                // if C++20 type_traits is detectable.
+                typename ::std::remove_cv<
+                    typename ::std::remove_reference<T>::type
+                >::type
+#endif  // BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS
+#endif  // preprocessed file creation
+              , vector
+            >::value
           , vector&
         >::type
         operator=(T&& rhs)

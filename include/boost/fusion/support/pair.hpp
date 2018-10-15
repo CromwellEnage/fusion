@@ -36,7 +36,6 @@ namespace boost { namespace fusion { namespace result_of
 
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
 #if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-// MSVC-11 has problems with C++11 type traits.
 #include <boost/type_traits/is_convertible.hpp>
 #include <boost/type_traits/is_lvalue_reference.hpp>
 #else
@@ -83,7 +82,11 @@ namespace boost { namespace fusion
         BOOST_FUSION_GPU_ENABLED
         pair(
             Second2&& val
+#if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
+          , typename enable_if<
+#else
           , typename ::boost::enable_if<
+#endif
                 typename ::boost::mpl::eval_if<
 #if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                     ::boost::is_lvalue_reference<Second2>
