@@ -145,12 +145,16 @@ namespace boost { namespace fusion
         BOOST_FUSION_GPU_ENABLED
         explicit vector1(
             U0&& _0
-          , typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
-                    ::std::is_convertible<U0, T0>
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
+# if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
+          , typename enable_if_c<
+# else
+          , typename ::boost::enable_if_c<
+# endif
+# if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                ::boost::is_convertible<U0, T0>::value
+# else
+                ::std::is_convertible<U0, T0>::value
+# endif
             >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(::std::forward<U0>( _0))
         {
@@ -202,16 +206,12 @@ namespace boost { namespace fusion
           , typename ::boost::enable_if<
                 ::boost::fusion::traits::is_sequence<Sequence>
             >::type* = BOOST_TTI_DETAIL_NULLPTR
-          , typename ::boost::disable_if<
-                typename ::boost::mpl::if_<
+          , typename ::boost::disable_if_c<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<Sequence, T0>
+                ::boost::is_convertible<Sequence, T0>::value
 # else
-                    ::std::is_convertible<Sequence, T0>
+                ::std::is_convertible<Sequence, T0>::value
 # endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
             >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
@@ -226,16 +226,12 @@ namespace boost { namespace fusion
           , typename ::boost::enable_if<
                 ::boost::fusion::traits::is_sequence<Sequence>
             >::type* = BOOST_TTI_DETAIL_NULLPTR
-          , typename ::boost::disable_if<
-                typename ::boost::mpl::if_<
+          , typename ::boost::disable_if_c<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<Sequence, T0>
+                ::boost::is_convertible<Sequence, T0>::value
 # else
-                    ::std::is_convertible<Sequence, T0>
+                ::std::is_convertible<Sequence, T0>::value
 # endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
             >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
@@ -254,16 +250,12 @@ namespace boost { namespace fusion
         }
         template <typename Sequence>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename ::boost::disable_if<
-            typename ::boost::mpl::if_<
+        typename ::boost::disable_if_c<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<Sequence, T0>
+            ::boost::is_convertible<Sequence, T0>::value
 # else
-                ::std::is_convertible<Sequence, T0>
+            ::std::is_convertible<Sequence, T0>::value
 # endif
-              , ::boost::mpl::true_
-              , ::boost::mpl::false_
-            >::type
           , this_type&
         >::type
         operator=(Sequence const& seq)
@@ -550,16 +542,12 @@ namespace boost { namespace fusion
         }
         template <typename Sequence>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename ::boost::disable_if<
-            typename ::boost::mpl::if_<
+        typename ::boost::disable_if_c<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<Sequence, T0>
+            ::boost::is_convertible<Sequence, T0>::value
 # else
-                ::std::is_convertible<Sequence, T0>
+            ::std::is_convertible<Sequence, T0>::value
 # endif
-              , ::boost::mpl::true_
-              , ::boost::mpl::false_
-            >::type
           , this_type&
         >::type
         operator=(Sequence const& seq)
@@ -880,16 +868,12 @@ namespace boost { namespace fusion
         }
         template <typename Sequence>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename ::boost::disable_if<
-            typename ::boost::mpl::if_<
+        typename ::boost::disable_if_c<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<Sequence, T0>
+            ::boost::is_convertible<Sequence, T0>::value
 # else
-                ::std::is_convertible<Sequence, T0>
+            ::std::is_convertible<Sequence, T0>::value
 # endif
-              , ::boost::mpl::true_
-              , ::boost::mpl::false_
-            >::type
           , this_type&
         >::type
         operator=(Sequence const& seq)
@@ -1244,16 +1228,12 @@ namespace boost { namespace fusion
         }
         template <typename Sequence>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename ::boost::disable_if<
-            typename ::boost::mpl::if_<
+        typename ::boost::disable_if_c<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<Sequence, T0>
+            ::boost::is_convertible<Sequence, T0>::value
 # else
-                ::std::is_convertible<Sequence, T0>
+            ::std::is_convertible<Sequence, T0>::value
 # endif
-              , ::boost::mpl::true_
-              , ::boost::mpl::false_
-            >::type
           , this_type&
         >::type
         operator=(Sequence const& seq)
@@ -1642,16 +1622,12 @@ namespace boost { namespace fusion
         }
         template <typename Sequence>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename ::boost::disable_if<
-            typename ::boost::mpl::if_<
+        typename ::boost::disable_if_c<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<Sequence, T0>
+            ::boost::is_convertible<Sequence, T0>::value
 # else
-                ::std::is_convertible<Sequence, T0>
+            ::std::is_convertible<Sequence, T0>::value
 # endif
-              , ::boost::mpl::true_
-              , ::boost::mpl::false_
-            >::type
           , this_type&
         >::type
         operator=(Sequence const& seq)
@@ -2074,16 +2050,12 @@ namespace boost { namespace fusion
         }
         template <typename Sequence>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename ::boost::disable_if<
-            typename ::boost::mpl::if_<
+        typename ::boost::disable_if_c<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<Sequence, T0>
+            ::boost::is_convertible<Sequence, T0>::value
 # else
-                ::std::is_convertible<Sequence, T0>
+            ::std::is_convertible<Sequence, T0>::value
 # endif
-              , ::boost::mpl::true_
-              , ::boost::mpl::false_
-            >::type
           , this_type&
         >::type
         operator=(Sequence const& seq)
@@ -2540,16 +2512,12 @@ namespace boost { namespace fusion
         }
         template <typename Sequence>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename ::boost::disable_if<
-            typename ::boost::mpl::if_<
+        typename ::boost::disable_if_c<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<Sequence, T0>
+            ::boost::is_convertible<Sequence, T0>::value
 # else
-                ::std::is_convertible<Sequence, T0>
+            ::std::is_convertible<Sequence, T0>::value
 # endif
-              , ::boost::mpl::true_
-              , ::boost::mpl::false_
-            >::type
           , this_type&
         >::type
         operator=(Sequence const& seq)
@@ -3040,16 +3008,12 @@ namespace boost { namespace fusion
         }
         template <typename Sequence>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename ::boost::disable_if<
-            typename ::boost::mpl::if_<
+        typename ::boost::disable_if_c<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<Sequence, T0>
+            ::boost::is_convertible<Sequence, T0>::value
 # else
-                ::std::is_convertible<Sequence, T0>
+            ::std::is_convertible<Sequence, T0>::value
 # endif
-              , ::boost::mpl::true_
-              , ::boost::mpl::false_
-            >::type
           , this_type&
         >::type
         operator=(Sequence const& seq)
@@ -3574,16 +3538,12 @@ namespace boost { namespace fusion
         }
         template <typename Sequence>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename ::boost::disable_if<
-            typename ::boost::mpl::if_<
+        typename ::boost::disable_if_c<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<Sequence, T0>
+            ::boost::is_convertible<Sequence, T0>::value
 # else
-                ::std::is_convertible<Sequence, T0>
+            ::std::is_convertible<Sequence, T0>::value
 # endif
-              , ::boost::mpl::true_
-              , ::boost::mpl::false_
-            >::type
           , this_type&
         >::type
         operator=(Sequence const& seq)
@@ -4142,16 +4102,12 @@ namespace boost { namespace fusion
         }
         template <typename Sequence>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename ::boost::disable_if<
-            typename ::boost::mpl::if_<
+        typename ::boost::disable_if_c<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<Sequence, T0>
+            ::boost::is_convertible<Sequence, T0>::value
 # else
-                ::std::is_convertible<Sequence, T0>
+            ::std::is_convertible<Sequence, T0>::value
 # endif
-              , ::boost::mpl::true_
-              , ::boost::mpl::false_
-            >::type
           , this_type&
         >::type
         operator=(Sequence const& seq)

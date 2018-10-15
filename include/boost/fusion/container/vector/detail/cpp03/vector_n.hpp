@@ -385,16 +385,30 @@ FUSION_HASH endif
 #if (N == 1)
         explicit BOOST_PP_CAT(vector, N)(
             U0&& _0
-          , typename ::boost::enable_if<
-                typename ::boost::mpl::if_<
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<U0, T0>
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && \
+(BOOST_MSVC < 1800)
+          , typename enable_if_c<
+FUSION_HASH else
+          , typename ::boost::enable_if_c<
+FUSION_HASH endif
+FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                ::boost::is_convertible<U0, T0>::value
+FUSION_HASH else
+                ::std::is_convertible<U0, T0>::value
+FUSION_HASH endif
+#else   // !preprocessing
+#if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
+          , typename enable_if_c<
 #else
-                    ::std::is_convertible<U0, T0>
+          , typename ::boost::enable_if_c<
 #endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
+#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
+                ::boost::is_convertible<U0, T0>::value
+#else
+                ::std::is_convertible<U0, T0>::value
+#endif
+#endif  // preprocessed file creation
             >::type* /*dummy*/ = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(BOOST_FUSION_FWD_ELEM(U0, _0))
         {
@@ -474,22 +488,18 @@ FUSION_HASH endif
                 ::boost::fusion::traits::is_sequence<Sequence>
             >::type* = BOOST_TTI_DETAIL_NULLPTR
 #if (N == 1)
-          , typename ::boost::disable_if<
-                typename ::boost::mpl::if_<
+          , typename ::boost::disable_if_c<
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<Sequence, T0>
+                ::boost::is_convertible<Sequence, T0>::value
 FUSION_HASH else
-                    ::std::is_convertible<Sequence, T0>
+                ::std::is_convertible<Sequence, T0>::value
 FUSION_HASH endif
 #elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<Sequence, T0>
+                ::boost::is_convertible<Sequence, T0>::value
 #else
-                    ::std::is_convertible<Sequence, T0>
+                ::std::is_convertible<Sequence, T0>::value
 #endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
             >::type* /*dummy*/ = BOOST_TTI_DETAIL_NULLPTR
 #endif  // N
         ) : base_type(base_type::init_from_sequence(seq))
@@ -513,22 +523,18 @@ FUSION_HASH endif
                 ::boost::fusion::traits::is_sequence<Sequence>
             >::type* = BOOST_TTI_DETAIL_NULLPTR
 #if (N == 1)
-          , typename ::boost::disable_if<
-                typename ::boost::mpl::if_<
+          , typename ::boost::disable_if_c<
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<Sequence, T0>
+                ::boost::is_convertible<Sequence, T0>::value
 FUSION_HASH else
-                    ::std::is_convertible<Sequence, T0>
+                ::std::is_convertible<Sequence, T0>::value
 FUSION_HASH endif
 #elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                    ::boost::is_convertible<Sequence, T0>
+                ::boost::is_convertible<Sequence, T0>::value
 #else
-                    ::std::is_convertible<Sequence, T0>
+                ::std::is_convertible<Sequence, T0>::value
 #endif
-                  , ::boost::mpl::true_
-                  , ::boost::mpl::false_
-                >::type
             >::type* /*dummy*/ = BOOST_TTI_DETAIL_NULLPTR
 #endif  // N
         ) : base_type(base_type::init_from_sequence(seq))
@@ -550,22 +556,18 @@ FUSION_HASH endif
 
         template <typename Sequence>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename ::boost::disable_if<
-            typename ::boost::mpl::if_<
+        typename ::boost::disable_if_c<
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<Sequence, T0>
+            ::boost::is_convertible<Sequence, T0>::value
 FUSION_HASH else
-                ::std::is_convertible<Sequence, T0>
+            ::std::is_convertible<Sequence, T0>::value
 FUSION_HASH endif
 #elif defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-                ::boost::is_convertible<Sequence, T0>
+            ::boost::is_convertible<Sequence, T0>::value
 #else
-                ::std::is_convertible<Sequence, T0>
+            ::std::is_convertible<Sequence, T0>::value
 #endif
-              , ::boost::mpl::true_
-              , ::boost::mpl::false_
-            >::type
           , this_type&
         >::type
         operator=(Sequence const& seq)
