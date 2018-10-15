@@ -28,20 +28,24 @@ namespace boost { namespace fusion { namespace result_of
 
 #include <boost/fusion/support/detail/access.hpp>
 #include <boost/fusion/support/config.hpp>
+
+#if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
 #include <boost/tti/detail/dnullptr.hpp>
+#include <boost/core/enable_if.hpp>
+
+#if !(defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800))
 #include <boost/mpl/bool.hpp>
 #include <boost/mpl/if.hpp>
 #include <boost/mpl/eval_if.hpp>
-#include <boost/core/enable_if.hpp>
+#endif
 
-#if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
 #if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
 #include <boost/type_traits/is_convertible.hpp>
 #include <boost/type_traits/is_lvalue_reference.hpp>
 #else
 #include <type_traits>
 #endif
-#endif
+#endif  // BOOST_NO_CXX11_RVALUE_REFERENCES
 
 #if defined(BOOST_MSVC)
 #pragma warning(push)
@@ -83,10 +87,14 @@ namespace boost { namespace fusion
         pair(
             Second2&& val
 #if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
+          , typename disable_if<
+                is_lvalue_reference<Second2>
+            >::type* /*dummy*/ = BOOST_TTI_DETAIL_NULLPTR
           , typename enable_if<
-#else
+                is_convertible<Second2, Second>
+            >::type* /*dummy*/ = BOOST_TTI_DETAIL_NULLPTR
+#else   // not MSVC-11.0
           , typename ::boost::enable_if<
-#endif
                 typename ::boost::mpl::eval_if<
 #if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                     ::boost::is_lvalue_reference<Second2>
@@ -105,6 +113,7 @@ namespace boost { namespace fusion
                     >
                 >::type
             >::type* /*dummy*/ = BOOST_TTI_DETAIL_NULLPTR
+#endif  // MSVC-11.0
         ) : second(BOOST_FUSION_FWD_ELEM(Second, val))
         {
         }
