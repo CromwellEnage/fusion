@@ -88,7 +88,7 @@ namespace boost { namespace fusion
     explicit
     vector(
         U0 && arg0
-      , typename ::boost::disable_if<
+      , typename disable_if<
             typename ::boost::mpl::if_<
 # if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
                 ::boost::is_same<

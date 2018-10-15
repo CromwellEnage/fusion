@@ -59,7 +59,7 @@ FUSION_HASH endif
     vector(
         BOOST_PP_ENUM_BINARY_PARAMS(M, U, && arg)
 #if M == 1
-      , typename ::boost::disable_if<
+      , typename disable_if<
             typename ::boost::mpl::if_<
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)

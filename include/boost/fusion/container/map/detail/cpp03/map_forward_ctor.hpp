@@ -40,8 +40,8 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
         BOOST_PP_ENUM_BINARY_PARAMS(N, U, && arg)
 #if N == 1
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
-        // workaround for MSVC 10
-FUSION_HASH if defined(BOOST_MSVC) && (BOOST_MSVC == 1700)
+        // workaround for MSVC 11
+FUSION_HASH if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
       , typename enable_if_c<
 FUSION_HASH if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
             ::boost::is_same<U0, T0>::value
@@ -50,11 +50,11 @@ FUSION_HASH else
 FUSION_HASH endif
         >::type* = BOOST_TTI_DETAIL_NULLPTR
 FUSION_HASH endif
-#elif defined(BOOST_MSVC) && (BOOST_MSVC == 1700)
+#elif defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
       , typename enable_if_c<
 #if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
             ::boost::is_same<U0, T0>::value
-FUSION_HASH else
+#else
             ::std::is_same<U0, T0>::value
 #endif
         >::type* = BOOST_TTI_DETAIL_NULLPTR

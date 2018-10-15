@@ -35,7 +35,7 @@
 #include <boost/preprocessor/cat.hpp>
 
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES) && \
-    defined(BOOST_MSVC) && (BOOST_MSVC == 1700)
+    defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
 // see map_forward_ctor.hpp
 #include <boost/tti/detail/dnullptr.hpp>
 #include <boost/core/enable_if.hpp>
