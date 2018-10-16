@@ -28,6 +28,9 @@
 #include <boost/mpl/at.hpp>
 #include <boost/mpl/vector/vector10.hpp>
 #include <boost/tti/detail/dnullptr.hpp>
+#include <boost/type_traits/add_const.hpp>
+#include <boost/type_traits/add_lvalue_reference.hpp>
+#include <boost/type_traits/is_convertible.hpp>
 #include <boost/core/enable_if.hpp>
 #include <boost/preprocessor/dec.hpp>
 #include <boost/preprocessor/iteration/iterate.hpp>
@@ -36,14 +39,6 @@
 #include <boost/preprocessor/repetition/enum_params.hpp>
 #include <boost/preprocessor/repetition/enum_binary_params.hpp>
 #include <boost/preprocessor/repetition/repeat_from_to.hpp>
-
-#if defined(BOOST_FUSION_USES_BOOST_VICE_CXX11_TYPE_TRAITS)
-#include <boost/type_traits/add_const.hpp>
-#include <boost/type_traits/add_lvalue_reference.hpp>
-#include <boost/type_traits/is_convertible.hpp>
-#else
-#include <type_traits>
-#endif
 
 namespace boost { namespace fusion
 {

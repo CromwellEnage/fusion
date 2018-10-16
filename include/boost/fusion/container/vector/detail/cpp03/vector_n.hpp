@@ -85,7 +85,7 @@ FUSION_HASH endif
             BOOST_PP_ENUM_BINARY_PARAMS(N, U, && arg)
           , typename boost::enable_if<
                 is_convertible<U0, T0>
-            >::type* /*dummy*/ = 0
+            >::type* /*dummy*/ = BOOST_TTI_DETAIL_NULLPTR
         ) : BOOST_PP_ENUM(N, FUSION_VECTOR_CTOR_ARG_FWD, arg)
         {
         }
@@ -248,7 +248,7 @@ FUSION_HASH endif
             U0&& _0
           , typename boost::enable_if<
                 is_convertible<U0, T0>
-            >::type* /*dummy*/ = 0
+            >::type* /*dummy*/ = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(BOOST_FUSION_FWD_ELEM(U0, _0))
 #else
         BOOST_PP_CAT(vector, N)(
@@ -324,11 +324,11 @@ FUSION_HASH endif
             Sequence const& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
 #if (N == 1)
           , typename boost::disable_if<
                 is_convertible<Sequence, T0>
-            >::type* /*dummy*/ = 0
+            >::type* /*dummy*/ = BOOST_TTI_DETAIL_NULLPTR
 #endif
         ) : base_type(base_type::init_from_sequence(seq))
         {
@@ -349,11 +349,11 @@ FUSION_HASH endif
             Sequence& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
 #if (N == 1)
           , typename boost::disable_if<
                 is_convertible<Sequence, T0>
-            >::type* /*dummy*/ = 0
+            >::type* /*dummy*/ = BOOST_TTI_DETAIL_NULLPTR
 #endif
         ) : base_type(base_type::init_from_sequence(seq))
         {
@@ -391,7 +391,9 @@ FUSION_HASH endif
 
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename add_lvalue_reference<typename mpl::at<types, I>::type>::type
+        typename add_lvalue_reference<
+            typename mpl::at<types, I>::type
+        >::type
         at_impl(I)
         {
             return this->at_impl(mpl::int_<I::value>());

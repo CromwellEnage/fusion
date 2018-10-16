@@ -27,7 +27,7 @@ namespace boost { namespace fusion
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10
           , typename boost::enable_if<
                 is_convertible<U0, T0>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10))
         {
         }
@@ -177,7 +177,7 @@ namespace boost { namespace fusion
             Sequence const& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -190,7 +190,7 @@ namespace boost { namespace fusion
             Sequence& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -221,7 +221,9 @@ namespace boost { namespace fusion
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T0>::type at_impl(mpl::int_<0>) { return this->m0; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T0>::type>::type at_impl(mpl::int_<0>) const { return this->m0; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T1>::type at_impl(mpl::int_<1>) { return this->m1; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T1>::type>::type at_impl(mpl::int_<1>) const { return this->m1; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T2>::type at_impl(mpl::int_<2>) { return this->m2; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T2>::type>::type at_impl(mpl::int_<2>) const { return this->m2; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T3>::type at_impl(mpl::int_<3>) { return this->m3; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T3>::type>::type at_impl(mpl::int_<3>) const { return this->m3; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T4>::type at_impl(mpl::int_<4>) { return this->m4; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T4>::type>::type at_impl(mpl::int_<4>) const { return this->m4; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T5>::type at_impl(mpl::int_<5>) { return this->m5; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T5>::type>::type at_impl(mpl::int_<5>) const { return this->m5; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T6>::type at_impl(mpl::int_<6>) { return this->m6; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T6>::type>::type at_impl(mpl::int_<6>) const { return this->m6; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T7>::type at_impl(mpl::int_<7>) { return this->m7; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T7>::type>::type at_impl(mpl::int_<7>) const { return this->m7; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T8>::type at_impl(mpl::int_<8>) { return this->m8; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T8>::type>::type at_impl(mpl::int_<8>) const { return this->m8; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T9>::type at_impl(mpl::int_<9>) { return this->m9; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T9>::type>::type at_impl(mpl::int_<9>) const { return this->m9; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T10>::type at_impl(mpl::int_<10>) { return this->m10; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T10>::type>::type at_impl(mpl::int_<10>) const { return this->m10; }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename add_lvalue_reference<typename mpl::at<types, I>::type>::type
+        typename add_lvalue_reference<
+            typename mpl::at<types, I>::type
+        >::type
         at_impl(I)
         {
             return this->at_impl(mpl::int_<I::value>());
@@ -254,7 +256,7 @@ namespace boost { namespace fusion
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11
           , typename boost::enable_if<
                 is_convertible<U0, T0>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11))
         {
         }
@@ -404,7 +406,7 @@ namespace boost { namespace fusion
             Sequence const& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -417,7 +419,7 @@ namespace boost { namespace fusion
             Sequence& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -448,7 +450,9 @@ namespace boost { namespace fusion
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T0>::type at_impl(mpl::int_<0>) { return this->m0; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T0>::type>::type at_impl(mpl::int_<0>) const { return this->m0; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T1>::type at_impl(mpl::int_<1>) { return this->m1; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T1>::type>::type at_impl(mpl::int_<1>) const { return this->m1; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T2>::type at_impl(mpl::int_<2>) { return this->m2; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T2>::type>::type at_impl(mpl::int_<2>) const { return this->m2; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T3>::type at_impl(mpl::int_<3>) { return this->m3; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T3>::type>::type at_impl(mpl::int_<3>) const { return this->m3; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T4>::type at_impl(mpl::int_<4>) { return this->m4; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T4>::type>::type at_impl(mpl::int_<4>) const { return this->m4; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T5>::type at_impl(mpl::int_<5>) { return this->m5; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T5>::type>::type at_impl(mpl::int_<5>) const { return this->m5; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T6>::type at_impl(mpl::int_<6>) { return this->m6; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T6>::type>::type at_impl(mpl::int_<6>) const { return this->m6; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T7>::type at_impl(mpl::int_<7>) { return this->m7; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T7>::type>::type at_impl(mpl::int_<7>) const { return this->m7; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T8>::type at_impl(mpl::int_<8>) { return this->m8; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T8>::type>::type at_impl(mpl::int_<8>) const { return this->m8; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T9>::type at_impl(mpl::int_<9>) { return this->m9; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T9>::type>::type at_impl(mpl::int_<9>) const { return this->m9; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T10>::type at_impl(mpl::int_<10>) { return this->m10; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T10>::type>::type at_impl(mpl::int_<10>) const { return this->m10; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T11>::type at_impl(mpl::int_<11>) { return this->m11; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T11>::type>::type at_impl(mpl::int_<11>) const { return this->m11; }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename add_lvalue_reference<typename mpl::at<types, I>::type>::type
+        typename add_lvalue_reference<
+            typename mpl::at<types, I>::type
+        >::type
         at_impl(I)
         {
             return this->at_impl(mpl::int_<I::value>());
@@ -481,7 +485,7 @@ namespace boost { namespace fusion
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12
           , typename boost::enable_if<
                 is_convertible<U0, T0>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12))
         {
         }
@@ -631,7 +635,7 @@ namespace boost { namespace fusion
             Sequence const& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -644,7 +648,7 @@ namespace boost { namespace fusion
             Sequence& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -675,7 +679,9 @@ namespace boost { namespace fusion
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T0>::type at_impl(mpl::int_<0>) { return this->m0; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T0>::type>::type at_impl(mpl::int_<0>) const { return this->m0; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T1>::type at_impl(mpl::int_<1>) { return this->m1; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T1>::type>::type at_impl(mpl::int_<1>) const { return this->m1; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T2>::type at_impl(mpl::int_<2>) { return this->m2; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T2>::type>::type at_impl(mpl::int_<2>) const { return this->m2; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T3>::type at_impl(mpl::int_<3>) { return this->m3; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T3>::type>::type at_impl(mpl::int_<3>) const { return this->m3; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T4>::type at_impl(mpl::int_<4>) { return this->m4; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T4>::type>::type at_impl(mpl::int_<4>) const { return this->m4; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T5>::type at_impl(mpl::int_<5>) { return this->m5; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T5>::type>::type at_impl(mpl::int_<5>) const { return this->m5; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T6>::type at_impl(mpl::int_<6>) { return this->m6; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T6>::type>::type at_impl(mpl::int_<6>) const { return this->m6; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T7>::type at_impl(mpl::int_<7>) { return this->m7; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T7>::type>::type at_impl(mpl::int_<7>) const { return this->m7; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T8>::type at_impl(mpl::int_<8>) { return this->m8; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T8>::type>::type at_impl(mpl::int_<8>) const { return this->m8; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T9>::type at_impl(mpl::int_<9>) { return this->m9; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T9>::type>::type at_impl(mpl::int_<9>) const { return this->m9; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T10>::type at_impl(mpl::int_<10>) { return this->m10; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T10>::type>::type at_impl(mpl::int_<10>) const { return this->m10; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T11>::type at_impl(mpl::int_<11>) { return this->m11; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T11>::type>::type at_impl(mpl::int_<11>) const { return this->m11; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T12>::type at_impl(mpl::int_<12>) { return this->m12; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T12>::type>::type at_impl(mpl::int_<12>) const { return this->m12; }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename add_lvalue_reference<typename mpl::at<types, I>::type>::type
+        typename add_lvalue_reference<
+            typename mpl::at<types, I>::type
+        >::type
         at_impl(I)
         {
             return this->at_impl(mpl::int_<I::value>());
@@ -708,7 +714,7 @@ namespace boost { namespace fusion
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13
           , typename boost::enable_if<
                 is_convertible<U0, T0>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13))
         {
         }
@@ -858,7 +864,7 @@ namespace boost { namespace fusion
             Sequence const& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -871,7 +877,7 @@ namespace boost { namespace fusion
             Sequence& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -902,7 +908,9 @@ namespace boost { namespace fusion
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T0>::type at_impl(mpl::int_<0>) { return this->m0; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T0>::type>::type at_impl(mpl::int_<0>) const { return this->m0; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T1>::type at_impl(mpl::int_<1>) { return this->m1; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T1>::type>::type at_impl(mpl::int_<1>) const { return this->m1; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T2>::type at_impl(mpl::int_<2>) { return this->m2; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T2>::type>::type at_impl(mpl::int_<2>) const { return this->m2; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T3>::type at_impl(mpl::int_<3>) { return this->m3; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T3>::type>::type at_impl(mpl::int_<3>) const { return this->m3; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T4>::type at_impl(mpl::int_<4>) { return this->m4; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T4>::type>::type at_impl(mpl::int_<4>) const { return this->m4; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T5>::type at_impl(mpl::int_<5>) { return this->m5; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T5>::type>::type at_impl(mpl::int_<5>) const { return this->m5; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T6>::type at_impl(mpl::int_<6>) { return this->m6; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T6>::type>::type at_impl(mpl::int_<6>) const { return this->m6; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T7>::type at_impl(mpl::int_<7>) { return this->m7; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T7>::type>::type at_impl(mpl::int_<7>) const { return this->m7; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T8>::type at_impl(mpl::int_<8>) { return this->m8; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T8>::type>::type at_impl(mpl::int_<8>) const { return this->m8; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T9>::type at_impl(mpl::int_<9>) { return this->m9; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T9>::type>::type at_impl(mpl::int_<9>) const { return this->m9; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T10>::type at_impl(mpl::int_<10>) { return this->m10; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T10>::type>::type at_impl(mpl::int_<10>) const { return this->m10; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T11>::type at_impl(mpl::int_<11>) { return this->m11; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T11>::type>::type at_impl(mpl::int_<11>) const { return this->m11; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T12>::type at_impl(mpl::int_<12>) { return this->m12; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T12>::type>::type at_impl(mpl::int_<12>) const { return this->m12; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T13>::type at_impl(mpl::int_<13>) { return this->m13; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T13>::type>::type at_impl(mpl::int_<13>) const { return this->m13; }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename add_lvalue_reference<typename mpl::at<types, I>::type>::type
+        typename add_lvalue_reference<
+            typename mpl::at<types, I>::type
+        >::type
         at_impl(I)
         {
             return this->at_impl(mpl::int_<I::value>());
@@ -935,7 +943,7 @@ namespace boost { namespace fusion
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13 , U14 && arg14
           , typename boost::enable_if<
                 is_convertible<U0, T0>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13)) , m14(::std::forward<U14>( arg14))
         {
         }
@@ -1085,7 +1093,7 @@ namespace boost { namespace fusion
             Sequence const& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -1098,7 +1106,7 @@ namespace boost { namespace fusion
             Sequence& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -1129,7 +1137,9 @@ namespace boost { namespace fusion
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T0>::type at_impl(mpl::int_<0>) { return this->m0; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T0>::type>::type at_impl(mpl::int_<0>) const { return this->m0; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T1>::type at_impl(mpl::int_<1>) { return this->m1; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T1>::type>::type at_impl(mpl::int_<1>) const { return this->m1; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T2>::type at_impl(mpl::int_<2>) { return this->m2; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T2>::type>::type at_impl(mpl::int_<2>) const { return this->m2; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T3>::type at_impl(mpl::int_<3>) { return this->m3; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T3>::type>::type at_impl(mpl::int_<3>) const { return this->m3; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T4>::type at_impl(mpl::int_<4>) { return this->m4; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T4>::type>::type at_impl(mpl::int_<4>) const { return this->m4; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T5>::type at_impl(mpl::int_<5>) { return this->m5; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T5>::type>::type at_impl(mpl::int_<5>) const { return this->m5; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T6>::type at_impl(mpl::int_<6>) { return this->m6; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T6>::type>::type at_impl(mpl::int_<6>) const { return this->m6; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T7>::type at_impl(mpl::int_<7>) { return this->m7; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T7>::type>::type at_impl(mpl::int_<7>) const { return this->m7; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T8>::type at_impl(mpl::int_<8>) { return this->m8; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T8>::type>::type at_impl(mpl::int_<8>) const { return this->m8; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T9>::type at_impl(mpl::int_<9>) { return this->m9; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T9>::type>::type at_impl(mpl::int_<9>) const { return this->m9; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T10>::type at_impl(mpl::int_<10>) { return this->m10; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T10>::type>::type at_impl(mpl::int_<10>) const { return this->m10; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T11>::type at_impl(mpl::int_<11>) { return this->m11; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T11>::type>::type at_impl(mpl::int_<11>) const { return this->m11; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T12>::type at_impl(mpl::int_<12>) { return this->m12; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T12>::type>::type at_impl(mpl::int_<12>) const { return this->m12; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T13>::type at_impl(mpl::int_<13>) { return this->m13; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T13>::type>::type at_impl(mpl::int_<13>) const { return this->m13; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T14>::type at_impl(mpl::int_<14>) { return this->m14; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T14>::type>::type at_impl(mpl::int_<14>) const { return this->m14; }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename add_lvalue_reference<typename mpl::at<types, I>::type>::type
+        typename add_lvalue_reference<
+            typename mpl::at<types, I>::type
+        >::type
         at_impl(I)
         {
             return this->at_impl(mpl::int_<I::value>());
@@ -1162,7 +1172,7 @@ namespace boost { namespace fusion
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13 , U14 && arg14 , U15 && arg15
           , typename boost::enable_if<
                 is_convertible<U0, T0>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13)) , m14(::std::forward<U14>( arg14)) , m15(::std::forward<U15>( arg15))
         {
         }
@@ -1312,7 +1322,7 @@ namespace boost { namespace fusion
             Sequence const& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -1325,7 +1335,7 @@ namespace boost { namespace fusion
             Sequence& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -1356,7 +1366,9 @@ namespace boost { namespace fusion
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T0>::type at_impl(mpl::int_<0>) { return this->m0; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T0>::type>::type at_impl(mpl::int_<0>) const { return this->m0; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T1>::type at_impl(mpl::int_<1>) { return this->m1; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T1>::type>::type at_impl(mpl::int_<1>) const { return this->m1; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T2>::type at_impl(mpl::int_<2>) { return this->m2; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T2>::type>::type at_impl(mpl::int_<2>) const { return this->m2; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T3>::type at_impl(mpl::int_<3>) { return this->m3; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T3>::type>::type at_impl(mpl::int_<3>) const { return this->m3; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T4>::type at_impl(mpl::int_<4>) { return this->m4; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T4>::type>::type at_impl(mpl::int_<4>) const { return this->m4; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T5>::type at_impl(mpl::int_<5>) { return this->m5; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T5>::type>::type at_impl(mpl::int_<5>) const { return this->m5; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T6>::type at_impl(mpl::int_<6>) { return this->m6; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T6>::type>::type at_impl(mpl::int_<6>) const { return this->m6; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T7>::type at_impl(mpl::int_<7>) { return this->m7; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T7>::type>::type at_impl(mpl::int_<7>) const { return this->m7; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T8>::type at_impl(mpl::int_<8>) { return this->m8; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T8>::type>::type at_impl(mpl::int_<8>) const { return this->m8; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T9>::type at_impl(mpl::int_<9>) { return this->m9; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T9>::type>::type at_impl(mpl::int_<9>) const { return this->m9; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T10>::type at_impl(mpl::int_<10>) { return this->m10; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T10>::type>::type at_impl(mpl::int_<10>) const { return this->m10; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T11>::type at_impl(mpl::int_<11>) { return this->m11; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T11>::type>::type at_impl(mpl::int_<11>) const { return this->m11; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T12>::type at_impl(mpl::int_<12>) { return this->m12; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T12>::type>::type at_impl(mpl::int_<12>) const { return this->m12; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T13>::type at_impl(mpl::int_<13>) { return this->m13; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T13>::type>::type at_impl(mpl::int_<13>) const { return this->m13; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T14>::type at_impl(mpl::int_<14>) { return this->m14; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T14>::type>::type at_impl(mpl::int_<14>) const { return this->m14; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T15>::type at_impl(mpl::int_<15>) { return this->m15; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T15>::type>::type at_impl(mpl::int_<15>) const { return this->m15; }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename add_lvalue_reference<typename mpl::at<types, I>::type>::type
+        typename add_lvalue_reference<
+            typename mpl::at<types, I>::type
+        >::type
         at_impl(I)
         {
             return this->at_impl(mpl::int_<I::value>());
@@ -1389,7 +1401,7 @@ namespace boost { namespace fusion
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13 , U14 && arg14 , U15 && arg15 , U16 && arg16
           , typename boost::enable_if<
                 is_convertible<U0, T0>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13)) , m14(::std::forward<U14>( arg14)) , m15(::std::forward<U15>( arg15)) , m16(::std::forward<U16>( arg16))
         {
         }
@@ -1539,7 +1551,7 @@ namespace boost { namespace fusion
             Sequence const& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -1552,7 +1564,7 @@ namespace boost { namespace fusion
             Sequence& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -1583,7 +1595,9 @@ namespace boost { namespace fusion
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T0>::type at_impl(mpl::int_<0>) { return this->m0; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T0>::type>::type at_impl(mpl::int_<0>) const { return this->m0; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T1>::type at_impl(mpl::int_<1>) { return this->m1; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T1>::type>::type at_impl(mpl::int_<1>) const { return this->m1; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T2>::type at_impl(mpl::int_<2>) { return this->m2; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T2>::type>::type at_impl(mpl::int_<2>) const { return this->m2; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T3>::type at_impl(mpl::int_<3>) { return this->m3; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T3>::type>::type at_impl(mpl::int_<3>) const { return this->m3; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T4>::type at_impl(mpl::int_<4>) { return this->m4; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T4>::type>::type at_impl(mpl::int_<4>) const { return this->m4; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T5>::type at_impl(mpl::int_<5>) { return this->m5; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T5>::type>::type at_impl(mpl::int_<5>) const { return this->m5; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T6>::type at_impl(mpl::int_<6>) { return this->m6; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T6>::type>::type at_impl(mpl::int_<6>) const { return this->m6; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T7>::type at_impl(mpl::int_<7>) { return this->m7; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T7>::type>::type at_impl(mpl::int_<7>) const { return this->m7; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T8>::type at_impl(mpl::int_<8>) { return this->m8; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T8>::type>::type at_impl(mpl::int_<8>) const { return this->m8; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T9>::type at_impl(mpl::int_<9>) { return this->m9; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T9>::type>::type at_impl(mpl::int_<9>) const { return this->m9; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T10>::type at_impl(mpl::int_<10>) { return this->m10; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T10>::type>::type at_impl(mpl::int_<10>) const { return this->m10; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T11>::type at_impl(mpl::int_<11>) { return this->m11; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T11>::type>::type at_impl(mpl::int_<11>) const { return this->m11; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T12>::type at_impl(mpl::int_<12>) { return this->m12; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T12>::type>::type at_impl(mpl::int_<12>) const { return this->m12; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T13>::type at_impl(mpl::int_<13>) { return this->m13; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T13>::type>::type at_impl(mpl::int_<13>) const { return this->m13; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T14>::type at_impl(mpl::int_<14>) { return this->m14; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T14>::type>::type at_impl(mpl::int_<14>) const { return this->m14; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T15>::type at_impl(mpl::int_<15>) { return this->m15; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T15>::type>::type at_impl(mpl::int_<15>) const { return this->m15; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T16>::type at_impl(mpl::int_<16>) { return this->m16; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T16>::type>::type at_impl(mpl::int_<16>) const { return this->m16; }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename add_lvalue_reference<typename mpl::at<types, I>::type>::type
+        typename add_lvalue_reference<
+            typename mpl::at<types, I>::type
+        >::type
         at_impl(I)
         {
             return this->at_impl(mpl::int_<I::value>());
@@ -1616,7 +1630,7 @@ namespace boost { namespace fusion
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13 , U14 && arg14 , U15 && arg15 , U16 && arg16 , U17 && arg17
           , typename boost::enable_if<
                 is_convertible<U0, T0>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13)) , m14(::std::forward<U14>( arg14)) , m15(::std::forward<U15>( arg15)) , m16(::std::forward<U16>( arg16)) , m17(::std::forward<U17>( arg17))
         {
         }
@@ -1766,7 +1780,7 @@ namespace boost { namespace fusion
             Sequence const& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -1779,7 +1793,7 @@ namespace boost { namespace fusion
             Sequence& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -1810,7 +1824,9 @@ namespace boost { namespace fusion
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T0>::type at_impl(mpl::int_<0>) { return this->m0; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T0>::type>::type at_impl(mpl::int_<0>) const { return this->m0; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T1>::type at_impl(mpl::int_<1>) { return this->m1; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T1>::type>::type at_impl(mpl::int_<1>) const { return this->m1; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T2>::type at_impl(mpl::int_<2>) { return this->m2; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T2>::type>::type at_impl(mpl::int_<2>) const { return this->m2; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T3>::type at_impl(mpl::int_<3>) { return this->m3; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T3>::type>::type at_impl(mpl::int_<3>) const { return this->m3; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T4>::type at_impl(mpl::int_<4>) { return this->m4; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T4>::type>::type at_impl(mpl::int_<4>) const { return this->m4; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T5>::type at_impl(mpl::int_<5>) { return this->m5; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T5>::type>::type at_impl(mpl::int_<5>) const { return this->m5; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T6>::type at_impl(mpl::int_<6>) { return this->m6; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T6>::type>::type at_impl(mpl::int_<6>) const { return this->m6; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T7>::type at_impl(mpl::int_<7>) { return this->m7; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T7>::type>::type at_impl(mpl::int_<7>) const { return this->m7; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T8>::type at_impl(mpl::int_<8>) { return this->m8; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T8>::type>::type at_impl(mpl::int_<8>) const { return this->m8; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T9>::type at_impl(mpl::int_<9>) { return this->m9; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T9>::type>::type at_impl(mpl::int_<9>) const { return this->m9; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T10>::type at_impl(mpl::int_<10>) { return this->m10; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T10>::type>::type at_impl(mpl::int_<10>) const { return this->m10; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T11>::type at_impl(mpl::int_<11>) { return this->m11; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T11>::type>::type at_impl(mpl::int_<11>) const { return this->m11; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T12>::type at_impl(mpl::int_<12>) { return this->m12; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T12>::type>::type at_impl(mpl::int_<12>) const { return this->m12; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T13>::type at_impl(mpl::int_<13>) { return this->m13; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T13>::type>::type at_impl(mpl::int_<13>) const { return this->m13; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T14>::type at_impl(mpl::int_<14>) { return this->m14; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T14>::type>::type at_impl(mpl::int_<14>) const { return this->m14; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T15>::type at_impl(mpl::int_<15>) { return this->m15; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T15>::type>::type at_impl(mpl::int_<15>) const { return this->m15; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T16>::type at_impl(mpl::int_<16>) { return this->m16; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T16>::type>::type at_impl(mpl::int_<16>) const { return this->m16; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T17>::type at_impl(mpl::int_<17>) { return this->m17; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T17>::type>::type at_impl(mpl::int_<17>) const { return this->m17; }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename add_lvalue_reference<typename mpl::at<types, I>::type>::type
+        typename add_lvalue_reference<
+            typename mpl::at<types, I>::type
+        >::type
         at_impl(I)
         {
             return this->at_impl(mpl::int_<I::value>());
@@ -1843,7 +1859,7 @@ namespace boost { namespace fusion
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13 , U14 && arg14 , U15 && arg15 , U16 && arg16 , U17 && arg17 , U18 && arg18
           , typename boost::enable_if<
                 is_convertible<U0, T0>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13)) , m14(::std::forward<U14>( arg14)) , m15(::std::forward<U15>( arg15)) , m16(::std::forward<U16>( arg16)) , m17(::std::forward<U17>( arg17)) , m18(::std::forward<U18>( arg18))
         {
         }
@@ -1993,7 +2009,7 @@ namespace boost { namespace fusion
             Sequence const& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -2006,7 +2022,7 @@ namespace boost { namespace fusion
             Sequence& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -2037,7 +2053,9 @@ namespace boost { namespace fusion
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T0>::type at_impl(mpl::int_<0>) { return this->m0; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T0>::type>::type at_impl(mpl::int_<0>) const { return this->m0; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T1>::type at_impl(mpl::int_<1>) { return this->m1; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T1>::type>::type at_impl(mpl::int_<1>) const { return this->m1; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T2>::type at_impl(mpl::int_<2>) { return this->m2; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T2>::type>::type at_impl(mpl::int_<2>) const { return this->m2; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T3>::type at_impl(mpl::int_<3>) { return this->m3; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T3>::type>::type at_impl(mpl::int_<3>) const { return this->m3; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T4>::type at_impl(mpl::int_<4>) { return this->m4; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T4>::type>::type at_impl(mpl::int_<4>) const { return this->m4; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T5>::type at_impl(mpl::int_<5>) { return this->m5; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T5>::type>::type at_impl(mpl::int_<5>) const { return this->m5; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T6>::type at_impl(mpl::int_<6>) { return this->m6; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T6>::type>::type at_impl(mpl::int_<6>) const { return this->m6; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T7>::type at_impl(mpl::int_<7>) { return this->m7; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T7>::type>::type at_impl(mpl::int_<7>) const { return this->m7; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T8>::type at_impl(mpl::int_<8>) { return this->m8; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T8>::type>::type at_impl(mpl::int_<8>) const { return this->m8; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T9>::type at_impl(mpl::int_<9>) { return this->m9; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T9>::type>::type at_impl(mpl::int_<9>) const { return this->m9; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T10>::type at_impl(mpl::int_<10>) { return this->m10; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T10>::type>::type at_impl(mpl::int_<10>) const { return this->m10; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T11>::type at_impl(mpl::int_<11>) { return this->m11; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T11>::type>::type at_impl(mpl::int_<11>) const { return this->m11; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T12>::type at_impl(mpl::int_<12>) { return this->m12; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T12>::type>::type at_impl(mpl::int_<12>) const { return this->m12; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T13>::type at_impl(mpl::int_<13>) { return this->m13; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T13>::type>::type at_impl(mpl::int_<13>) const { return this->m13; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T14>::type at_impl(mpl::int_<14>) { return this->m14; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T14>::type>::type at_impl(mpl::int_<14>) const { return this->m14; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T15>::type at_impl(mpl::int_<15>) { return this->m15; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T15>::type>::type at_impl(mpl::int_<15>) const { return this->m15; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T16>::type at_impl(mpl::int_<16>) { return this->m16; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T16>::type>::type at_impl(mpl::int_<16>) const { return this->m16; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T17>::type at_impl(mpl::int_<17>) { return this->m17; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T17>::type>::type at_impl(mpl::int_<17>) const { return this->m17; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T18>::type at_impl(mpl::int_<18>) { return this->m18; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T18>::type>::type at_impl(mpl::int_<18>) const { return this->m18; }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename add_lvalue_reference<typename mpl::at<types, I>::type>::type
+        typename add_lvalue_reference<
+            typename mpl::at<types, I>::type
+        >::type
         at_impl(I)
         {
             return this->at_impl(mpl::int_<I::value>());
@@ -2070,7 +2088,7 @@ namespace boost { namespace fusion
             U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9 , U10 && arg10 , U11 && arg11 , U12 && arg12 , U13 && arg13 , U14 && arg14 , U15 && arg15 , U16 && arg16 , U17 && arg17 , U18 && arg18 , U19 && arg19
           , typename boost::enable_if<
                 is_convertible<U0, T0>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : m0(::std::forward<U0>( arg0)) , m1(::std::forward<U1>( arg1)) , m2(::std::forward<U2>( arg2)) , m3(::std::forward<U3>( arg3)) , m4(::std::forward<U4>( arg4)) , m5(::std::forward<U5>( arg5)) , m6(::std::forward<U6>( arg6)) , m7(::std::forward<U7>( arg7)) , m8(::std::forward<U8>( arg8)) , m9(::std::forward<U9>( arg9)) , m10(::std::forward<U10>( arg10)) , m11(::std::forward<U11>( arg11)) , m12(::std::forward<U12>( arg12)) , m13(::std::forward<U13>( arg13)) , m14(::std::forward<U14>( arg14)) , m15(::std::forward<U15>( arg15)) , m16(::std::forward<U16>( arg16)) , m17(::std::forward<U17>( arg17)) , m18(::std::forward<U18>( arg18)) , m19(::std::forward<U19>( arg19))
         {
         }
@@ -2220,7 +2238,7 @@ namespace boost { namespace fusion
             Sequence const& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -2233,7 +2251,7 @@ namespace boost { namespace fusion
             Sequence& seq
           , typename boost::enable_if<
                 traits::is_sequence<Sequence>
-            >::type* = 0
+            >::type* = BOOST_TTI_DETAIL_NULLPTR
         ) : base_type(base_type::init_from_sequence(seq))
         {
         }
@@ -2264,7 +2282,9 @@ namespace boost { namespace fusion
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T0>::type at_impl(mpl::int_<0>) { return this->m0; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T0>::type>::type at_impl(mpl::int_<0>) const { return this->m0; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T1>::type at_impl(mpl::int_<1>) { return this->m1; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T1>::type>::type at_impl(mpl::int_<1>) const { return this->m1; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T2>::type at_impl(mpl::int_<2>) { return this->m2; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T2>::type>::type at_impl(mpl::int_<2>) const { return this->m2; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T3>::type at_impl(mpl::int_<3>) { return this->m3; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T3>::type>::type at_impl(mpl::int_<3>) const { return this->m3; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T4>::type at_impl(mpl::int_<4>) { return this->m4; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T4>::type>::type at_impl(mpl::int_<4>) const { return this->m4; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T5>::type at_impl(mpl::int_<5>) { return this->m5; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T5>::type>::type at_impl(mpl::int_<5>) const { return this->m5; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T6>::type at_impl(mpl::int_<6>) { return this->m6; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T6>::type>::type at_impl(mpl::int_<6>) const { return this->m6; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T7>::type at_impl(mpl::int_<7>) { return this->m7; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T7>::type>::type at_impl(mpl::int_<7>) const { return this->m7; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T8>::type at_impl(mpl::int_<8>) { return this->m8; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T8>::type>::type at_impl(mpl::int_<8>) const { return this->m8; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T9>::type at_impl(mpl::int_<9>) { return this->m9; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T9>::type>::type at_impl(mpl::int_<9>) const { return this->m9; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T10>::type at_impl(mpl::int_<10>) { return this->m10; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T10>::type>::type at_impl(mpl::int_<10>) const { return this->m10; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T11>::type at_impl(mpl::int_<11>) { return this->m11; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T11>::type>::type at_impl(mpl::int_<11>) const { return this->m11; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T12>::type at_impl(mpl::int_<12>) { return this->m12; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T12>::type>::type at_impl(mpl::int_<12>) const { return this->m12; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T13>::type at_impl(mpl::int_<13>) { return this->m13; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T13>::type>::type at_impl(mpl::int_<13>) const { return this->m13; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T14>::type at_impl(mpl::int_<14>) { return this->m14; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T14>::type>::type at_impl(mpl::int_<14>) const { return this->m14; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T15>::type at_impl(mpl::int_<15>) { return this->m15; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T15>::type>::type at_impl(mpl::int_<15>) const { return this->m15; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T16>::type at_impl(mpl::int_<16>) { return this->m16; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T16>::type>::type at_impl(mpl::int_<16>) const { return this->m16; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T17>::type at_impl(mpl::int_<17>) { return this->m17; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T17>::type>::type at_impl(mpl::int_<17>) const { return this->m17; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T18>::type at_impl(mpl::int_<18>) { return this->m18; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T18>::type>::type at_impl(mpl::int_<18>) const { return this->m18; } BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<T19>::type at_impl(mpl::int_<19>) { return this->m19; } BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED typename add_lvalue_reference<typename add_const<T19>::type>::type at_impl(mpl::int_<19>) const { return this->m19; }
         template <typename I>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        typename add_lvalue_reference<typename mpl::at<types, I>::type>::type
+        typename add_lvalue_reference<
+            typename mpl::at<types, I>::type
+        >::type
         at_impl(I)
         {
             return this->at_impl(mpl::int_<I::value>());
