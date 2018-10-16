@@ -20,12 +20,18 @@
 // Enclose with inline namespace because unqualified lookup of GCC < 4.5 is
 // broken.
 //
-//      namespace detail {
+//      namespace detail
+//      {
 //          struct foo;
-//          struct X { };
+//
+//          struct X
+//          {
+//          };
 //      }
 //
-//      template <typename T> void foo(T) { }
+//      template <typename T> void foo(T)
+//      {
+//      }
 //
 //      int main()
 //      {

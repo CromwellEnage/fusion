@@ -68,24 +68,24 @@ namespace boost { namespace fusion
 {
     template <BOOST_PP_ENUM_PARAMS(FUSION_MAX_MAP_SIZE, typename T)>
     struct map :
-        ::boost::fusion::sequence_base<
-            ::boost::fusion::map<BOOST_PP_ENUM_PARAMS(FUSION_MAX_MAP_SIZE, T)>
+        sequence_base<
+            map<BOOST_PP_ENUM_PARAMS(FUSION_MAX_MAP_SIZE, T)>
         >
     {
         struct category
-          : ::boost::fusion::random_access_traversal_tag
-          , ::boost::fusion::associative_tag
+          : random_access_traversal_tag
+          , associative_tag
         {
         };
 
-        typedef ::boost::fusion::map_tag fusion_tag;
+        typedef map_tag fusion_tag;
 
         // This gets picked up by MPL.
-        typedef ::boost::fusion::fusion_sequence_tag tag;
+        typedef fusion_sequence_tag tag;
 
-        typedef ::boost::mpl::false_ is_view;
+        typedef mpl::false_ is_view;
 
-        typedef ::boost::fusion::vector<
+        typedef vector<
             BOOST_PP_ENUM_PARAMS(FUSION_MAX_MAP_SIZE, T)
         > storage_type;
 
@@ -130,7 +130,7 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES) || \
     (defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES))
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        map(map&& rhs) : data(::std::move(rhs.data))
+        map(map&& rhs) : data(std::move(rhs.data))
         {
         }
 
@@ -145,7 +145,7 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         map& operator=(map&& rhs)
         {
-            this->data = ::std::move(rhs.data);
+            this->data = std::move(rhs.data);
             return *this;
         }
 #endif

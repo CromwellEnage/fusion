@@ -11,20 +11,20 @@ namespace boost { namespace fusion
 {
     template <typename T0 , typename T1 , typename T2 , typename T3 , typename T4 , typename T5 , typename T6 , typename T7 , typename T8 , typename T9>
     struct map :
-        ::boost::fusion::sequence_base<
-            ::boost::fusion::map<T0 , T1 , T2 , T3 , T4 , T5 , T6 , T7 , T8 , T9>
+        sequence_base<
+            map<T0 , T1 , T2 , T3 , T4 , T5 , T6 , T7 , T8 , T9>
         >
     {
         struct category
-          : ::boost::fusion::random_access_traversal_tag
-          , ::boost::fusion::associative_tag
+          : random_access_traversal_tag
+          , associative_tag
         {
         };
-        typedef ::boost::fusion::map_tag fusion_tag;
+        typedef map_tag fusion_tag;
         
-        typedef ::boost::fusion::fusion_sequence_tag tag;
-        typedef ::boost::mpl::false_ is_view;
-        typedef ::boost::fusion::vector<
+        typedef fusion_sequence_tag tag;
+        typedef mpl::false_ is_view;
+        typedef vector<
             T0 , T1 , T2 , T3 , T4 , T5 , T6 , T7 , T8 , T9
         > storage_type;
         typedef typename storage_type::size size;
@@ -44,7 +44,7 @@ namespace boost { namespace fusion
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
     explicit
     map(
-        typename ::boost::fusion::detail::call_param<T0 >::type arg0
+        typename detail::call_param<T0 >::type arg0
     ) : data(arg0)
     {
     }
@@ -54,8 +54,9 @@ namespace boost { namespace fusion
     explicit
     map(
         U0 && arg0
-# if defined(BOOST_MSVC) && (BOOST_MSVC >= 1700) && (BOOST_MSVC < 1800)
-      , typename enable_if<is_same<U0, T0> >::type* = BOOST_TTI_DETAIL_NULLPTR
+    
+# if defined(BOOST_MSVC) && (BOOST_MSVC == 1700)
+      , typename enable_if<is_same<U0, T0> >::type* = 0
 # endif
     ) : data(::std::forward<U0>( arg0))
     {
@@ -63,7 +64,7 @@ namespace boost { namespace fusion
 # endif
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
     map(
-        typename ::boost::fusion::detail::call_param<T0 >::type arg0 , typename ::boost::fusion::detail::call_param<T1 >::type arg1
+        typename detail::call_param<T0 >::type arg0 , typename detail::call_param<T1 >::type arg1
     ) : data(arg0 , arg1)
     {
     }
@@ -78,7 +79,7 @@ namespace boost { namespace fusion
 # endif
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
     map(
-        typename ::boost::fusion::detail::call_param<T0 >::type arg0 , typename ::boost::fusion::detail::call_param<T1 >::type arg1 , typename ::boost::fusion::detail::call_param<T2 >::type arg2
+        typename detail::call_param<T0 >::type arg0 , typename detail::call_param<T1 >::type arg1 , typename detail::call_param<T2 >::type arg2
     ) : data(arg0 , arg1 , arg2)
     {
     }
@@ -93,7 +94,7 @@ namespace boost { namespace fusion
 # endif
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
     map(
-        typename ::boost::fusion::detail::call_param<T0 >::type arg0 , typename ::boost::fusion::detail::call_param<T1 >::type arg1 , typename ::boost::fusion::detail::call_param<T2 >::type arg2 , typename ::boost::fusion::detail::call_param<T3 >::type arg3
+        typename detail::call_param<T0 >::type arg0 , typename detail::call_param<T1 >::type arg1 , typename detail::call_param<T2 >::type arg2 , typename detail::call_param<T3 >::type arg3
     ) : data(arg0 , arg1 , arg2 , arg3)
     {
     }
@@ -108,7 +109,7 @@ namespace boost { namespace fusion
 # endif
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
     map(
-        typename ::boost::fusion::detail::call_param<T0 >::type arg0 , typename ::boost::fusion::detail::call_param<T1 >::type arg1 , typename ::boost::fusion::detail::call_param<T2 >::type arg2 , typename ::boost::fusion::detail::call_param<T3 >::type arg3 , typename ::boost::fusion::detail::call_param<T4 >::type arg4
+        typename detail::call_param<T0 >::type arg0 , typename detail::call_param<T1 >::type arg1 , typename detail::call_param<T2 >::type arg2 , typename detail::call_param<T3 >::type arg3 , typename detail::call_param<T4 >::type arg4
     ) : data(arg0 , arg1 , arg2 , arg3 , arg4)
     {
     }
@@ -123,7 +124,7 @@ namespace boost { namespace fusion
 # endif
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
     map(
-        typename ::boost::fusion::detail::call_param<T0 >::type arg0 , typename ::boost::fusion::detail::call_param<T1 >::type arg1 , typename ::boost::fusion::detail::call_param<T2 >::type arg2 , typename ::boost::fusion::detail::call_param<T3 >::type arg3 , typename ::boost::fusion::detail::call_param<T4 >::type arg4 , typename ::boost::fusion::detail::call_param<T5 >::type arg5
+        typename detail::call_param<T0 >::type arg0 , typename detail::call_param<T1 >::type arg1 , typename detail::call_param<T2 >::type arg2 , typename detail::call_param<T3 >::type arg3 , typename detail::call_param<T4 >::type arg4 , typename detail::call_param<T5 >::type arg5
     ) : data(arg0 , arg1 , arg2 , arg3 , arg4 , arg5)
     {
     }
@@ -138,7 +139,7 @@ namespace boost { namespace fusion
 # endif
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
     map(
-        typename ::boost::fusion::detail::call_param<T0 >::type arg0 , typename ::boost::fusion::detail::call_param<T1 >::type arg1 , typename ::boost::fusion::detail::call_param<T2 >::type arg2 , typename ::boost::fusion::detail::call_param<T3 >::type arg3 , typename ::boost::fusion::detail::call_param<T4 >::type arg4 , typename ::boost::fusion::detail::call_param<T5 >::type arg5 , typename ::boost::fusion::detail::call_param<T6 >::type arg6
+        typename detail::call_param<T0 >::type arg0 , typename detail::call_param<T1 >::type arg1 , typename detail::call_param<T2 >::type arg2 , typename detail::call_param<T3 >::type arg3 , typename detail::call_param<T4 >::type arg4 , typename detail::call_param<T5 >::type arg5 , typename detail::call_param<T6 >::type arg6
     ) : data(arg0 , arg1 , arg2 , arg3 , arg4 , arg5 , arg6)
     {
     }
@@ -153,7 +154,7 @@ namespace boost { namespace fusion
 # endif
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
     map(
-        typename ::boost::fusion::detail::call_param<T0 >::type arg0 , typename ::boost::fusion::detail::call_param<T1 >::type arg1 , typename ::boost::fusion::detail::call_param<T2 >::type arg2 , typename ::boost::fusion::detail::call_param<T3 >::type arg3 , typename ::boost::fusion::detail::call_param<T4 >::type arg4 , typename ::boost::fusion::detail::call_param<T5 >::type arg5 , typename ::boost::fusion::detail::call_param<T6 >::type arg6 , typename ::boost::fusion::detail::call_param<T7 >::type arg7
+        typename detail::call_param<T0 >::type arg0 , typename detail::call_param<T1 >::type arg1 , typename detail::call_param<T2 >::type arg2 , typename detail::call_param<T3 >::type arg3 , typename detail::call_param<T4 >::type arg4 , typename detail::call_param<T5 >::type arg5 , typename detail::call_param<T6 >::type arg6 , typename detail::call_param<T7 >::type arg7
     ) : data(arg0 , arg1 , arg2 , arg3 , arg4 , arg5 , arg6 , arg7)
     {
     }
@@ -168,7 +169,7 @@ namespace boost { namespace fusion
 # endif
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
     map(
-        typename ::boost::fusion::detail::call_param<T0 >::type arg0 , typename ::boost::fusion::detail::call_param<T1 >::type arg1 , typename ::boost::fusion::detail::call_param<T2 >::type arg2 , typename ::boost::fusion::detail::call_param<T3 >::type arg3 , typename ::boost::fusion::detail::call_param<T4 >::type arg4 , typename ::boost::fusion::detail::call_param<T5 >::type arg5 , typename ::boost::fusion::detail::call_param<T6 >::type arg6 , typename ::boost::fusion::detail::call_param<T7 >::type arg7 , typename ::boost::fusion::detail::call_param<T8 >::type arg8
+        typename detail::call_param<T0 >::type arg0 , typename detail::call_param<T1 >::type arg1 , typename detail::call_param<T2 >::type arg2 , typename detail::call_param<T3 >::type arg3 , typename detail::call_param<T4 >::type arg4 , typename detail::call_param<T5 >::type arg5 , typename detail::call_param<T6 >::type arg6 , typename detail::call_param<T7 >::type arg7 , typename detail::call_param<T8 >::type arg8
     ) : data(arg0 , arg1 , arg2 , arg3 , arg4 , arg5 , arg6 , arg7 , arg8)
     {
     }
@@ -183,7 +184,7 @@ namespace boost { namespace fusion
 # endif
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
     map(
-        typename ::boost::fusion::detail::call_param<T0 >::type arg0 , typename ::boost::fusion::detail::call_param<T1 >::type arg1 , typename ::boost::fusion::detail::call_param<T2 >::type arg2 , typename ::boost::fusion::detail::call_param<T3 >::type arg3 , typename ::boost::fusion::detail::call_param<T4 >::type arg4 , typename ::boost::fusion::detail::call_param<T5 >::type arg5 , typename ::boost::fusion::detail::call_param<T6 >::type arg6 , typename ::boost::fusion::detail::call_param<T7 >::type arg7 , typename ::boost::fusion::detail::call_param<T8 >::type arg8 , typename ::boost::fusion::detail::call_param<T9 >::type arg9
+        typename detail::call_param<T0 >::type arg0 , typename detail::call_param<T1 >::type arg1 , typename detail::call_param<T2 >::type arg2 , typename detail::call_param<T3 >::type arg3 , typename detail::call_param<T4 >::type arg4 , typename detail::call_param<T5 >::type arg5 , typename detail::call_param<T6 >::type arg6 , typename detail::call_param<T7 >::type arg7 , typename detail::call_param<T8 >::type arg8 , typename detail::call_param<T9 >::type arg9
     ) : data(arg0 , arg1 , arg2 , arg3 , arg4 , arg5 , arg6 , arg7 , arg8 , arg9)
     {
     }
@@ -211,7 +212,7 @@ namespace boost { namespace fusion
         }
 # if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        map(map&& rhs) : data(::std::move(rhs.data))
+        map(map&& rhs) : data(std::move(rhs.data))
         {
         }
         template <typename T>
@@ -224,7 +225,7 @@ namespace boost { namespace fusion
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         map& operator=(map&& rhs)
         {
-            this->data = ::std::move(rhs.data);
+            this->data = std::move(rhs.data);
             return *this;
         }
 # endif

@@ -33,37 +33,33 @@
 
 #if BOOST_WORKAROUND(BOOST_MSVC, <= 1600)
 
-#define BOOST_FUSION_VECTOR_COPY_INIT()                                       \
-    ctor_helper(rhs, is_base_of<vector, Sequence>())                          \
+#define BOOST_FUSION_VECTOR_COPY_INIT()                                      \
+    ctor_helper(rhs, is_base_of<vector, Sequence>())                         \
 
-#define BOOST_FUSION_VECTOR_CTOR_HELPER()                                     \
-    BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED                                  \
-    static vector_n const&                                                    \
-    ctor_helper(vector const& rhs, mpl::true_)                                \
-    {                                                                         \
-        return rhs.vec;                                                       \
-    }                                                                         \
-                                                                              \
-    template <typename T>                                                     \
-    BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED                                  \
-    static T const&                                                           \
-    ctor_helper(T const& rhs, mpl::false_)                                    \
-    {                                                                         \
-        return rhs;                                                           \
+#define BOOST_FUSION_VECTOR_CTOR_HELPER()                                    \
+    BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED                                 \
+    static vector_n const&                                                   \
+    ctor_helper(vector const& rhs, mpl::true_)                               \
+    {                                                                        \
+        return rhs.vec;                                                      \
+    }                                                                        \
+    template <typename T>                                                    \
+    BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED                                 \
+    static T const&                                                          \
+    ctor_helper(T const& rhs, mpl::false_)                                   \
+    {                                                                        \
+        return rhs;                                                          \
     }
 
 #else
 
-#define BOOST_FUSION_VECTOR_COPY_INIT()                                       \
-    rhs                                                                       \
+#define BOOST_FUSION_VECTOR_COPY_INIT() rhs
 
 #define BOOST_FUSION_VECTOR_CTOR_HELPER()
 
-#endif
+#endif  // BOOST_WORKAROUND(BOOST_MSVC, <= 1600)
 
-#if !defined(BOOST_FUSION_DONT_USE_PREPROCESSED_FILES)
-#include <boost/fusion/container/vector/detail/cpp03/preprocessed/vector.hpp>
-#else
+#if defined(BOOST_FUSION_DONT_USE_PREPROCESSED_FILES)
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 #pragma wave option(preserve: 2, line: 0, output: "preprocessed/vvector" \
 FUSION_MAX_VECTOR_SIZE_STR ".hpp")
@@ -86,10 +82,12 @@ FUSION_MAX_VECTOR_SIZE_STR ".hpp")
 namespace boost { namespace fusion
 {
     template <BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, typename T)>
-    struct vector
-        : sequence_base<vector<BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, T)> >
+    struct vector :
+        sequence_base<
+            vector<BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, T)>
+        >
     {
-    private:
+     private:
 
         typedef typename detail::vector_n_chooser<
             BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, T)>::type
@@ -98,8 +96,7 @@ namespace boost { namespace fusion
         template <BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, typename U)>
         friend struct vector;
 
-    public:
-
+     public:
         typedef typename vector_n::types types;
         typedef typename vector_n::fusion_tag fusion_tag;
         typedef typename vector_n::tag tag;
@@ -108,56 +105,69 @@ namespace boost { namespace fusion
         typedef typename vector_n::is_view is_view;
 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        vector()
-            : vec() {}
+        vector() : vec()
+        {
+        }
 
         template <BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, typename U)>
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        vector(vector<BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, U)> const& rhs)
-            : vec(rhs.vec) {}
+        vector(
+            vector<BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, U)> const& rhs
+        ) : vec(rhs.vec)
+        {
+        }
 
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        vector(vector const& rhs)
-            : vec(rhs.vec) {}
+        vector(vector const& rhs) : vec(rhs.vec)
+        {
+        }
 
         template <typename Sequence>
         BOOST_FUSION_GPU_ENABLED
-        vector(Sequence const& rhs,
-            typename enable_if<traits::is_sequence<Sequence>, detail::enabler_>::type = detail::enabler)
-            : vec(BOOST_FUSION_VECTOR_COPY_INIT()) {}
+        vector(
+            Sequence const& rhs
+          , typename enable_if<
+                traits::is_sequence<Sequence>
+              , detail::enabler_
+            >::type = detail::enabler
+        ) : vec(BOOST_FUSION_VECTOR_COPY_INIT())
+        {
+        }
 
         //  Expand a couple of forwarding constructors for arguments
         //  of type (T0), (T0, T1), (T0, T1, T2) etc. Example:
         //
         //  vector(
         //      typename detail::call_param<T0>::type arg0
-        //    , typename detail::call_param<T1>::type arg1)
-        //    : vec(arg0, arg1) {}
-        #include <boost/fusion/container/vector/detail/cpp03/vector_forward_ctor.hpp>
+        //    , typename detail::call_param<T1>::type arg1
+        //  ) : vec(arg0, arg1)
+        //  {
+        //  }
+#include <boost/fusion/container/vector/detail/cpp03/vector_forward_ctor.hpp>
 
         template <BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, typename U)>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         vector&
-        operator=(vector<BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, U)> const& rhs)
+        operator=(
+            vector<BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, U)> const& rhs
+        )
         {
-            vec = rhs.vec;
+            this->vec = rhs.vec;
             return *this;
         }
 
         template <typename T>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        vector&
-        operator=(T const& rhs)
+        vector& operator=(T const& rhs)
         {
-            vec = rhs;
+            this->vec = rhs;
             return *this;
         }
 
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        vector&
-        operator=(vector const& rhs)
+        vector& operator=(vector const& rhs)
         {
-            vec = rhs.vec;
+            this->vec = rhs.vec;
             return *this;
         }
 
@@ -167,26 +177,29 @@ FUSION_HASH if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES) || \
     (defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES))
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        vector(vector&& rhs)
-            : vec(std::forward<vector_n>(rhs.vec)) {}
+        vector(vector&& rhs) : vec(std::forward<vector_n>(rhs.vec))
+        {
+        }
 
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        vector&
-        operator=(vector&& rhs)
+        vector& operator=(vector&& rhs)
         {
-            vec = std::forward<vector_n>(rhs.vec);
+            this->vec = std::forward<vector_n>(rhs.vec);
             return *this;
         }
 
         template <typename T>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         typename boost::disable_if_c<
-            boost::is_same<vector, typename boost::remove_cv_ref<T>::type>::value
+            boost::is_same<
+                vector
+              , typename boost::remove_cv_ref<T>::type
+            >::value
           , vector&
         >::type
         operator=(T&& rhs)
         {
-            vec = BOOST_FUSION_FWD_ELEM(T, rhs);
+            this->vec = BOOST_FUSION_FWD_ELEM(T, rhs);
             return *this;
         }
 #endif
@@ -201,7 +214,7 @@ FUSION_HASH endif
         >::type
         at_impl(mpl::int_<N> index)
         {
-            return vec.at_impl(index);
+            return this->vec.at_impl(index);
         }
 
         template <int N>
@@ -213,7 +226,7 @@ FUSION_HASH endif
         >::type
         at_impl(mpl::int_<N> index) const
         {
-            return vec.at_impl(index);
+            return this->vec.at_impl(index);
         }
 
         template <typename I>
@@ -223,7 +236,7 @@ FUSION_HASH endif
         >::type
         at_impl(I /*index*/)
         {
-            return vec.at_impl(mpl::int_<I::value>());
+            return this->vec.at_impl(mpl::int_<I::value>());
         }
 
         template<typename I>
@@ -235,7 +248,7 @@ FUSION_HASH endif
         >::type
         at_impl(I /*index*/) const
         {
-            return vec.at_impl(mpl::int_<I::value>());
+            return this->vec.at_impl(mpl::int_<I::value>());
         }
 
      private:
@@ -248,6 +261,8 @@ FUSION_HASH endif
 #pragma wave option(output: null)
 #endif
 
+#else
+#include <boost/fusion/container/vector/detail/cpp03/preprocessed/vector.hpp>
 #endif  // BOOST_FUSION_DONT_USE_PREPROCESSED_FILES
 
 #undef FUSION_HASH
